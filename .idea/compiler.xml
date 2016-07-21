@@ -25,5 +25,8 @@
         <module name="java2excel" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="java2excel" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
