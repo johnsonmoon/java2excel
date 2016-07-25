@@ -33,7 +33,7 @@ public class ExportUtil {
             workbook.setSheetOrder(excelTemplate.getClassName(), sheetNum);
             //总共有多少列数（后期添加关系等需要修改）
             int collumnSize = 0;
-            int attrivalueSize = excelTemplate.getAttrValues().size();
+            int attrivalueSize = excelTemplate.getAttrbuteTypes().size();
             collumnSize = attrivalueSize + 1;
             //设置属性列宽
             if(excelTemplate != null){
@@ -46,10 +46,10 @@ public class ExportUtil {
             //隐藏行代码（设置行高为零）
             sheet.createRow(3).setZeroHeight(true);
             //合并单元格
-            List<MergeRange> mergeRanges = new ArrayList<MergeRange>();
-            mergeRanges.add(new MergeRange(0, 1, 0, 0));
-            mergeRanges.add(new MergeRange(0, 1, 1, collumnSize + 1));
-            this.mergeCellsByMulti(sheet, mergeRanges);
+            CellRangeAddress cellRangeAddress1 = new CellRangeAddress(0, 1, 0, 0);
+            CellRangeAddress cellRangeAddress3 = new CellRangeAddress(0, 1, 1, collumnSize);
+            sheet.addMergedRegion(cellRangeAddress1);
+            sheet.addMergedRegion(cellRangeAddress3);
             //创建字体
             //Title
             Font fontTitle = workbook.createFont();
@@ -57,14 +57,12 @@ public class ExportUtil {
             fontTitle.setItalic(false);
             //fontTitle.setBoldweight(XSSFFont.BOLDWEIGHT_BOLD);
             fontTitle.setFontHeightInPoints((short) 10);
-
             //Header
             Font fontHeader = workbook.createFont();
             fontHeader.setFontName(HSSFFont.FONT_ARIAL);
             fontHeader.setItalic(false);
             //fontHeader.setBoldweight(XSSFFont.BOLDWEIGHT_BOLD);
             fontHeader.setFontHeightInPoints((short) 10);
-
             //HeaderFirstCell
             Font fontHeaderFirstCell = workbook.createFont();
             fontHeaderFirstCell.setFontName(HSSFFont.FONT_ARIAL);
@@ -72,7 +70,6 @@ public class ExportUtil {
             //fontHeaderFirstCell.setBoldweight(XSSFFont.BOLDWEIGHT_NORMAL);
             fontHeaderFirstCell.setFontHeightInPoints((short) 10);
             //fontHeaderFirstCell.setColor(IndexedColors.WHITE.getIndex());
-
             Font fontValue = fontHeader;
 
             // 创建单元格格式
@@ -122,12 +119,12 @@ public class ExportUtil {
             cellStyleValue.setLocked(false);
             //写入固定数据
             this.insertCellValue(sheet, 0, 0, excelTemplate.getClassCode()+"&&"+excelTemplate.getId(), cellStyleHideHeader);
-            this.insertCellValue(sheet, 1, 0, "配置项模板表格（" + excelTemplate.getClassName() + "）", cellStyleTitle);
+            this.insertCellValue(sheet, 1, 0, "模板表格（" + excelTemplate.getClassName() + "）", cellStyleTitle);
             this.insertCellValue(sheet, 0, 2, "字段", cellStyleRowHeader);
             this.insertCellValue(sheet, 0, 3, "请勿编辑此行", cellStyleGrayRowHeader);
             this.insertCellValue(sheet, 0, 4, "数据格式", cellStyleRowHeader);
             this.insertCellValue(sheet, 0, 5, "默认值", cellStyleRowHeader);
-            this.insertCellValue(sheet, 0, 6, "配置项数据", cellStyleRowHeaderTopAlign);
+            this.insertCellValue(sheet, 0, 6, "数据", cellStyleRowHeaderTopAlign);
             // 增加資源标签列
             this.insertCellValue(sheet, 1, 2, "配置项标识", cellStyleColumnHeader);
             this.insertCellValue(sheet, 1, 3, "配置项标识", cellStyleWhiteHideHeader);
@@ -199,12 +196,19 @@ public class ExportUtil {
             if(startRowNum < 6){
                 System.out.println("至少从第7(6+1)行开始插入数据!");
             }
+            /*
             int j = startRowNum;
             for(ExcelTemplate excelTemplate : excelTemplates){
                 for(int i = 0; i < excelTemplate.getAttrValues().size(); i++){
                     this.insertCellValue(sheet, i+2, j, excelTemplate.getAttrValues().get(i), cellStyleValue);
                 }
                 j++;
+            }*/
+
+            for (int j = 0; j < excelTemplates.size(); j++){
+                for (int i = 0; i < excelTemplates.get(j).getAttrValues().size(); i++){
+                    this.insertCellValue(sheet, i+2, j+startRowNum, excelTemplates.get(j).getAttrValues().get(i), cellStyleValue);
+                }
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -284,37 +288,5 @@ public class ExportUtil {
             }
         }
         return cellValue;
-    }
-
-    /**
-     * 合并单元格
-     *
-     *@param mergeRanges 需要合并的区域集合
-     *@param sheet 需要操作的工作薄
-     * */
-    public void mergeCellsByMulti(Sheet sheet, List<MergeRange> mergeRanges){
-        for(MergeRange range : mergeRanges){
-            CellRangeAddress region = new CellRangeAddress(range.firstRow, range.lastRow, range.firstCollumn, range.lastCollum);
-            sheet.addMergedRegion(region);
-        }
-    }
-
-    /**
-     * inner class
-     *
-     * 定位合并单元格的范围（区域）
-     * */
-    public class MergeRange{
-        public int firstRow;
-        public int lastRow;
-        public int firstCollumn;
-        public int lastCollum;
-
-        public MergeRange(int firstRow, int lastRow, int firstCollumn, int lastCollum){
-            this.firstCollumn = firstRow;
-            this.lastCollum = lastCollum;
-            this.firstRow = firstRow;
-            this.lastRow = lastRow;
-        }
     }
 }
