@@ -1,6 +1,5 @@
 package com.xuyihao.java2excel.biz.excel.exportfunc;
 
-import com.xuyihao.java2excel.api.model.AttributeType;
 import com.xuyihao.java2excel.api.model.ExcelTemplate;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.ss.usermodel.*;
@@ -16,7 +15,7 @@ import java.util.*;
  *
  * Excel文件操作工具类
  */
-public class exportUtil {
+public class ExportUtil {
     /**
      * 创建表格
      *
@@ -25,7 +24,7 @@ public class exportUtil {
      * @param excelTemplate 数据模型
      * @param ifCloseWorkBook 是否保存关闭表格
      * @param fileOut 文件流
-     *@return true 成功, false 失败
+     * @return true 成功, false 失败
      * */
     public boolean createExcel(final Workbook workbook, int sheetNum, ExcelTemplate excelTemplate, boolean ifCloseWorkBook, FileOutputStream fileOut){
         boolean flag = false;
@@ -122,7 +121,7 @@ public class exportUtil {
             cellStyleValue.setWrapText(true);
             cellStyleValue.setLocked(false);
             //写入固定数据
-            this.insertCellValue(sheet, 0, 0, excelTemplate.getId() + "&&" +  excelTemplate.getTenant() + "&&" + excelTemplate.getClassCode() + "&&" + excelTemplate, cellStyleHideHeader);
+            this.insertCellValue(sheet, 0, 0, excelTemplate.getClassCode()+"&&"+excelTemplate.getId(), cellStyleHideHeader);
             this.insertCellValue(sheet, 1, 0, "配置项模板表格（" + excelTemplate.getClassName() + "）", cellStyleTitle);
             this.insertCellValue(sheet, 0, 2, "字段", cellStyleRowHeader);
             this.insertCellValue(sheet, 0, 3, "请勿编辑此行", cellStyleGrayRowHeader);
@@ -132,25 +131,92 @@ public class exportUtil {
             // 增加資源标签列
             this.insertCellValue(sheet, 1, 2, "配置项标识", cellStyleColumnHeader);
             this.insertCellValue(sheet, 1, 3, "配置项标识", cellStyleWhiteHideHeader);
-            int i = 2;
-            Iterator it = excelTemplate.getAttrValues().entrySet().iterator();
-            while(it.hasNext()){
-                Map.Entry entity = (Map.Entry)it.next();
-                AttributeType attributeType = (AttributeType)entity.getKey();
-                String label = attributeType.getAttrName();
-                this.insertCellValue(sheet, );
-
-
-                i++;
+            for(int i = 0; i < excelTemplate.getAttrbuteTypes().size(); i++){
+                String label = excelTemplate.getAttrbuteTypes().get(i).getAttrName();
+                String formatRule = excelTemplate.getAttrbuteTypes().get(i).getAttrFormatRule();
+                String defaultValue = excelTemplate.getAttrbuteTypes().get(i).getDefaultValue();
+                this.insertCellValue(sheet, i+2, 2, label, cellStyleColumnHeader);//字段名
+                this.insertCellValue(sheet, i+2, 4, formatRule, cellStyleColumnHeader);//格式
+                this.insertCellValue(sheet, i+2, 5, defaultValue, cellStyleColumnHeader);//默认值
             }
-        }catch(IOException e){
+            flag = true;
+        }catch(Exception e){
             e.printStackTrace();
             flag = false;
         }finally {
             if(workbook != null && ifCloseWorkBook){
                 try{
                     workbook.write(fileOut);
-                }catch (Exception e1){
+                    flag = true;
+                }catch (IOException e1){
+                    e1.printStackTrace();
+                    flag = false;
+                }
+            }
+        }
+        return flag;
+    }
+
+    /**
+     *批量插入数据
+     *
+     * @param workbook 工作簿
+     * @param sheetNum 表格编号
+     * @param startRowNum 写入数据的起始行（第一次写入应当从第七行即startRowNum=6开始）
+     * @param excelTemplates 数据列表
+     * @param ifCloseWorkBook 是否保存工作簿文件
+     * @param fileOut 文件流
+     * @return true 成功, false 失败
+     */
+    public boolean insertExcelData(final Workbook workbook, int sheetNum, int startRowNum, List<ExcelTemplate> excelTemplates, boolean ifCloseWorkBook, FileOutputStream fileOut){
+        boolean flag = false;
+        if(workbook == null){
+            return false;
+        }
+        Sheet sheet = workbook.getSheetAt(sheetNum);
+        if(sheet == null){
+            return false;
+        }
+        String[] identifyString = this.getCellValue(sheet, 0, 0).split("&&");
+        if(!identifyString[0].equals(excelTemplates.get(0).getClassCode()) || !identifyString[1].equals(excelTemplates.get(0).getId())){
+            return false;//excel对应的类型和传入的excelTemplates类型不一致
+        }
+        //设置字体
+        Font fontHeader = workbook.createFont();
+        fontHeader.setFontName(HSSFFont.FONT_ARIAL);
+        fontHeader.setItalic(false);
+        //fontHeader.setBoldweight(XSSFFont.BOLDWEIGHT_NORMAL);
+        fontHeader.setFontHeightInPoints((short) 10);
+        Font fontValue = fontHeader;
+        try{
+            // 创建单元格格式
+            CellStyle cellStyleValue = workbook.createCellStyle();
+            cellStyleValue.setWrapText(true);
+            cellStyleValue.setFont(fontValue);
+            cellStyleValue.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+            cellStyleValue.setAlignment(CellStyle.ALIGN_LEFT);
+            cellStyleValue.setLocked(false);
+            if(startRowNum < 6){
+                System.out.println("至少从第7(6+1)行开始插入数据!");
+            }
+            int j = startRowNum;
+            for(ExcelTemplate excelTemplate : excelTemplates){
+                for(int i = 0; i < excelTemplate.getAttrValues().size(); i++){
+                    this.insertCellValue(sheet, i+2, j, excelTemplate.getAttrValues().get(i), cellStyleValue);
+                }
+                j++;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("写入excel表格数据失败");
+            flag = false;
+        }
+        finally {
+            if(workbook != null && ifCloseWorkBook){
+                try{
+                    workbook.write(fileOut);
+                    flag = true;
+                }catch (IOException e1){
                     e1.printStackTrace();
                     flag = false;
                 }
@@ -244,7 +310,7 @@ public class exportUtil {
         public int firstCollumn;
         public int lastCollum;
 
-        public mergeRange(int firstRow, int lastRow, int firstCollumn, int lastCollum){
+        public MergeRange(int firstRow, int lastRow, int firstCollumn, int lastCollum){
             this.firstCollumn = firstRow;
             this.lastCollum = lastCollum;
             this.firstRow = firstRow;

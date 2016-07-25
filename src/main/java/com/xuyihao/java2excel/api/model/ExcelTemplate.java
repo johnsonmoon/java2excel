@@ -1,8 +1,6 @@
 package com.xuyihao.java2excel.api.model;
 
-import org.w3c.dom.Attr;
-
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,10 +9,7 @@ import java.util.List;
  * 用来导出导入数据到Excel文件中的数据模型
  */
 public class ExcelTemplate {
-    /**
-     * fields
-     *
-     * */
+
     private String id;//id 这个ID就是ciForm的ID
     private String tenant;
     private String classCode;//类型编码(Template的code)
@@ -22,10 +17,15 @@ public class ExcelTemplate {
     private List<AttributeType> attrbuteTypes;
     private List<String> attrValues;
 
-    /**
-     * getters & setters
-     *
-     * */
+    public ExcelTemplate(){
+        this.id = "";
+        this.tenant = "";
+        this.classCode = "";
+        this.className = "";
+        this.attrbuteTypes = new ArrayList<AttributeType>();
+        this.attrValues = new ArrayList<String>();
+    }
+
     public void setAttrbuteTypes(List<AttributeType> attrbuteTypes){
         this.attrbuteTypes = attrbuteTypes;
     }
@@ -34,7 +34,13 @@ public class ExcelTemplate {
         return this.attrbuteTypes;
     }
 
-    public void
+    public void setAttrValues(List<String> attrValues){
+        this.attrValues = attrValues;
+    }
+
+    public List<String> getAttrValues(){
+        return this.attrValues;
+    }
 
     public String getId(){
         return this.id;
@@ -67,6 +73,4 @@ public class ExcelTemplate {
     public void setClassName(String name){
         this.className = name;
     }
-
-    public AttributeType
 }
