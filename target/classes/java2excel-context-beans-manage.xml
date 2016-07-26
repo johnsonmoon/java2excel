@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- models -->
+    <bean class="com.xuyihao.java2excel.model.AttributeType"></bean>
+    <bean class="com.xuyihao.java2excel.model.ExcelTemplate"></bean>
+    <bean class="com.xuyihao.java2excel.model.ProgressMessage"></bean>
+
+    <!-- logic and util -->
+    <bean class="com.xuyihao.java2excel.excel.exportfunc.ExportUtil"></bean>
+    <bean id="GenerateExcel" class="com.xuyihao.java2excel.excel.exportfunc.impl.GenerateExcelImpl"></bean>
+
+    <!-- test function -->
+    <bean class="com.xuyihao.java2excel.JohnsonTestMain"></bean>
+</beans>

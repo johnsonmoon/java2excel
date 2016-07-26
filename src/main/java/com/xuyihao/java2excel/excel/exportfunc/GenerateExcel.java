@@ -1,6 +1,6 @@
-package com.xuyihao.java2excel.biz.excel.exportfunc;
+package com.xuyihao.java2excel.excel.exportfunc;
 
-import com.xuyihao.java2excel.api.model.ExcelTemplate;
+import com.xuyihao.java2excel.model.ExcelTemplate;
 
 import java.io.FileOutputStream;
 import java.util.List;
@@ -9,6 +9,7 @@ import java.util.List;
  * Created by Xuyh at 2016/07/21 10:36.
  *
  * 生成Excel表格接口
+ * 不同项目可以根据不同需求对实现进行重写
  */
 public interface GenerateExcel {
     /**

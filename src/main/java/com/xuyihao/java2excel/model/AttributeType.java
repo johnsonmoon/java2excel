@@ -1,4 +1,4 @@
-package com.xuyihao.java2excel.api.model;
+package com.xuyihao.java2excel.model;
 
 /**
  * Created by Xuyh at 2016/07/22 上午 10:42.

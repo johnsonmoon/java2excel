@@ -1,8 +1,9 @@
 package com.xuyihao.java2excel;
 
-import com.xuyihao.java2excel.api.model.AttributeType;
-import com.xuyihao.java2excel.api.model.ExcelTemplate;
-import com.xuyihao.java2excel.biz.excel.exportfunc.ExportUtil;
+import com.xuyihao.java2excel.model.AttributeType;
+import com.xuyihao.java2excel.model.ExcelTemplate;
+import com.xuyihao.java2excel.excel.exportfunc.ExportUtil;
+import com.xuyihao.java2excel.model.ProgressMessage;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Workbook;
 
@@ -18,17 +19,33 @@ import java.util.List;
 public class JohnsonTestMain {
     public static void main(String args[]){
         try{
-            System.out.println(createExcelTest());
-            System.out.println(insertExcelDataTest());
+            System.out.println(createExcelTest(new ProgressMessage()));
+            System.out.println(insertExcelDataTest(new ProgressMessage()));
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    public static boolean createExcelTest() throws Exception {
+    public static void testProgressMessage(){
+        ProgressMessage progressMessage = new ProgressMessage();
+        //重置
+        progressMessage.reset();
+        progressMessage.setTotalCount(500);
+        progressMessage.setDetailMessage("共有 500条 操作，开始计算");
+        progressMessage.stateNotStart();
+        //开始计算
+        progressMessage.stateStarted();
+        for(int i = 0; i <= 50000; i++) {
+            progressMessage.addCurrentCount();
+        }
+        progressMessage.stateEnd();
+        progressMessage.setDetailMessage("操作结束！");
+    }
+
+    public static boolean createExcelTest(ProgressMessage progressMessage) throws Exception {
         ExportUtil exportUtil = new ExportUtil();
         FileOutputStream fs;
-        File file = new File("E:\\JUnitTestPath\\testTemplate.xls");
+        File file = new File("E:\\JUnitTestPath\\test.xlsx");
         fs = new FileOutputStream(file);
         Workbook workbook = new HSSFWorkbook();
         int sheetNum = 0;
@@ -40,20 +57,20 @@ public class JohnsonTestMain {
         List<AttributeType> attributeTypes = new ArrayList<AttributeType>();
         setAttributes(attributeTypes);
         template.setAttrbuteTypes(attributeTypes);
-        boolean flag = exportUtil.createExcel(workbook, sheetNum, template, true, fs);
+        boolean flag = exportUtil.createExcel(workbook, sheetNum, template, true, fs, progressMessage);
         fs.close();
         return flag;
     }
 
-    public static boolean insertExcelDataTest() throws Exception{
+    public static boolean insertExcelDataTest(ProgressMessage progressMessage) throws Exception{
         ExportUtil exportUtil = new ExportUtil();
-        File file = new File("E:\\JUnitTestPath\\testTemplate.xls");
+        File file = new File("E:\\JUnitTestPath\\test.xls");
         FileInputStream fis = new FileInputStream(file);
         Workbook workbook = new HSSFWorkbook(fis);
         int sheetNum = 0;
         List<ExcelTemplate> datas = new ArrayList<ExcelTemplate>();
         setValues(datas);
-        boolean flag = exportUtil.insertExcelData(workbook, sheetNum, 6, datas, true, new FileOutputStream(file));
+        boolean flag = exportUtil.insertExcelData(workbook, sheetNum, 6, datas, true, new FileOutputStream(file), progressMessage);
         return flag;
     }
 

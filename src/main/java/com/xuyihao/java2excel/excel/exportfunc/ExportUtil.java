@@ -1,6 +1,7 @@
-package com.xuyihao.java2excel.biz.excel.exportfunc;
+package com.xuyihao.java2excel.excel.exportfunc;
 
-import com.xuyihao.java2excel.api.model.ExcelTemplate;
+import com.xuyihao.java2excel.model.ExcelTemplate;
+import com.xuyihao.java2excel.model.ProgressMessage;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
@@ -26,8 +27,10 @@ public class ExportUtil {
      * @param fileOut 文件流
      * @return true 成功, false 失败
      * */
-    public boolean createExcel(final Workbook workbook, int sheetNum, ExcelTemplate excelTemplate, boolean ifCloseWorkBook, FileOutputStream fileOut){
+    public boolean createExcel(final Workbook workbook, int sheetNum, ExcelTemplate excelTemplate, boolean ifCloseWorkBook, FileOutputStream fileOut, ProgressMessage progressMessage){
         boolean flag = false;
+        progressMessage.reset();
+        progressMessage.setDetailMessage("开始计算属性数量...");
         try{
             Sheet sheet = workbook.createSheet(excelTemplate.getClassName());
             workbook.setSheetOrder(excelTemplate.getClassName(), sheetNum);
@@ -128,6 +131,12 @@ public class ExportUtil {
             // 增加資源标签列
             this.insertCellValue(sheet, 1, 2, "配置项标识", cellStyleColumnHeader);
             this.insertCellValue(sheet, 1, 3, "配置项标识", cellStyleWhiteHideHeader);
+            //设置进度信息
+            int totalCounts = excelTemplate.getAttrbuteTypes().size();
+            progressMessage.setTotalCount(totalCounts);
+            progressMessage.setDetailMessage("共有"+ totalCounts +"条数据");
+            //设置进度为开始
+            progressMessage.stateStarted();
             for(int i = 0; i < excelTemplate.getAttrbuteTypes().size(); i++){
                 String label = excelTemplate.getAttrbuteTypes().get(i).getAttrName();
                 String formatRule = excelTemplate.getAttrbuteTypes().get(i).getAttrFormatRule();
@@ -135,11 +144,15 @@ public class ExportUtil {
                 this.insertCellValue(sheet, i+2, 2, label, cellStyleColumnHeader);//字段名
                 this.insertCellValue(sheet, i+2, 4, formatRule, cellStyleColumnHeader);//格式
                 this.insertCellValue(sheet, i+2, 5, defaultValue, cellStyleColumnHeader);//默认值
+                //设置进度信息
+                progressMessage.addCurrentCount();
+                progressMessage.setDetailMessage("进行  " + progressMessage.getCurrentCount() + "/" + progressMessage.getTotalCount() + "个操作");
             }
             flag = true;
         }catch(Exception e){
             e.printStackTrace();
             flag = false;
+            progressMessage.stateFailed();
         }finally {
             if(workbook != null && ifCloseWorkBook){
                 try{
@@ -148,9 +161,11 @@ public class ExportUtil {
                 }catch (IOException e1){
                     e1.printStackTrace();
                     flag = false;
+                    progressMessage.stateFailed();
                 }
             }
         }
+        progressMessage.stateEnd();
         return flag;
     }
 
@@ -165,8 +180,10 @@ public class ExportUtil {
      * @param fileOut 文件流
      * @return true 成功, false 失败
      */
-    public boolean insertExcelData(final Workbook workbook, int sheetNum, int startRowNum, List<ExcelTemplate> excelTemplates, boolean ifCloseWorkBook, FileOutputStream fileOut){
+    public boolean insertExcelData(final Workbook workbook, int sheetNum, int startRowNum, List<ExcelTemplate> excelTemplates, boolean ifCloseWorkBook, FileOutputStream fileOut, ProgressMessage progressMessage){
         boolean flag = false;
+        progressMessage.reset();
+        progressMessage.setDetailMessage("开始计算数据数量...");
         if(workbook == null){
             return false;
         }
@@ -193,27 +210,29 @@ public class ExportUtil {
             cellStyleValue.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
             cellStyleValue.setAlignment(CellStyle.ALIGN_LEFT);
             cellStyleValue.setLocked(false);
+            //设置进度信息
+            int totalCounts = excelTemplates.size();//CI的数量
+            progressMessage.setTotalCount(totalCounts);
+            progressMessage.setDetailMessage("共有"+ totalCounts +"条数据");
+            //设置进度为开始
+            progressMessage.stateStarted();
             if(startRowNum < 6){
                 System.out.println("至少从第7(6+1)行开始插入数据!");
+                progressMessage.stateFailed();
             }
-            /*
-            int j = startRowNum;
-            for(ExcelTemplate excelTemplate : excelTemplates){
-                for(int i = 0; i < excelTemplate.getAttrValues().size(); i++){
-                    this.insertCellValue(sheet, i+2, j, excelTemplate.getAttrValues().get(i), cellStyleValue);
-                }
-                j++;
-            }*/
-
             for (int j = 0; j < excelTemplates.size(); j++){
                 for (int i = 0; i < excelTemplates.get(j).getAttrValues().size(); i++){
                     this.insertCellValue(sheet, i+2, j+startRowNum, excelTemplates.get(j).getAttrValues().get(i), cellStyleValue);
                 }
+                //设置进度信息
+                progressMessage.addCurrentCount();
+                progressMessage.setDetailMessage("进行  " + progressMessage.getCurrentCount() + "/" + progressMessage.getTotalCount() + "个操作");
             }
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("写入excel表格数据失败");
             flag = false;
+            progressMessage.stateFailed();
         }
         finally {
             if(workbook != null && ifCloseWorkBook){
@@ -223,9 +242,11 @@ public class ExportUtil {
                 }catch (IOException e1){
                     e1.printStackTrace();
                     flag = false;
+                    progressMessage.stateFailed();
                 }
             }
         }
+        progressMessage.stateEnd();
         return flag;
     }
 
