@@ -1,4 +1,4 @@
-package com.xuyihao.java2excel.model;
+package com.xuyihao.java2excel.excel.model;
 
 /**
  * Created by Xuyh at 2016/07/26 上午 11:15.
@@ -81,6 +81,7 @@ public class ProgressMessage {
      */
     public void stateEnd(){
         this.setState(STATE_END);
+        this.setProgress(100);
     }
 
     /**

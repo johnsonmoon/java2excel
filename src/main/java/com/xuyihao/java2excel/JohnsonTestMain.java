@@ -1,11 +1,12 @@
 package com.xuyihao.java2excel;
 
-import com.xuyihao.java2excel.model.AttributeType;
-import com.xuyihao.java2excel.model.ExcelTemplate;
-import com.xuyihao.java2excel.excel.exportfunc.ExportUtil;
-import com.xuyihao.java2excel.model.ProgressMessage;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import com.xuyihao.java2excel.excel.importfunc.util.ImportUtil;
+import com.xuyihao.java2excel.excel.model.AttributeType;
+import com.xuyihao.java2excel.excel.model.ExcelTemplate;
+import com.xuyihao.java2excel.excel.exportfunc.util.ExportUtil;
+import com.xuyihao.java2excel.excel.model.ProgressMessage;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,10 +20,62 @@ import java.util.List;
 public class JohnsonTestMain {
     public static void main(String args[]){
         try{
-            System.out.println(createExcelTest(new ProgressMessage()));
-            System.out.println(insertExcelDataTest(new ProgressMessage()));
+            getExcelTemplateListDataFromExcel();
+            //testGetAttrValueCount();
+            //testReadExcelTemplateFromExcel();
+            //System.out.println(createExcelTest(new ProgressMessage()));
+            //System.out.println(insertExcelDataTest(new ProgressMessage()));
         }catch (Exception e){
             e.printStackTrace();
+        }
+    }
+
+    public static void getExcelTemplateListDataFromExcel() throws Exception{
+        File file = new File("E:\\JUnitTestPath\\MultiSheetTest.xlsx");
+        FileInputStream fis = new FileInputStream(file);
+        Workbook workbook = new XSSFWorkbook(fis);
+        ProgressMessage progressMessage = new ProgressMessage();
+        ImportUtil importUtil = new ImportUtil();
+        int count = importUtil.getAttrValueCount(workbook, 12, progressMessage);
+        for(int i = 6; i < count; i += 12){
+            List<ExcelTemplate> excelTemplateList = importUtil.getExcelTemplateListDataFromExcel(workbook, 12, i, 12, progressMessage);
+            for(int j = 0; j < excelTemplateList.size(); j++){
+                String valueAll = "";
+                for(int k = 0; k < excelTemplateList.get(j).getAttrValues().size(); k++){
+                    valueAll = valueAll + (" && " + excelTemplateList.get(j).getAttrValues().get(k).trim());
+                }
+                System.out.println(excelTemplateList.get(j).getClassName() + ": " + valueAll);
+            }
+        }
+    }
+
+    public static void testGetAttrValueCount()throws Exception{
+        File file = new File("E:\\JUnitTestPath\\MultiSheetTest.xlsx");
+        FileInputStream fis = new FileInputStream(file);
+        Workbook workbook = new XSSFWorkbook(fis);
+        ProgressMessage progressMessage = new ProgressMessage();
+        ImportUtil importUtil = new ImportUtil();
+        for(int i = 0 ; i < workbook.getNumberOfSheets(); i ++){
+            ExcelTemplate template = importUtil.getExcelTemplateFromExcel(workbook, i, progressMessage);
+            int dataCount = importUtil.getAttrValueCount(workbook, i, progressMessage);
+            System.out.println(template.getClassCode() + "  " + template.getClassName() + ":" + dataCount);
+        }
+    }
+
+    public static void testReadExcelTemplateFromExcel() throws Exception{
+        File file = new File("E:\\JUnitTestPath\\test.xlsx");
+        FileInputStream fis = new FileInputStream(file);
+        Workbook workbook = new XSSFWorkbook(fis);
+        ProgressMessage progressMessage = new ProgressMessage();
+        ImportUtil importUtil = new ImportUtil();
+        ExcelTemplate template = importUtil.getExcelTemplateFromExcel(workbook, 0, progressMessage);
+        System.out.println(template.getId());
+        System.out.println(template.getTenant());
+        System.out.println(template.getClassCode());
+        System.out.println(template.getClassName());
+        List<AttributeType> attributeTypeList = template.getAttrbuteTypes();
+        for(int i = 0; i < attributeTypeList.size(); i++){
+            System.out.println(attributeTypeList.get(i).getAttrId() + "&&" + attributeTypeList.get(i).getAttrCode() + "&&" + attributeTypeList.get(i).getAttrName());
         }
     }
 
@@ -47,7 +100,7 @@ public class JohnsonTestMain {
         FileOutputStream fs;
         File file = new File("E:\\JUnitTestPath\\test.xlsx");
         fs = new FileOutputStream(file);
-        Workbook workbook = new HSSFWorkbook();
+        Workbook workbook = new XSSFWorkbook();
         int sheetNum = 0;
         ExcelTemplate template = new ExcelTemplate();
         template.setTenant("adhauihdiuahfd");
@@ -64,14 +117,14 @@ public class JohnsonTestMain {
 
     public static boolean insertExcelDataTest(ProgressMessage progressMessage) throws Exception{
         ExportUtil exportUtil = new ExportUtil();
-        File file = new File("E:\\JUnitTestPath\\test.xls");
+        File file = new File("E:\\JUnitTestPath\\test.xlsx");
         FileInputStream fis = new FileInputStream(file);
-        Workbook workbook = new HSSFWorkbook(fis);
+        Workbook workbook = new XSSFWorkbook(fis);
         int sheetNum = 0;
         List<ExcelTemplate> datas = new ArrayList<ExcelTemplate>();
         setValues(datas);
-        boolean flag = exportUtil.insertExcelData(workbook, sheetNum, 6, datas, true, new FileOutputStream(file), progressMessage);
-        return flag;
+        boolean flag2 = exportUtil.insertExcelData(workbook, sheetNum, 6, datas.get(0), datas, true, new FileOutputStream(file), progressMessage);
+        return flag2;
     }
 
     public static void setAttributes(List<AttributeType> attributeTypes){

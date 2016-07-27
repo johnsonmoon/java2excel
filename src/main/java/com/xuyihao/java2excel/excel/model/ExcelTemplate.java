@@ -1,4 +1,4 @@
-package com.xuyihao.java2excel.model;
+package com.xuyihao.java2excel.excel.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +24,15 @@ public class ExcelTemplate {
         this.className = "";
         this.attrbuteTypes = new ArrayList<AttributeType>();
         this.attrValues = new ArrayList<String>();
+    }
+
+    public ExcelTemplate(ExcelTemplate template){
+        this.id = template.getId();
+        this.tenant = template.getTenant();
+        this.classCode = template.getClassCode();
+        this.className = template.getClassName();
+        this.attrbuteTypes = template.getAttrbuteTypes();
+        this.attrValues = template.getAttrValues();
     }
 
     public void setAttrbuteTypes(List<AttributeType> attrbuteTypes){

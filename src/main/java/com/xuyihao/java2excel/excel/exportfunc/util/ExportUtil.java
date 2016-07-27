@@ -1,22 +1,22 @@
-package com.xuyihao.java2excel.excel.exportfunc;
+package com.xuyihao.java2excel.excel.exportfunc.util;
 
-import com.xuyihao.java2excel.model.ExcelTemplate;
-import com.xuyihao.java2excel.model.ProgressMessage;
+import com.xuyihao.java2excel.excel.util.CommonExcelUtil;
+import com.xuyihao.java2excel.excel.model.ExcelTemplate;
+import com.xuyihao.java2excel.excel.model.ProgressMessage;
 import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.*;
 
 /**
  * Created by Xuyh at 2016/07/22 上午 11:36.
  *
- * Excel文件操作工具类
+ * Excel文件导出操作工具类
  */
-public class ExportUtil {
+public class ExportUtil extends CommonExcelUtil{
     /**
      * 创建表格
      *
@@ -48,6 +48,7 @@ public class ExportUtil {
             sheet.setColumnHidden(1, true);
             //隐藏行代码（设置行高为零）
             sheet.createRow(3).setZeroHeight(true);
+            sheet.createRow(4).setZeroHeight(true);
             //合并单元格
             CellRangeAddress cellRangeAddress1 = new CellRangeAddress(0, 1, 0, 0);
             CellRangeAddress cellRangeAddress3 = new CellRangeAddress(0, 1, 1, collumnSize);
@@ -58,22 +59,23 @@ public class ExportUtil {
             Font fontTitle = workbook.createFont();
             fontTitle.setFontName(HSSFFont.FONT_ARIAL);
             fontTitle.setItalic(false);
-            //fontTitle.setBoldweight(XSSFFont.BOLDWEIGHT_BOLD);
             fontTitle.setFontHeightInPoints((short) 10);
             //Header
             Font fontHeader = workbook.createFont();
             fontHeader.setFontName(HSSFFont.FONT_ARIAL);
             fontHeader.setItalic(false);
-            //fontHeader.setBoldweight(XSSFFont.BOLDWEIGHT_BOLD);
             fontHeader.setFontHeightInPoints((short) 10);
             //HeaderFirstCell
             Font fontHeaderFirstCell = workbook.createFont();
             fontHeaderFirstCell.setFontName(HSSFFont.FONT_ARIAL);
+            fontHeaderFirstCell.setColor(HSSFColor.WHITE.index);
             fontHeaderFirstCell.setItalic(false);
-            //fontHeaderFirstCell.setBoldweight(XSSFFont.BOLDWEIGHT_NORMAL);
             fontHeaderFirstCell.setFontHeightInPoints((short) 10);
-            //fontHeaderFirstCell.setColor(IndexedColors.WHITE.getIndex());
-            Font fontValue = fontHeader;
+            //Value
+            Font fontValue = workbook.createFont();
+            fontValue.setFontName(HSSFFont.FONT_ARIAL);
+            fontValue.setItalic(false);
+            fontValue.setFontHeightInPoints((short) 10);
 
             // 创建单元格格式
             CellStyle cellStyleGeneral = workbook.createCellStyle();
@@ -121,11 +123,12 @@ public class ExportUtil {
             cellStyleValue.setWrapText(true);
             cellStyleValue.setLocked(false);
             //写入固定数据
-            this.insertCellValue(sheet, 0, 0, excelTemplate.getClassCode()+"&&"+excelTemplate.getId(), cellStyleHideHeader);
-            this.insertCellValue(sheet, 1, 0, "模板表格（" + excelTemplate.getClassName() + "）", cellStyleTitle);
+            String templateDetailInfo = excelTemplate.getId() + "&&" + excelTemplate.getTenant() + "&&" + excelTemplate.getClassCode() + "&&" + excelTemplate.getClassName();
+            this.insertCellValue(sheet, 0, 0, templateDetailInfo, cellStyleHideHeader);
+            this.insertCellValue(sheet, 1, 0, excelTemplate.getClassName(), cellStyleTitle);
             this.insertCellValue(sheet, 0, 2, "字段", cellStyleRowHeader);
             this.insertCellValue(sheet, 0, 3, "请勿编辑此行", cellStyleGrayRowHeader);
-            this.insertCellValue(sheet, 0, 4, "数据格式", cellStyleRowHeader);
+            this.insertCellValue(sheet, 0, 4, "数据格式", cellStyleGrayRowHeader);
             this.insertCellValue(sheet, 0, 5, "默认值", cellStyleRowHeader);
             this.insertCellValue(sheet, 0, 6, "数据", cellStyleRowHeaderTopAlign);
             // 增加資源标签列
@@ -134,14 +137,15 @@ public class ExportUtil {
             //设置进度信息
             int totalCounts = excelTemplate.getAttrbuteTypes().size();
             progressMessage.setTotalCount(totalCounts);
-            progressMessage.setDetailMessage("共有"+ totalCounts +"条数据");
-            //设置进度为开始
+            progressMessage.setDetailMessage("共有"+ totalCounts +"条数据");//设置进度为开始
             progressMessage.stateStarted();
             for(int i = 0; i < excelTemplate.getAttrbuteTypes().size(); i++){
                 String label = excelTemplate.getAttrbuteTypes().get(i).getAttrName();
+                String attrInfo = excelTemplate.getAttrbuteTypes().get(i).getAttrId() + "&&" + excelTemplate.getAttrbuteTypes().get(i).getAttrCode() + "&&" + excelTemplate.getAttrbuteTypes().get(i).getAttrName();
                 String formatRule = excelTemplate.getAttrbuteTypes().get(i).getAttrFormatRule();
                 String defaultValue = excelTemplate.getAttrbuteTypes().get(i).getDefaultValue();
-                this.insertCellValue(sheet, i+2, 2, label, cellStyleColumnHeader);//字段名
+                this.insertCellValue(sheet, i+2, 2, label, cellStyleGrayRowHeader);//字段名
+                this.insertCellValue(sheet, i+2, 3, attrInfo, cellStyleGrayRowHeader);
                 this.insertCellValue(sheet, i+2, 4, formatRule, cellStyleColumnHeader);//格式
                 this.insertCellValue(sheet, i+2, 5, defaultValue, cellStyleColumnHeader);//默认值
                 //设置进度信息
@@ -155,12 +159,9 @@ public class ExportUtil {
             progressMessage.stateFailed();
         }finally {
             if(workbook != null && ifCloseWorkBook){
-                try{
-                    workbook.write(fileOut);
+                if(this.writeFileToDisk(workbook, fileOut)){
                     flag = true;
-                }catch (IOException e1){
-                    e1.printStackTrace();
-                    flag = false;
+                }else {
                     progressMessage.stateFailed();
                 }
             }
@@ -175,34 +176,34 @@ public class ExportUtil {
      * @param workbook 工作簿
      * @param sheetNum 表格编号
      * @param startRowNum 写入数据的起始行（第一次写入应当从第七行即startRowNum=6开始）
-     * @param excelTemplates 数据列表
+     * @param template 类型，用来定义表格属性（当excelTemplates数据列表为空时候无法通过列表检查类型属性）
+     * @param excelTemplatesList 数据列表
      * @param ifCloseWorkBook 是否保存工作簿文件
      * @param fileOut 文件流
      * @return true 成功, false 失败
      */
-    public boolean insertExcelData(final Workbook workbook, int sheetNum, int startRowNum, List<ExcelTemplate> excelTemplates, boolean ifCloseWorkBook, FileOutputStream fileOut, ProgressMessage progressMessage){
+    public boolean insertExcelData(final Workbook workbook, int sheetNum, int startRowNum, ExcelTemplate template, List<ExcelTemplate> excelTemplatesList, boolean ifCloseWorkBook, FileOutputStream fileOut, ProgressMessage progressMessage) {
         boolean flag = false;
         progressMessage.reset();
         progressMessage.setDetailMessage("开始计算数据数量...");
-        if(workbook == null){
+        if (workbook == null) {
             return false;
         }
         Sheet sheet = workbook.getSheetAt(sheetNum);
-        if(sheet == null){
+        if (sheet == null) {
             return false;
         }
         String[] identifyString = this.getCellValue(sheet, 0, 0).split("&&");
-        if(!identifyString[0].equals(excelTemplates.get(0).getClassCode()) || !identifyString[1].equals(excelTemplates.get(0).getId())){
+        if (!identifyString[2].equals(template.getClassCode()) || !identifyString[0].equals(template.getId())) {
             return false;//excel对应的类型和传入的excelTemplates类型不一致
         }
         //设置字体
         Font fontHeader = workbook.createFont();
         fontHeader.setFontName(HSSFFont.FONT_ARIAL);
         fontHeader.setItalic(false);
-        //fontHeader.setBoldweight(XSSFFont.BOLDWEIGHT_NORMAL);
         fontHeader.setFontHeightInPoints((short) 10);
         Font fontValue = fontHeader;
-        try{
+        try {
             // 创建单元格格式
             CellStyle cellStyleValue = workbook.createCellStyle();
             cellStyleValue.setWrapText(true);
@@ -211,103 +212,38 @@ public class ExportUtil {
             cellStyleValue.setAlignment(CellStyle.ALIGN_LEFT);
             cellStyleValue.setLocked(false);
             //设置进度信息
-            int totalCounts = excelTemplates.size();//CI的数量
+            int totalCounts = excelTemplatesList.size();//CI的数量
             progressMessage.setTotalCount(totalCounts);
-            progressMessage.setDetailMessage("共有"+ totalCounts +"条数据");
+            progressMessage.setDetailMessage("共有" + totalCounts + "条数据");
             //设置进度为开始
             progressMessage.stateStarted();
-            if(startRowNum < 6){
+            if (startRowNum < 6) {
                 System.out.println("至少从第7(6+1)行开始插入数据!");
                 progressMessage.stateFailed();
             }
-            for (int j = 0; j < excelTemplates.size(); j++){
-                for (int i = 0; i < excelTemplates.get(j).getAttrValues().size(); i++){
-                    this.insertCellValue(sheet, i+2, j+startRowNum, excelTemplates.get(j).getAttrValues().get(i), cellStyleValue);
+            for (int j = 0; j < excelTemplatesList.size(); j++) {
+                for (int i = 0; i < excelTemplatesList.get(j).getAttrValues().size(); i++) {
+                    this.insertCellValue(sheet, i + 2, j + startRowNum, excelTemplatesList.get(j).getAttrValues().get(i), cellStyleValue);
                 }
                 //设置进度信息
                 progressMessage.addCurrentCount();
                 progressMessage.setDetailMessage("进行  " + progressMessage.getCurrentCount() + "/" + progressMessage.getTotalCount() + "个操作");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("写入excel表格数据失败");
             flag = false;
             progressMessage.stateFailed();
-        }
-        finally {
-            if(workbook != null && ifCloseWorkBook){
-                try{
-                    workbook.write(fileOut);
+        } finally {
+            if (workbook != null && ifCloseWorkBook) {
+                if (this.writeFileToDisk(workbook, fileOut)) {
                     flag = true;
-                }catch (IOException e1){
-                    e1.printStackTrace();
-                    flag = false;
+                } else {
                     progressMessage.stateFailed();
                 }
             }
         }
         progressMessage.stateEnd();
         return flag;
-    }
-
-    /**
-     * 插入单元格数据
-     *
-     * @param sheet 工作簿
-     * @param collumn 列
-     * @param row 行
-     * @param value 值
-     * @param cellStyle 单元格样式风格
-     * */
-    private void insertCellValue(Sheet sheet, int collumn, int row, String value, CellStyle cellStyle){
-        Row targetRow = sheet.getRow(row);
-        if(targetRow == null){
-            targetRow = sheet.createRow(row);
-        }
-        if(targetRow != null){
-            Cell cell = targetRow.createCell(collumn);
-            cell.setCellStyle(cellStyle);
-            cell.setCellValue(value);
-        }
-    }
-
-    /**
-     * 获取单元格值
-     *
-     * @param sheet 工作簿
-     * @param row 行
-     * @param collumn 列
-     * @return 单元格值
-     * */
-    private String getCellValue(Sheet sheet, int row, int collumn){
-        String cellValue = "";
-        Row targetRow = sheet.getRow(row);
-        if(targetRow == null){
-            cellValue = "";
-        }else{
-            Cell cell = targetRow.getCell(collumn);
-            if(cell == null){
-                cellValue = "";
-            }else{
-                DecimalFormat decimalFormat = new DecimalFormat("#");
-                switch (cell.getCellType()){
-                    case Cell.CELL_TYPE_STRING:
-                        cellValue = cell.getRichStringCellValue().getString().trim();
-                        break;
-                    case Cell.CELL_TYPE_NUMERIC:
-                        cellValue = decimalFormat.format(cell.getNumericCellValue()).toString();
-                        break;
-                    case Cell.CELL_TYPE_BOOLEAN:
-                        cellValue = String.valueOf(cell.getBooleanCellValue()).trim();
-                        break;
-                    case Cell.CELL_TYPE_FORMULA:
-                        cellValue = cell.getCellFormula();
-                        break;
-                    default:
-                        cellValue = "";
-                }
-            }
-        }
-        return cellValue;
     }
 }

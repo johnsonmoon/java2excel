@@ -1,4 +1,4 @@
-package com.xuyihao.java2excel.model;
+package com.xuyihao.java2excel.excel.model;
 
 /**
  * Created by Xuyh at 2016/07/22 上午 10:42.
@@ -24,6 +24,15 @@ public class AttributeType {
         this.attrType = "";
         this.attrFormatRule = "";
         this.defaultValue = "";
+    }
+
+    public AttributeType(AttributeType attributeType){
+        this.attrId = attributeType.getAttrId();
+        this.attrCode = attributeType.getAttrCode();
+        this.attrName = attributeType.getAttrName();
+        this.attrType = attributeType.getAttrType();
+        this.attrFormatRule = attributeType.getAttrFormatRule();
+        this.defaultValue = attributeType.getDefaultValue();
     }
 
     /**

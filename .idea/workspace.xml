@@ -2,45 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b8f7537-b91d-494d-989d-01346a62e458" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/excel/exportfunc/GenerateExcel.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/excel/exportfunc/impl/GenerateExcelImpl.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_github_virtuald_curvesapi_1_04.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_ooxml_schemas_1_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_ooxml_3_15_beta2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_poi_poi_ooxml_schemas_3_15_beta2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_xmlbeans_xmlbeans_2_3_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjrt_1_8_9.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_8_9.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_4_3_1_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_4_3_1_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_4_3_1_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_4_3_1_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_4_3_1_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_4_3_1_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_4_3_1_RELEASE.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__stax_stax_api_1_0_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/model/ProgressMessage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/java2excel-context-beans-manage.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/biz/excel/exportfunc/GenerateExcel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/biz/excel/exportfunc/impl/GenerateExcelImpl.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/AttributeType.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/model/AttributeType.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/ExcelTemplate.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/model/ExcelTemplate.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/exportfunc/GenerateExcel.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/GenerateExcel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/exportfunc/exportUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/ExportUtil.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/exportfunc/impl/GenerateExcelImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/impl/GenerateExcelImpl.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/api/model/AttributeType.class" afterPath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/model/AttributeType.class" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/api/model/ExcelTemplate.class" afterPath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/model/ExcelTemplate.class" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/biz/excel/exportfunc/exportUtil.class" afterPath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/excel/exportfunc/ExportUtil.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/JohnsonExcelReaderTest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/ReadExcel.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/impl/ReadExcelImpl.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/util/ImportUtil.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/CommonExcelUtil.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/excel/exportfunc/ExportUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/model/AttributeType.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/model/ExcelTemplate.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/model/ProgressMessage.class" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/ExportUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/util/ExportUtil.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/model/AttributeType.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/AttributeType.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/model/ExcelTemplate.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ExcelTemplate.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/model/ProgressMessage.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ProgressMessage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/JohnsonTestMain.class" afterPath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/JohnsonTestMain.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/java2excel-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/target/java2excel-1.0-SNAPSHOT.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/excel/exportfunc/GenerateExcel.class" afterPath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/excel/exportfunc/GenerateExcel.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/excel/exportfunc/impl/GenerateExcelImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/excel/exportfunc/impl/GenerateExcelImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java2excel.iml" afterPath="$PROJECT_DIR$/java2excel.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/JohnsonTestMain.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/JohnsonTestMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/GenerateExcel.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/GenerateExcel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/impl/GenerateExcelImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/impl/GenerateExcelImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/java2excel-context-beans-manage.xml" afterPath="$PROJECT_DIR$/src/main/resources/java2excel-context-beans-manage.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/java2excel-context-beans-manage.xml" afterPath="$PROJECT_DIR$/target/classes/java2excel-context-beans-manage.xml" />
     </list>
     <ignored path="java2excel.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -68,25 +51,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="JohnsonTestMain.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/JohnsonTestMain.java">
+      <file leaf-file-name="ImportUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/util/ImportUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="6" column="50" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
+            <state relative-caret-position="468">
+              <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
               <folding>
-                <element signature="method#testProgressMessage#0;class#JohnsonTestMain#0" expanded="false" />
-                <element signature="method#setAttributes#0;class#JohnsonTestMain#0" expanded="false" />
-                <element signature="method#setValues#0;class#JohnsonTestMain#0" expanded="false" />
+                <element signature="imports" expanded="true" />
+                <element signature="method#getExcelTemplateFromExcel#0;class#ImportUtil#0" expanded="false" />
+                <element signature="method#getAttrValueCount#0;class#ImportUtil#0" expanded="false" />
+                <element signature="method#getExcelTemplateListDataFromExcel#0;class#ImportUtil#0" expanded="false" />
+                <element signature="e#3327#3342#0" expanded="true" />
+                <element signature="e#3901#3909#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GenerateExcel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/GenerateExcel.java">
+      <file leaf-file-name="ReadExcel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/ReadExcel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
+            <state relative-caret-position="257">
+              <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -94,39 +80,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GenerateExcelImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/impl/GenerateExcelImpl.java">
+      <file leaf-file-name="AttributeType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/AttributeType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
+            <state relative-caret-position="50">
+              <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1311#1312#0" expanded="true" />
-                <element signature="e#1344#1345#0" expanded="true" />
-                <element signature="e#1400#1401#0" expanded="true" />
-                <element signature="e#1444#1445#0" expanded="true" />
+                <element signature="e#1273#1274#0" expanded="true" />
+                <element signature="e#1313#1314#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ExportUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/ExportUtil.java">
+      <file leaf-file-name="ExcelTemplate.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ExcelTemplate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProgressMessage.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/model/ProgressMessage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="717">
-              <caret line="189" column="0" selection-start-line="189" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
+            <state relative-caret-position="350">
+              <caret line="15" column="51" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -139,9 +110,9 @@
       <list>
         <option value="Kotlin Interface" />
         <option value="Kotlin Class" />
+        <option value="spring-beans.schema" />
         <option value="Interface" />
         <option value="Class" />
-        <option value="spring-beans.schema" />
       </list>
     </option>
   </component>
@@ -176,13 +147,23 @@
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/AttributeType.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/model/AttributeType.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/model/ExcelTemplate.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/GenerateExcel.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/java2excel-context-beans-manage.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/ExportUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/impl/GenerateExcelImpl.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/model/ProgressMessage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/GenerateExcel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/impl/GenerateExcelImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/ExportUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/JohnsonExcelReaderTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/CommonExcelUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/ImportUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/java2excel-context-beans-manage.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ProgressMessage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ExcelTemplate.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/AttributeType.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/JohnsonTestMain.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/util/ImportUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/ReadExcel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/util/ExportUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/impl/ReadExcelImpl.java" />
       </list>
     </option>
   </component>
@@ -200,10 +181,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="54" />
-    <option name="y" value="-8" />
-    <option name="width" value="1394" />
-    <option name="height" value="916" />
+    <option name="x" value="62" />
+    <option name="width" value="689" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -232,17 +212,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java2excel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane />
+      </pane>
       <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
@@ -301,6 +274,26 @@
         </pattern>
       </extension>
       <option name="MAIN_CLASS_NAME" value="com.xuyihao.java2excel.JohnsonTestMain" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="java2excel" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="JohnsonExcelReaderTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.xuyihao.java2excel.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="com.xuyihao.java2excel.JohnsonExcelReaderTest" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -716,14 +709,16 @@
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
-    <list size="2">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="JUnit.exportUtilTest.createExcelTest" />
       <item index="1" class="java.lang.String" itemvalue="Application.JohnsonTestMain" />
+      <item index="2" class="java.lang.String" itemvalue="Application.JohnsonExcelReaderTest" />
     </list>
     <recent_temporary>
-      <list size="2">
+      <list size="3">
         <item index="0" class="java.lang.String" itemvalue="Application.JohnsonTestMain" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.exportUtilTest.createExcelTest" />
+        <item index="1" class="java.lang.String" itemvalue="Application.JohnsonExcelReaderTest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.exportUtilTest.createExcelTest" />
       </list>
     </recent_temporary>
   </component>
@@ -747,11 +742,12 @@
       <workItem from="1469407599478" duration="15788000" />
       <workItem from="1469433276657" duration="7366000" />
       <workItem from="1469502484668" duration="12997000" />
+      <workItem from="1469585586026" duration="23480000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78150000" />
+    <option name="totallyTimeSpent" value="101630000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -774,7 +770,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="-8" width="1394" height="916" extended-state="6" />
+    <frame x="62" y="0" width="689" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -785,12 +781,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976827" sideWeight="0.50076336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6339286" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.85841835" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32229298" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976827" sideWeight="0.49923664" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.054722637" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2383808" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -822,7 +818,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <option name="time" value="7" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -831,108 +827,16 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/ExcelTemplate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/AttributeType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/ExcelTemplate.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/AttributeType.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/Student.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/exportfunc/impl/GenerateExcelImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/exportfunc/GenerateExcel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/exportfunc/ExportUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/ExcelTemplate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/AttributeType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/exportfunc/GenerateExcel.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/exportfunc/ExportUtil.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/ExcelTemplate.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/AttributeType.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/Student.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/exportfunc/GenerateExcel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/exportfunc/ExportUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2489">
-          <caret line="140" column="46" selection-start-line="140" selection-start-column="46" selection-end-line="140" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/ExcelTemplate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/AttributeType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/Student.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/exportfunc/GenerateExcel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/exportfunc/impl/GenerateExcelImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/exportfunc/GenerateExcel.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/exportfunc/impl/GenerateExcelImpl.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/ExcelCiTemplate.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/outer/Attribute.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/outer/TenantEnable.java" />
@@ -990,131 +894,181 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/exportfunc/GenerateExcel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/exportfunc/impl/GenerateExcelImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/exportfunc/GenerateExcel.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/exportfunc/impl/GenerateExcelImpl.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/Student.java" />
     <entry file="file://$PROJECT_DIR$/src/test/java/com/xuyihao/java2excel/test/biz/excel/exportfunc/exportUtilTest.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/exportfunc/ExportUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2132">
-          <caret line="82" column="60" selection-start-line="82" selection-start-column="60" selection-end-line="82" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/AttributeType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/ExcelTemplate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/model/ExcelTemplate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="46" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/model/AttributeType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="13" column="34" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/java2excel-context-beans-manage.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="68" selection-start-line="6" selection-start-column="68" selection-end-line="6" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/exportfunc/ExportUtil.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/AttributeType.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/ExcelTemplate.java" />
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2418">
-          <caret line="93" column="21" selection-start-line="93" selection-start-column="21" selection-end-line="93" selection-end-column="21" />
+        <state relative-caret-position="193">
+          <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/impl/GenerateExcelImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
+        <state relative-caret-position="46">
+          <caret line="2" column="58" selection-start-line="2" selection-start-column="58" selection-end-line="2" selection-end-column="58" />
+          <folding>
+            <element signature="e#1005#1006#0" expanded="false" />
+            <element signature="e#1038#1039#0" expanded="false" />
+            <element signature="e#1094#1095#0" expanded="false" />
+            <element signature="e#1138#1139#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/JohnsonExcelReaderTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1420#1437#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/java2excel-context-beans-manage.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/poi/poi-ooxml/3.15-beta2/poi-ooxml-3.15-beta2.jar!/org/apache/poi/xssf/usermodel/XSSFWorkbook.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="155" column="11" selection-start-line="155" selection-start-column="11" selection-end-line="155" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/CommonExcelUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="35" column="6" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1311#1312#0" expanded="true" />
-            <element signature="e#1344#1345#0" expanded="true" />
-            <element signature="e#1400#1401#0" expanded="true" />
-            <element signature="e#1444#1445#0" expanded="true" />
+            <element signature="method#insertCellValue#0;class#CommonExcelUtil#0" expanded="false" />
+            <element signature="method#getCellValue#0;class#CommonExcelUtil#0" expanded="false" />
+            <element signature="method#writeFileToDisk#0;class#CommonExcelUtil#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ProgressMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="82" column="33" selection-start-line="82" selection-start-column="33" selection-end-line="83" selection-end-column="30" />
+          <folding>
+            <element signature="docComment;method#getState#0;class#ProgressMessage#0" expanded="false" />
+            <element signature="docComment;method#setState#0;class#ProgressMessage#0" expanded="false" />
+            <element signature="docComment;method#addCurrentCount#0;class#ProgressMessage#0" expanded="false" />
+            <element signature="method#addCurrentCount#0;class#ProgressMessage#0" expanded="false" />
+            <element signature="docComment;method#getCurrentCount#0;class#ProgressMessage#0" expanded="false" />
+            <element signature="docComment;method#setCurrentCount#0;class#ProgressMessage#0" expanded="false" />
+            <element signature="method#setCurrentCount#0;class#ProgressMessage#0" expanded="false" />
+            <element signature="docComment;method#setTotalCount#0;class#ProgressMessage#0" expanded="false" />
+            <element signature="docComment;method#getProgress#0;class#ProgressMessage#0" expanded="false" />
+            <element signature="docComment;method#setProgress#0;class#ProgressMessage#0" expanded="false" />
+            <element signature="docComment;method#getDetailMessage#0;class#ProgressMessage#0" expanded="false" />
+            <element signature="docComment;method#setDetailMessage#0;class#ProgressMessage#0" expanded="false" />
+            <element signature="method#setDetailMessage#0;class#ProgressMessage#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/GenerateExcel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/ExportUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/model/ProgressMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="717">
-          <caret line="189" column="0" selection-start-line="189" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
+        <state relative-caret-position="149">
+          <caret line="25" column="7" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/util/ExportUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5681">
+          <caret line="247" column="5" selection-start-line="247" selection-start-column="5" selection-end-line="247" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/JohnsonTestMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="6" column="50" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
+        <state relative-caret-position="1044">
+          <caret line="36" column="64" selection-start-line="36" selection-start-column="64" selection-end-line="36" selection-end-column="64" />
           <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#testReadExcelTemplateFromExcel#0;class#JohnsonTestMain#0" expanded="false" />
             <element signature="method#testProgressMessage#0;class#JohnsonTestMain#0" expanded="false" />
+            <element signature="method#createExcelTest#0;class#JohnsonTestMain#0" expanded="false" />
+            <element signature="method#insertExcelDataTest#0;class#JohnsonTestMain#0" expanded="false" />
             <element signature="method#setAttributes#0;class#JohnsonTestMain#0" expanded="false" />
             <element signature="method#setValues#0;class#JohnsonTestMain#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/util/ImportUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getExcelTemplateFromExcel#0;class#ImportUtil#0" expanded="false" />
+            <element signature="method#getAttrValueCount#0;class#ImportUtil#0" expanded="false" />
+            <element signature="method#getExcelTemplateListDataFromExcel#0;class#ImportUtil#0" expanded="false" />
+            <element signature="e#3327#3342#0" expanded="true" />
+            <element signature="e#3901#3909#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/AttributeType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+          <folding>
+            <element signature="e#1273#1274#0" expanded="true" />
+            <element signature="e#1313#1314#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/impl/ReadExcelImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/ReadExcel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ExcelTemplate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="15" column="51" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
+          <folding />
         </state>
       </provider>
     </entry>

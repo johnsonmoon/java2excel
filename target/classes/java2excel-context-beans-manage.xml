@@ -3,14 +3,18 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <!-- models -->
-    <bean class="com.xuyihao.java2excel.model.AttributeType"></bean>
-    <bean class="com.xuyihao.java2excel.model.ExcelTemplate"></bean>
-    <bean class="com.xuyihao.java2excel.model.ProgressMessage"></bean>
+    <bean class="com.xuyihao.java2excel.excel.model.AttributeType"></bean>
+    <bean class="com.xuyihao.java2excel.excel.model.ExcelTemplate"></bean>
+    <bean class="com.xuyihao.java2excel.excel.model.ProgressMessage"></bean>
 
     <!-- logic and util -->
-    <bean class="com.xuyihao.java2excel.excel.exportfunc.ExportUtil"></bean>
+    <bean class="com.xuyihao.java2excel.excel.util.CommonExcelUtil"></bean>
+    <bean class="com.xuyihao.java2excel.excel.exportfunc.util.ExportUtil"></bean>
+    <bean class="com.xuyihao.java2excel.excel.importfunc.util.ImportUtil"></bean>
     <bean id="GenerateExcel" class="com.xuyihao.java2excel.excel.exportfunc.impl.GenerateExcelImpl"></bean>
+    <bean id="ReadExcel" class="com.xuyihao.java2excel.excel.importfunc.impl.ReadExcelImpl"></bean>
 
     <!-- test function -->
     <bean class="com.xuyihao.java2excel.JohnsonTestMain"></bean>
+    <bean class="com.xuyihao.java2excel.JohnsonExcelReaderTest"></bean>
 </beans>
