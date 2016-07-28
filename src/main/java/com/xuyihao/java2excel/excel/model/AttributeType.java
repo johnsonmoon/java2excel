@@ -16,6 +16,7 @@ public class AttributeType {
     private String attrType;//属性数据类型
     private String attrFormatRule;//属性取值范围及规则
     private String defaultValue;//该属性默认值
+    private String unit;//该属性的计量单位
 
     public AttributeType(){
         this.attrId = "";
@@ -24,6 +25,7 @@ public class AttributeType {
         this.attrType = "";
         this.attrFormatRule = "";
         this.defaultValue = "";
+        this.unit = "";
     }
 
     public AttributeType(AttributeType attributeType){
@@ -33,6 +35,7 @@ public class AttributeType {
         this.attrType = attributeType.getAttrType();
         this.attrFormatRule = attributeType.getAttrFormatRule();
         this.defaultValue = attributeType.getDefaultValue();
+        this.unit = attributeType.getUnit();
     }
 
     /**
@@ -85,5 +88,13 @@ public class AttributeType {
 
     public String getDefaultValue(){
         return this.defaultValue;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 }

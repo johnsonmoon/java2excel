@@ -28,7 +28,6 @@ public class ImportUtil extends CommonExcelUtil{
         ExcelTemplate excelTemplate = new ExcelTemplate();
         //设置进度信息
         progressMessage.setDetailMessage("正在解析sheet  " + sheetNumber + " .....");
-        progressMessage.stateStarted();
         Sheet sheet = workbook.getSheetAt(sheetNumber);
         String[] headValue = this.getCellValue(sheet, 0, 0).split("&&");
         excelTemplate.setId(headValue[0]);
@@ -46,7 +45,6 @@ public class ImportUtil extends CommonExcelUtil{
             attributeTypeList.add(attributeType);
         }
         progressMessage.setDetailMessage("解析sheet完成，获取  \"" + excelTemplate.getClassName() + "\"  类型基本信息");
-        progressMessage.stateEnd();
         return excelTemplate;
     }
 
@@ -62,10 +60,15 @@ public class ImportUtil extends CommonExcelUtil{
         int totalValueCount = 0;
         //设置进度信息
         progressMessage.setDetailMessage("正在解析sheet  " + sheetNumber + " .....");
-        progressMessage.stateStarted();
         int count = workbook.getSheetAt(sheetNumber).getLastRowNum();
-        totalValueCount = count - 6 + 1;
-        progressMessage.stateEnd();
+        if(count == 6){
+            String checkCellValue = this.getCellValue(workbook.getSheetAt(sheetNumber), 6, 2);
+            if(checkCellValue == null || checkCellValue.equals("")){
+                totalValueCount = 0;
+            }
+        }else{
+            totalValueCount = count - 6 + 1;
+        }
         progressMessage.setDetailMessage("解析到 " + totalValueCount + " 条数据");
         return totalValueCount;
     }
@@ -90,6 +93,11 @@ public class ImportUtil extends CommonExcelUtil{
             progressMessage.stateFailed();
         }
         for(int i = 0; i < readSize; i++){
+            //检查sheet当前行是否存在数据
+            String value = this.getCellValue(sheet, i+beginRow,  2);
+            if((value == null) || (value.equals(""))){
+                break;//如果sheet中此行已经没有数据了，结束循环
+            }
             ExcelTemplate template1 = new ExcelTemplate(template);
             List<String> attrValues = new ArrayList<String>();
             for(int j = 0; j < template1.getAttrbuteTypes().size(); j++){

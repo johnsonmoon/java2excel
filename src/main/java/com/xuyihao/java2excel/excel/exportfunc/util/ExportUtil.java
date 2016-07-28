@@ -29,7 +29,6 @@ public class ExportUtil extends CommonExcelUtil{
      * */
     public boolean createExcel(final Workbook workbook, int sheetNum, ExcelTemplate excelTemplate, boolean ifCloseWorkBook, FileOutputStream fileOut, ProgressMessage progressMessage){
         boolean flag = false;
-        progressMessage.reset();
         progressMessage.setDetailMessage("开始计算属性数量...");
         try{
             Sheet sheet = workbook.createSheet(excelTemplate.getClassName());
@@ -134,13 +133,8 @@ public class ExportUtil extends CommonExcelUtil{
             // 增加資源标签列
             this.insertCellValue(sheet, 1, 2, "配置项标识", cellStyleColumnHeader);
             this.insertCellValue(sheet, 1, 3, "配置项标识", cellStyleWhiteHideHeader);
-            //设置进度信息
-            int totalCounts = excelTemplate.getAttrbuteTypes().size();
-            progressMessage.setTotalCount(totalCounts);
-            progressMessage.setDetailMessage("共有"+ totalCounts +"条数据");//设置进度为开始
-            progressMessage.stateStarted();
             for(int i = 0; i < excelTemplate.getAttrbuteTypes().size(); i++){
-                String label = excelTemplate.getAttrbuteTypes().get(i).getAttrName();
+                String label = excelTemplate.getAttrbuteTypes().get(i).getAttrName() + "(" + excelTemplate.getAttrbuteTypes().get(i).getUnit() + ")";
                 String attrInfo = excelTemplate.getAttrbuteTypes().get(i).getAttrId() + "&&" + excelTemplate.getAttrbuteTypes().get(i).getAttrCode() + "&&" + excelTemplate.getAttrbuteTypes().get(i).getAttrName();
                 String formatRule = excelTemplate.getAttrbuteTypes().get(i).getAttrFormatRule();
                 String defaultValue = excelTemplate.getAttrbuteTypes().get(i).getDefaultValue();
@@ -148,9 +142,6 @@ public class ExportUtil extends CommonExcelUtil{
                 this.insertCellValue(sheet, i+2, 3, attrInfo, cellStyleGrayRowHeader);
                 this.insertCellValue(sheet, i+2, 4, formatRule, cellStyleColumnHeader);//格式
                 this.insertCellValue(sheet, i+2, 5, defaultValue, cellStyleColumnHeader);//默认值
-                //设置进度信息
-                progressMessage.addCurrentCount();
-                progressMessage.setDetailMessage("进行  " + progressMessage.getCurrentCount() + "/" + progressMessage.getTotalCount() + "个操作");
             }
             flag = true;
         }catch(Exception e){
@@ -166,7 +157,6 @@ public class ExportUtil extends CommonExcelUtil{
                 }
             }
         }
-        progressMessage.stateEnd();
         return flag;
     }
 
@@ -182,19 +172,17 @@ public class ExportUtil extends CommonExcelUtil{
      * @param fileOut 文件流
      * @return true 成功, false 失败
      */
-    public boolean insertExcelData(final Workbook workbook, int sheetNum, int startRowNum, ExcelTemplate template, List<ExcelTemplate> excelTemplatesList, boolean ifCloseWorkBook, FileOutputStream fileOut, ProgressMessage progressMessage) {
+    public boolean insertExcelData(final Workbook workbook, int sheetNum, int startRowNum, ExcelTemplate template, List<ExcelTemplate> excelTemplatesList, boolean ifCloseWorkBook, FileOutputStream fileOut, ProgressMessage progressMessage){
         boolean flag = false;
-        progressMessage.reset();
-        progressMessage.setDetailMessage("开始计算数据数量...");
-        if (workbook == null) {
+        if(workbook == null){
             return false;
         }
         Sheet sheet = workbook.getSheetAt(sheetNum);
-        if (sheet == null) {
+        if(sheet == null){
             return false;
         }
         String[] identifyString = this.getCellValue(sheet, 0, 0).split("&&");
-        if (!identifyString[2].equals(template.getClassCode()) || !identifyString[0].equals(template.getId())) {
+        if(!identifyString[2].equals(template.getClassCode()) || !identifyString[0].equals(template.getId())){
             return false;//excel对应的类型和传入的excelTemplates类型不一致
         }
         //设置字体
@@ -203,7 +191,7 @@ public class ExportUtil extends CommonExcelUtil{
         fontHeader.setItalic(false);
         fontHeader.setFontHeightInPoints((short) 10);
         Font fontValue = fontHeader;
-        try {
+        try{
             // 创建单元格格式
             CellStyle cellStyleValue = workbook.createCellStyle();
             cellStyleValue.setWrapText(true);
@@ -211,39 +199,30 @@ public class ExportUtil extends CommonExcelUtil{
             cellStyleValue.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
             cellStyleValue.setAlignment(CellStyle.ALIGN_LEFT);
             cellStyleValue.setLocked(false);
-            //设置进度信息
-            int totalCounts = excelTemplatesList.size();//CI的数量
-            progressMessage.setTotalCount(totalCounts);
-            progressMessage.setDetailMessage("共有" + totalCounts + "条数据");
-            //设置进度为开始
-            progressMessage.stateStarted();
-            if (startRowNum < 6) {
+            if(startRowNum < 6){
                 System.out.println("至少从第7(6+1)行开始插入数据!");
                 progressMessage.stateFailed();
             }
-            for (int j = 0; j < excelTemplatesList.size(); j++) {
-                for (int i = 0; i < excelTemplatesList.get(j).getAttrValues().size(); i++) {
-                    this.insertCellValue(sheet, i + 2, j + startRowNum, excelTemplatesList.get(j).getAttrValues().get(i), cellStyleValue);
+            for (int j = 0; j < excelTemplatesList.size(); j++){
+                for (int i = 0; i < excelTemplatesList.get(j).getAttrValues().size(); i++){
+                    this.insertCellValue(sheet, i+2, j+startRowNum, excelTemplatesList.get(j).getAttrValues().get(i), cellStyleValue);
                 }
-                //设置进度信息
-                progressMessage.addCurrentCount();
-                progressMessage.setDetailMessage("进行  " + progressMessage.getCurrentCount() + "/" + progressMessage.getTotalCount() + "个操作");
             }
-        } catch (Exception e) {
+        }catch (Exception e){
             e.printStackTrace();
             System.out.println("写入excel表格数据失败");
             flag = false;
             progressMessage.stateFailed();
-        } finally {
-            if (workbook != null && ifCloseWorkBook) {
-                if (this.writeFileToDisk(workbook, fileOut)) {
+        }
+        finally {
+            if(workbook != null && ifCloseWorkBook){
+                if(this.writeFileToDisk(workbook, fileOut)){
                     flag = true;
-                } else {
+                }else {
                     progressMessage.stateFailed();
                 }
             }
         }
-        progressMessage.stateEnd();
         return flag;
     }
 }

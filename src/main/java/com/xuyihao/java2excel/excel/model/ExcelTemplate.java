@@ -14,6 +14,7 @@ public class ExcelTemplate {
     private String tenant;
     private String classCode;//类型编码(Template的code)
     private String className;//类型的名称（Template的name）
+    //以下两项表示属性-属性值，一一对应并且有序
     private List<AttributeType> attrbuteTypes;
     private List<String> attrValues;
 

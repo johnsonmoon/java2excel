@@ -2,28 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b8f7537-b91d-494d-989d-01346a62e458" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/JohnsonExcelReaderTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/ReadExcel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/impl/ReadExcelImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/util/ImportUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/CommonExcelUtil.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/excel/exportfunc/ExportUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/model/AttributeType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/model/ExcelTemplate.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/model/ProgressMessage.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/ExportUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/util/ExportUtil.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/model/AttributeType.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/AttributeType.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/model/ExcelTemplate.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ExcelTemplate.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/model/ProgressMessage.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ProgressMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/JohnsonTestMain.class" afterPath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/JohnsonTestMain.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/excel/exportfunc/GenerateExcel.class" afterPath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/excel/exportfunc/GenerateExcel.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/excel/exportfunc/impl/GenerateExcelImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/xuyihao/java2excel/excel/exportfunc/impl/GenerateExcelImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/JohnsonTestMain.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/JohnsonTestMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/GenerateExcel.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/GenerateExcel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/impl/GenerateExcelImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/impl/GenerateExcelImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/java2excel-context-beans-manage.xml" afterPath="$PROJECT_DIR$/src/main/resources/java2excel-context-beans-manage.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/java2excel-context-beans-manage.xml" afterPath="$PROJECT_DIR$/target/classes/java2excel-context-beans-manage.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/util/ExportUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/util/ExportUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/util/ImportUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/util/ImportUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/AttributeType.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/AttributeType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ExcelTemplate.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ExcelTemplate.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ProgressMessage.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ProgressMessage.java" />
     </list>
     <ignored path="java2excel.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,18 +35,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ImportUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/util/ImportUtil.java">
+      <file leaf-file-name="JohnsonTestMain.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/JohnsonTestMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+            <state relative-caret-position="210">
+              <caret line="33" column="68" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="68" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#getExcelTemplateFromExcel#0;class#ImportUtil#0" expanded="false" />
+                <element signature="method#testReadExcelTemplateFromExcel#0;class#JohnsonTestMain#0" expanded="false" />
+                <element signature="method#testProgressMessage#0;class#JohnsonTestMain#0" expanded="false" />
+                <element signature="method#createExcelTest#0;class#JohnsonTestMain#0" expanded="false" />
+                <element signature="method#insertExcelDataTest#0;class#JohnsonTestMain#0" expanded="false" />
+                <element signature="method#setAttributes#0;class#JohnsonTestMain#0" expanded="false" />
+                <element signature="method#setValues#0;class#JohnsonTestMain#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImportUtil.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/util/ImportUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2444">
+              <caret line="109" column="5" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="method#getAttrValueCount#0;class#ImportUtil#0" expanded="false" />
-                <element signature="method#getExcelTemplateListDataFromExcel#0;class#ImportUtil#0" expanded="false" />
-                <element signature="e#3327#3342#0" expanded="true" />
-                <element signature="e#3901#3909#0" expanded="true" />
+                <element signature="e#3443#3458#0" expanded="true" />
+                <element signature="e#4233#4241#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -71,7 +71,7 @@
       <file leaf-file-name="ReadExcel.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/ReadExcel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
+            <state relative-caret-position="190">
               <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -83,22 +83,87 @@
       <file leaf-file-name="AttributeType.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/AttributeType.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+            <state relative-caret-position="2450">
+              <caret line="98" column="5" selection-start-line="98" selection-start-column="5" selection-end-line="98" selection-end-column="5" />
               <folding>
-                <element signature="e#1273#1274#0" expanded="true" />
-                <element signature="e#1313#1314#0" expanded="true" />
+                <element signature="e#1228#1229#0" expanded="true" />
+                <element signature="e#1264#1265#0" expanded="true" />
+                <element signature="e#1296#1297#0" expanded="true" />
+                <element signature="e#1330#1331#0" expanded="true" />
+                <element signature="e#1377#1378#0" expanded="true" />
+                <element signature="e#1417#1418#0" expanded="true" />
+                <element signature="e#1451#1452#0" expanded="true" />
+                <element signature="e#1487#1488#0" expanded="true" />
+                <element signature="e#1534#1535#0" expanded="true" />
+                <element signature="e#1574#1575#0" expanded="true" />
+                <element signature="e#1608#1609#0" expanded="true" />
+                <element signature="e#1644#1645#0" expanded="true" />
+                <element signature="e#1691#1692#0" expanded="true" />
+                <element signature="e#1731#1732#0" expanded="true" />
+                <element signature="e#1765#1766#0" expanded="true" />
+                <element signature="e#1801#1802#0" expanded="true" />
+                <element signature="e#1856#1857#0" expanded="true" />
+                <element signature="e#1904#1905#0" expanded="true" />
+                <element signature="e#1944#1945#0" expanded="true" />
+                <element signature="e#1986#1987#0" expanded="true" />
+                <element signature="e#2041#2042#0" expanded="true" />
+                <element signature="e#2089#2090#0" expanded="true" />
+                <element signature="e#2127#2128#0" expanded="true" />
+                <element signature="e#2167#2168#0" expanded="true" />
+                <element signature="e#2198#2199#0" expanded="true" />
+                <element signature="e#2225#2226#0" expanded="true" />
+                <element signature="e#2265#2266#0" expanded="true" />
+                <element signature="e#2297#2298#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ExcelTemplate.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ExportUtil.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/util/ExportUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="5642">
+              <caret line="226" column="5" selection-start-line="226" selection-start-column="5" selection-end-line="226" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ExcelTemplate.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ExcelTemplate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="15" column="51" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
+            <state relative-caret-position="83">
+              <caret line="7" column="2" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProgressMessage.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ProgressMessage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="807">
+              <caret line="198" column="0" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1003#1011#0" expanded="true" />
+                <element signature="docComment;method#getState#0;class#ProgressMessage#0" expanded="false" />
+                <element signature="docComment;method#setState#0;class#ProgressMessage#0" expanded="false" />
+                <element signature="docComment;method#addCurrentCount#0;class#ProgressMessage#0" expanded="false" />
+                <element signature="method#addCurrentCount#0;class#ProgressMessage#0" expanded="false" />
+                <element signature="docComment;method#getCurrentCount#0;class#ProgressMessage#0" expanded="false" />
+                <element signature="docComment;method#setCurrentCount#0;class#ProgressMessage#0" expanded="false" />
+                <element signature="method#setCurrentCount#0;class#ProgressMessage#0" expanded="false" />
+                <element signature="docComment;method#setTotalCount#0;class#ProgressMessage#0" expanded="false" />
+                <element signature="docComment;method#getProgress#0;class#ProgressMessage#0" expanded="false" />
+                <element signature="docComment;method#setProgress#0;class#ProgressMessage#0" expanded="false" />
+                <element signature="docComment;method#getDetailMessage#0;class#ProgressMessage#0" expanded="false" />
+                <element signature="docComment;method#setDetailMessage#0;class#ProgressMessage#0" expanded="false" />
+                <element signature="e#3798#3799#0" expanded="true" />
+                <element signature="e#3844#3845#0" expanded="true" />
+                <element signature="e#3917#3918#0" expanded="true" />
+                <element signature="e#3977#3978#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -156,14 +221,14 @@
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/CommonExcelUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/ImportUtil.java" />
         <option value="$PROJECT_DIR$/src/main/resources/java2excel-context-beans-manage.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ProgressMessage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ExcelTemplate.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/AttributeType.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/JohnsonTestMain.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/util/ImportUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/ReadExcel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/util/ExportUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/impl/ReadExcelImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ExcelTemplate.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ProgressMessage.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/AttributeType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/util/ExportUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/util/ImportUtil.java" />
       </list>
     </option>
   </component>
@@ -181,9 +246,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="62" />
-    <option name="width" value="689" />
-    <option name="height" value="900" />
+    <option name="x" value="54" />
+    <option name="y" value="-8" />
+    <option name="width" value="1394" />
+    <option name="height" value="916" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -213,11 +279,11 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane />
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -742,12 +808,13 @@
       <workItem from="1469407599478" duration="15788000" />
       <workItem from="1469433276657" duration="7366000" />
       <workItem from="1469502484668" duration="12997000" />
-      <workItem from="1469585586026" duration="23480000" />
+      <workItem from="1469585586026" duration="24915000" />
+      <workItem from="1469667522489" duration="7098000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101630000" />
+    <option name="totallyTimeSpent" value="110163000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -770,7 +837,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="62" y="0" width="689" height="900" extended-state="0" />
+    <frame x="54" y="-8" width="1394" height="916" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -780,13 +847,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976827" sideWeight="0.50076336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294271" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.85841835" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32229298" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976827" sideWeight="0.49923664" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2383808" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18215892" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -913,12 +980,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
           <caret line="2" column="58" selection-start-line="2" selection-start-column="58" selection-end-line="2" selection-end-column="58" />
-          <folding>
-            <element signature="e#1005#1006#0" expanded="false" />
-            <element signature="e#1038#1039#0" expanded="false" />
-            <element signature="e#1094#1095#0" expanded="false" />
-            <element signature="e#1138#1139#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -926,10 +987,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="518">
           <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1420#1437#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -945,7 +1002,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="206">
           <caret line="155" column="11" selection-start-line="155" selection-start-column="11" selection-end-line="155" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -954,7 +1010,7 @@
         <state relative-caret-position="345">
           <caret line="35" column="6" selection-start-line="35" selection-start-column="6" selection-end-line="35" selection-end-column="6" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="method#insertCellValue#0;class#CommonExcelUtil#0" expanded="false" />
             <element signature="method#getCellValue#0;class#CommonExcelUtil#0" expanded="false" />
             <element signature="method#writeFileToDisk#0;class#CommonExcelUtil#0" expanded="false" />
@@ -962,11 +1018,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/GenerateExcel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="25" column="7" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/impl/ReadExcelImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/ReadExcel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ExcelTemplate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="83">
+          <caret line="7" column="2" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ProgressMessage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="82" column="33" selection-start-line="82" selection-start-column="33" selection-end-line="83" selection-end-column="30" />
+        <state relative-caret-position="807">
+          <caret line="198" column="0" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1003#1011#0" expanded="true" />
             <element signature="docComment;method#getState#0;class#ProgressMessage#0" expanded="false" />
             <element signature="docComment;method#setState#0;class#ProgressMessage#0" expanded="false" />
             <element signature="docComment;method#addCurrentCount#0;class#ProgressMessage#0" expanded="false" />
@@ -979,33 +1072,18 @@
             <element signature="docComment;method#setProgress#0;class#ProgressMessage#0" expanded="false" />
             <element signature="docComment;method#getDetailMessage#0;class#ProgressMessage#0" expanded="false" />
             <element signature="docComment;method#setDetailMessage#0;class#ProgressMessage#0" expanded="false" />
-            <element signature="method#setDetailMessage#0;class#ProgressMessage#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/GenerateExcel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="25" column="7" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/util/ExportUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5681">
-          <caret line="247" column="5" selection-start-line="247" selection-start-column="5" selection-end-line="247" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#3798#3799#0" expanded="true" />
+            <element signature="e#3844#3845#0" expanded="true" />
+            <element signature="e#3917#3918#0" expanded="true" />
+            <element signature="e#3977#3978#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/JohnsonTestMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1044">
-          <caret line="36" column="64" selection-start-line="36" selection-start-column="64" selection-end-line="36" selection-end-column="64" />
+        <state relative-caret-position="210">
+          <caret line="33" column="68" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="68" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#testReadExcelTemplateFromExcel#0;class#JohnsonTestMain#0" expanded="false" />
@@ -1018,57 +1096,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/util/ImportUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#getExcelTemplateFromExcel#0;class#ImportUtil#0" expanded="false" />
-            <element signature="method#getAttrValueCount#0;class#ImportUtil#0" expanded="false" />
-            <element signature="method#getExcelTemplateListDataFromExcel#0;class#ImportUtil#0" expanded="false" />
-            <element signature="e#3327#3342#0" expanded="true" />
-            <element signature="e#3901#3909#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/AttributeType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+        <state relative-caret-position="2450">
+          <caret line="98" column="5" selection-start-line="98" selection-start-column="5" selection-end-line="98" selection-end-column="5" />
           <folding>
-            <element signature="e#1273#1274#0" expanded="true" />
-            <element signature="e#1313#1314#0" expanded="true" />
+            <element signature="e#1228#1229#0" expanded="true" />
+            <element signature="e#1264#1265#0" expanded="true" />
+            <element signature="e#1296#1297#0" expanded="true" />
+            <element signature="e#1330#1331#0" expanded="true" />
+            <element signature="e#1377#1378#0" expanded="true" />
+            <element signature="e#1417#1418#0" expanded="true" />
+            <element signature="e#1451#1452#0" expanded="true" />
+            <element signature="e#1487#1488#0" expanded="true" />
+            <element signature="e#1534#1535#0" expanded="true" />
+            <element signature="e#1574#1575#0" expanded="true" />
+            <element signature="e#1608#1609#0" expanded="true" />
+            <element signature="e#1644#1645#0" expanded="true" />
+            <element signature="e#1691#1692#0" expanded="true" />
+            <element signature="e#1731#1732#0" expanded="true" />
+            <element signature="e#1765#1766#0" expanded="true" />
+            <element signature="e#1801#1802#0" expanded="true" />
+            <element signature="e#1856#1857#0" expanded="true" />
+            <element signature="e#1904#1905#0" expanded="true" />
+            <element signature="e#1944#1945#0" expanded="true" />
+            <element signature="e#1986#1987#0" expanded="true" />
+            <element signature="e#2041#2042#0" expanded="true" />
+            <element signature="e#2089#2090#0" expanded="true" />
+            <element signature="e#2127#2128#0" expanded="true" />
+            <element signature="e#2167#2168#0" expanded="true" />
+            <element signature="e#2198#2199#0" expanded="true" />
+            <element signature="e#2225#2226#0" expanded="true" />
+            <element signature="e#2265#2266#0" expanded="true" />
+            <element signature="e#2297#2298#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/impl/ReadExcelImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/util/ExportUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/ReadExcel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ExcelTemplate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="15" column="51" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
+        <state relative-caret-position="5642">
+          <caret line="226" column="5" selection-start-line="226" selection-start-column="5" selection-end-line="226" selection-end-column="5" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/util/ImportUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2444">
+          <caret line="109" column="5" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getAttrValueCount#0;class#ImportUtil#0" expanded="false" />
+            <element signature="e#3443#3458#0" expanded="true" />
+            <element signature="e#4233#4241#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

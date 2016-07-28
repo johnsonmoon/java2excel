@@ -1,5 +1,10 @@
 package com.xuyihao.java2excel.excel.model;
 
+import org.openxmlformats.schemas.drawingml.x2006.main.CTTextListStyle;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Xuyh at 2016/07/26 上午 11:15.
  *
@@ -32,6 +37,7 @@ public class ProgressMessage {
     private int totalCount = 0;
     private int progress = 0;
     private String detailMessage = "";
+    private List<String> warningMessageList = new ArrayList<String>();
 
     /**
      * 重置进度
@@ -189,5 +195,18 @@ public class ProgressMessage {
 
         //test-------------------------------//
         System.out.println(detailMessage);
+    }
+
+    public List<String> getWarningMessageList(){
+        return this.warningMessageList;
+    }
+
+    public void setWarningMessageList(List<String> warningMessageList){
+        this.warningMessageList = warningMessageList;
+    }
+
+    public void addWarningMessage(String warningMessage){
+        this.setDetailMessage("Warning: " + warningMessage);
+        this.warningMessageList.add(warningMessage);
     }
 }
