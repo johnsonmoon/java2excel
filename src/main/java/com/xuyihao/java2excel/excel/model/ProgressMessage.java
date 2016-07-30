@@ -95,6 +95,7 @@ public class ProgressMessage {
      */
     public void stateFailed(){
         this.setState(STATE_FAILED);
+		this.setProgress(100);
     }
 
     /**
