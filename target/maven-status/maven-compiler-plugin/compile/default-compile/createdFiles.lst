@@ -1,1 +1,2 @@
-com\xuyihao\java2excel\model\ProgressMessage.class
+com\xuyihao\java2excel\excel\util\GenerateWarningMessageFile.class
+com\xuyihao\java2excel\excel\util\RandomStringFactory.class

@@ -5,11 +5,13 @@ import com.xuyihao.java2excel.excel.model.AttributeType;
 import com.xuyihao.java2excel.excel.model.ExcelTemplate;
 import com.xuyihao.java2excel.excel.exportfunc.util.ExportUtil;
 import com.xuyihao.java2excel.excel.model.ProgressMessage;
+import com.xuyihao.java2excel.excel.util.GenerateWarningMessageFile;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +22,8 @@ import java.util.List;
 public class JohnsonTestMain {
     public static void main(String args[]){
         try{
-            getExcelTemplateListDataFromExcel();
+            testGenerateWarningMessage();
+            //getExcelTemplateListDataFromExcel();
             //testGetAttrValueCount();
             //testReadExcelTemplateFromExcel();
             //System.out.println(createExcelTest(new ProgressMessage()));
@@ -28,6 +31,19 @@ public class JohnsonTestMain {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    public static void testGenerateWarningMessage() throws FileNotFoundException{
+        GenerateWarningMessageFile generateWarningMessageFile = new GenerateWarningMessageFile();
+        File file = new File("E:\\JUnitTestPath\\WarningMessageExcelTest.xlsx");
+        FileOutputStream outputStream = new FileOutputStream(file);
+        ProgressMessage progressMessage = new ProgressMessage();
+        List<String> warningMessageList = new ArrayList<String>();
+        for(int i = 0; i < 100; i++){
+            warningMessageList.add("ifahouh" + String.valueOf(i+8));
+        }
+        progressMessage.setWarningMessageList(warningMessageList);
+        System.out.println(generateWarningMessageFile.generateWarningFile(outputStream, progressMessage));
     }
 
     public static void getExcelTemplateListDataFromExcel() throws Exception{

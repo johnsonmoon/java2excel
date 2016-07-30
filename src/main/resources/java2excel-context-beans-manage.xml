@@ -11,6 +11,7 @@
     <bean class="com.xuyihao.java2excel.excel.util.CommonExcelUtil"></bean>
     <bean class="com.xuyihao.java2excel.excel.exportfunc.util.ExportUtil"></bean>
     <bean class="com.xuyihao.java2excel.excel.importfunc.util.ImportUtil"></bean>
+    <bean class="com.xuyihao.java2excel.excel.util.GenerateWarningMessageFile"></bean>
     <bean id="GenerateExcel" class="com.xuyihao.java2excel.excel.exportfunc.impl.GenerateExcelImpl"></bean>
     <bean id="ReadExcel" class="com.xuyihao.java2excel.excel.importfunc.impl.ReadExcelImpl"></bean>
 
