@@ -9,6 +9,7 @@
 
     <!-- logic and util -->
     <bean class="com.xuyihao.java2excel.excel.util.CommonExcelUtil"></bean>
+    <bean class="com.xuyihao.java2excel.excel.util.CurrentTimeUtil"></bean>
     <bean class="com.xuyihao.java2excel.excel.exportfunc.util.ExportUtil"></bean>
     <bean class="com.xuyihao.java2excel.excel.importfunc.util.ImportUtil"></bean>
     <bean class="com.xuyihao.java2excel.excel.util.GenerateWarningMessageFile"></bean>

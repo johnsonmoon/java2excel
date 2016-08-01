@@ -1,6 +1,9 @@
 package com.xuyihao.java2excel.excel.exportfunc;
 
+import com.sun.javaws.progress.Progress;
+import com.xuyihao.java2excel.excel.model.ExcelTemplate;
 import com.xuyihao.java2excel.excel.model.ProgressMessage;
+import org.apache.poi.ss.usermodel.Workbook;
 
 import java.io.FileOutputStream;
 import java.util.List;
@@ -24,6 +27,16 @@ public interface GenerateExcel {
     public boolean generateTemplate(FileOutputStream fileOut, String classCode, ProgressMessage progressMessage);
 
     /**
+     * 通过classCode生成表格模板,将类列表的所有类数据全部放在同一张excel的不同sheet中
+     *
+     * @param fileOut 文件输出流
+     * @param classCodeList 类编码列表
+     * @param progressMessage 进度通知
+     * @return false 失败， true 成功
+     */
+    public boolean generateTemplateWithMultiSheets(FileOutputStream fileOut, List<String> classCodeList, ProgressMessage progressMessage);
+
+    /**
      * 连同数据一起生成完整表格,一个类生成一个excel文件
      *
      * @param fileOut 文件输出流
@@ -31,7 +44,7 @@ public interface GenerateExcel {
      * @param progressMessage 进度通知
      * @return false 失败， true 成功
      * */
-    public boolean generateFile(FileOutputStream fileOut, String classCode, ProgressMessage progressMessage);
+    public boolean generateDataFile(FileOutputStream fileOut, String classCode, ProgressMessage progressMessage);
 
     /**
      * 连同数据一起生成完整表格,并将类列表的所有类数据全部放在同一张excel的不同sheet中
@@ -41,5 +54,42 @@ public interface GenerateExcel {
      * @param progressMessage 进度通知
      * @return false 失败， true 成功
      */
-    public boolean generateFileWithMutiSheets(FileOutputStream fileOut, List<String> classCodeList, ProgressMessage progressMessage);
+    public boolean generateDataFileWithMutiSheets(FileOutputStream fileOut, List<String> classCodeList, ProgressMessage progressMessage);
+
+    /**
+     * 生成单个sheet
+     *
+     * @param workbook excel表格
+     * @param sheetNumber sheet编号
+     * @param fileOut 文件输出流
+     * @param classCode ExcelTemplate类编号
+     * @param progressMessage 消息进度编号
+     * @return false 失败， true 成功
+     */
+    public boolean generateSheet(Workbook workbook, int sheetNumber, FileOutputStream fileOut, String classCode, ProgressMessage progressMessage);
+
+    /**
+     * 通过类编码查询数据库并对对应的ExcelTemplate进行赋值,需要根据不同的业务模型进行重写
+     *
+     * @param classCode 模型类型编码
+     * @return ExcelTemplate对象
+     */
+    public ExcelTemplate getExcelTemplateByClassCode(String classCode);
+
+    /**
+     * 通过具体的业务模型对象对ExcelTemplate进行赋值，这里需要进行重写
+     *
+     * @param model 业务模型对象
+     * @return ExcelTemplate对象
+     */
+    public ExcelTemplate getExcelTemplateByModel(Object model);
+
+    /**
+     * 将模型对象列表转化为ExcelTemplate对象列表，需要对不同业务模型进行重写
+     *
+     * @param modelList 业务模型对象列表
+     * @param template 已经转化过的单个ExcelTemplate对象
+     * @return ExcelTemplate对象列表
+     */
+    public List<ExcelTemplate> convertModelToExcelTemplate(List<Object> modelList, ExcelTemplate template);
 }
