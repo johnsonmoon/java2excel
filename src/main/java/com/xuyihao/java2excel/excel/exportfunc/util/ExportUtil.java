@@ -5,6 +5,7 @@ import com.xuyihao.java2excel.excel.model.ExcelTemplate;
 import com.xuyihao.java2excel.excel.model.ProgressMessage;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.util.HSSFColor;
+import org.apache.poi.ss.formula.functions.Index;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 
@@ -47,7 +48,6 @@ public class ExportUtil extends CommonExcelUtil{
             sheet.setColumnHidden(1, true);
             //隐藏行代码（设置行高为零）
             sheet.createRow(3).setZeroHeight(true);
-            sheet.createRow(4).setZeroHeight(true);
             //合并单元格
             CellRangeAddress cellRangeAddress1 = new CellRangeAddress(0, 1, 0, 0);
             CellRangeAddress cellRangeAddress3 = new CellRangeAddress(0, 1, 1, collumnSize);
@@ -93,6 +93,8 @@ public class ExportUtil extends CommonExcelUtil{
 
             CellStyle cellStyleRowHeader = workbook.createCellStyle();
             cellStyleRowHeader.cloneStyleFrom(cellStyleGeneral);
+            cellStyleRowHeader.setFillForegroundColor(IndexedColors.LIGHT_GREEN.index);
+            cellStyleRowHeader.setFillPattern(CellStyle.SOLID_FOREGROUND);
             cellStyleRowHeader.setFont(fontHeader);
             cellStyleRowHeader.setAlignment(CellStyle.ALIGN_CENTER);
 

@@ -29,7 +29,8 @@ public class JohnsonTestMain {
             //testReadExcelTemplateFromExcel();
             //System.out.println(createExcelTest(new ProgressMessage()));
             //System.out.println(insertExcelDataTest(new ProgressMessage()));
-            System.out.println(CurrentTimeUtil.getCurrentTime());
+            //System.out.println(CurrentTimeUtil.getCurrentTime());
+            //createExcelTest(new ProgressMessage());
         }catch (Exception e){
             e.printStackTrace();
         }

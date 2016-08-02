@@ -14,6 +14,13 @@ import java.util.List;
  * 生成Excel表格接口
  * 需要对不同的项目业务模型进行适配
  * 不同项目可以根据不同需求对实现进行重写
+ *
+ * 重写逻辑：
+ * 1.generateTemplate，generateTemplateWithMultiSheets方法，设置状态信息（包括detailMessage, state, totalCount），新建工作簿对象，指定sheet编号，
+ *   重写getExcelTemplate两个方法，并获取ExcelTemplate对象，调用ExportUtil的createExcel方法，过程中设置状态信息的currentCount，结束后设置state为end。
+ * 2.generateFile，generateFileWithMutiSheets方法，设置状态信息，新建工作簿，重写generateSheet方法并调用之。
+ * 3.generateSheet方法逻辑：分析模型，写入模板（调用ExportUtil的createExcel方法），
+ *   写入数据（调用convertModelToExcelTemplate方法获取ExcelTemplate对象列表，调用ExportUtil的insertExcelData插入数据）
  */
 public interface GenerateExcel {
     /**
