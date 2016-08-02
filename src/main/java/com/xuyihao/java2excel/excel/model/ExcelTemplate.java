@@ -10,15 +10,14 @@ import java.util.List;
  */
 public class ExcelTemplate {
 
-    private String id;//id 这个ID就是ciForm的ID
+    private String id;
     private String tenant;
-    private String classCode;//类型编码(Template的code)
-    private String className;//类型的名称（Template的name）
-    //以下两项表示属性-属性值，一一对应并且有序
+    private String classCode;
+    private String className;
     private List<AttributeType> attrbuteTypes;
     private List<String> attrValues;
 
-    public ExcelTemplate(){
+    public ExcelTemplate() {
         this.id = "";
         this.tenant = "";
         this.classCode = "";
@@ -27,7 +26,7 @@ public class ExcelTemplate {
         this.attrValues = new ArrayList<String>();
     }
 
-    public ExcelTemplate(ExcelTemplate template){
+    public ExcelTemplate(ExcelTemplate template) {
         this.id = template.getId();
         this.tenant = template.getTenant();
         this.classCode = template.getClassCode();
@@ -36,51 +35,51 @@ public class ExcelTemplate {
         this.attrValues = template.getAttrValues();
     }
 
-    public void setAttrbuteTypes(List<AttributeType> attrbuteTypes){
+    public void setAttrbuteTypes(List<AttributeType> attrbuteTypes) {
         this.attrbuteTypes = attrbuteTypes;
     }
 
-    public List<AttributeType> getAttrbuteTypes(){
+    public List<AttributeType> getAttrbuteTypes() {
         return this.attrbuteTypes;
     }
 
-    public void setAttrValues(List<String> attrValues){
+    public void setAttrValues(List<String> attrValues) {
         this.attrValues = attrValues;
     }
 
-    public List<String> getAttrValues(){
+    public List<String> getAttrValues() {
         return this.attrValues;
     }
 
-    public String getId(){
+    public String getId() {
         return this.id;
     }
 
-    public void setId(String id){
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getTenant(){
+    public String getTenant() {
         return this.tenant;
     }
 
-    public void setTenant(String tenant){
+    public void setTenant(String tenant) {
         this.tenant = tenant;
     }
 
-    public String getClassCode(){
+    public String getClassCode() {
         return this.classCode;
     }
 
-    public void setClassCode(String classCode){
+    public void setClassCode(String classCode) {
         this.classCode = classCode;
     }
 
-    public String getClassName(){
+    public String getClassName() {
         return this.className;
     }
 
-    public void setClassName(String name){
+    public void setClassName(String name) {
         this.className = name;
     }
 }

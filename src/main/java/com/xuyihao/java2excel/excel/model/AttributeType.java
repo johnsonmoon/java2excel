@@ -11,12 +11,12 @@ public class AttributeType {
      *
      * */
     private String attrId;
-    private String attrCode;//属性编码
-    private String attrName;//属性名
-    private String attrType;//属性数据类型
-    private String attrFormatRule;//属性取值范围及规则
-    private String defaultValue;//该属性默认值
-    private String unit;//该属性的计量单位
+    private String attrCode;
+    private String attrName;
+    private String attrType;
+    private String attrFormatRule;
+    private String defaultValue;
+    private String unit;
 
     public AttributeType(){
         this.attrId = "";

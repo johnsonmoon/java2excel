@@ -27,50 +27,50 @@ public class ExportUtil extends CommonExcelUtil{
      * @param ifCloseWorkBook 是否保存关闭表格
      * @param fileOut 文件流
      * @return true 成功, false 失败
-     * */
-    public boolean createExcel(final Workbook workbook, int sheetNum, ExcelTemplate excelTemplate, boolean ifCloseWorkBook, FileOutputStream fileOut, ProgressMessage progressMessage){
+     */
+    public boolean createExcel(final Workbook workbook, int sheetNum, ExcelTemplate excelTemplate,
+                               boolean ifCloseWorkBook, FileOutputStream fileOut, ProgressMessage progressMessage) {
         boolean flag = false;
-        progressMessage.setDetailMessage("开始计算属性数量...");
-        try{
+        progressMessage.setDetailMessage("Counting data counts...");
+        try {
             Sheet sheet = workbook.createSheet(excelTemplate.getClassName());
             workbook.setSheetOrder(excelTemplate.getClassName(), sheetNum);
-            //总共有多少列数（后期添加关系等需要修改）
+            // 总列数
             int collumnSize = 0;
             int attrivalueSize = excelTemplate.getAttrbuteTypes().size();
             collumnSize = attrivalueSize + 1;
-            //设置属性列宽
-            if(excelTemplate != null){
-                for(int i = 0; i < collumnSize; i++){
-                    sheet.setColumnWidth(i+1, 3800);
+            // 设置属性列宽
+            if (excelTemplate != null) {
+                for (int i = 0; i < collumnSize; i++) {
+                    sheet.setColumnWidth(i + 1, 4800);
                 }
             }
-            //隐藏列代码
+            // 隐藏列代码
             sheet.setColumnHidden(1, true);
-            //隐藏行代码（设置行高为零）
+            // 隐藏行代码（设置行高为零）
             sheet.createRow(3).setZeroHeight(true);
-            //合并单元格
+            // 合并单元格
             CellRangeAddress cellRangeAddress1 = new CellRangeAddress(0, 1, 0, 0);
             CellRangeAddress cellRangeAddress3 = new CellRangeAddress(0, 1, 1, collumnSize);
             sheet.addMergedRegion(cellRangeAddress1);
             sheet.addMergedRegion(cellRangeAddress3);
-            //创建字体
-            //Title
+            // 创建字体
             Font fontTitle = workbook.createFont();
             fontTitle.setFontName(HSSFFont.FONT_ARIAL);
             fontTitle.setItalic(false);
             fontTitle.setFontHeightInPoints((short) 10);
-            //Header
+
             Font fontHeader = workbook.createFont();
             fontHeader.setFontName(HSSFFont.FONT_ARIAL);
             fontHeader.setItalic(false);
             fontHeader.setFontHeightInPoints((short) 10);
-            //HeaderFirstCell
+            // HeaderFirstCell
             Font fontHeaderFirstCell = workbook.createFont();
             fontHeaderFirstCell.setFontName(HSSFFont.FONT_ARIAL);
             fontHeaderFirstCell.setColor(HSSFColor.WHITE.index);
             fontHeaderFirstCell.setItalic(false);
             fontHeaderFirstCell.setFontHeightInPoints((short) 10);
-            //Value
+
             Font fontValue = workbook.createFont();
             fontValue.setFontName(HSSFFont.FONT_ARIAL);
             fontValue.setItalic(false);
@@ -93,10 +93,10 @@ public class ExportUtil extends CommonExcelUtil{
 
             CellStyle cellStyleRowHeader = workbook.createCellStyle();
             cellStyleRowHeader.cloneStyleFrom(cellStyleGeneral);
-            cellStyleRowHeader.setFillForegroundColor(IndexedColors.LIGHT_GREEN.index);
-            cellStyleRowHeader.setFillPattern(CellStyle.SOLID_FOREGROUND);
             cellStyleRowHeader.setFont(fontHeader);
             cellStyleRowHeader.setAlignment(CellStyle.ALIGN_CENTER);
+            cellStyleRowHeader.setFillForegroundColor(IndexedColors.LIGHT_GREEN.index);
+            cellStyleRowHeader.setFillPattern(CellStyle.SOLID_FOREGROUND);
 
             CellStyle cellStyleGrayRowHeader = workbook.createCellStyle();
             cellStyleGrayRowHeader.cloneStyleFrom(cellStyleRowHeader);
@@ -123,8 +123,9 @@ public class ExportUtil extends CommonExcelUtil{
             cellStyleValue.setAlignment(CellStyle.ALIGN_LEFT);
             cellStyleValue.setWrapText(true);
             cellStyleValue.setLocked(false);
-            //写入固定数据
-            String templateDetailInfo = excelTemplate.getId() + "&&" + excelTemplate.getTenant() + "&&" + excelTemplate.getClassCode() + "&&" + excelTemplate.getClassName();
+            // 写入固定数据
+            String templateDetailInfo = excelTemplate.getId() + "&&" + excelTemplate.getTenant() + "&&"
+                    + excelTemplate.getClassCode() + "&&" + excelTemplate.getClassName();
             this.insertCellValue(sheet, 0, 0, templateDetailInfo, cellStyleHideHeader);
             this.insertCellValue(sheet, 1, 0, excelTemplate.getClassName(), cellStyleTitle);
             this.insertCellValue(sheet, 0, 2, "字段", cellStyleRowHeader);
@@ -132,29 +133,37 @@ public class ExportUtil extends CommonExcelUtil{
             this.insertCellValue(sheet, 0, 4, "数据格式", cellStyleGrayRowHeader);
             this.insertCellValue(sheet, 0, 5, "默认值", cellStyleRowHeader);
             this.insertCellValue(sheet, 0, 6, "数据", cellStyleRowHeaderTopAlign);
-            // 增加資源标签列
             this.insertCellValue(sheet, 1, 2, "配置项标识", cellStyleColumnHeader);
             this.insertCellValue(sheet, 1, 3, "配置项标识", cellStyleWhiteHideHeader);
-            for(int i = 0; i < excelTemplate.getAttrbuteTypes().size(); i++){
-                String label = excelTemplate.getAttrbuteTypes().get(i).getAttrName() + "(" + excelTemplate.getAttrbuteTypes().get(i).getUnit() + ")";
-                String attrInfo = excelTemplate.getAttrbuteTypes().get(i).getAttrId() + "&&" + excelTemplate.getAttrbuteTypes().get(i).getAttrCode() + "&&" + excelTemplate.getAttrbuteTypes().get(i).getAttrName();
+            for (int i = 0; i < excelTemplate.getAttrbuteTypes().size(); i++) {
+                String label;
+                if (excelTemplate.getAttrbuteTypes().get(i).getUnit() == null
+                        || excelTemplate.getAttrbuteTypes().get(i).getUnit().equals("")) {
+                    label = excelTemplate.getAttrbuteTypes().get(i).getAttrName();
+                } else {
+                    label = excelTemplate.getAttrbuteTypes().get(i).getAttrName() + "("
+                            + excelTemplate.getAttrbuteTypes().get(i).getUnit() + ")";
+                }
+                String attrInfo = excelTemplate.getAttrbuteTypes().get(i).getAttrId() + "&&"
+                        + excelTemplate.getAttrbuteTypes().get(i).getAttrCode() + "&&"
+                        + excelTemplate.getAttrbuteTypes().get(i).getAttrName();
                 String formatRule = excelTemplate.getAttrbuteTypes().get(i).getAttrFormatRule();
                 String defaultValue = excelTemplate.getAttrbuteTypes().get(i).getDefaultValue();
-                this.insertCellValue(sheet, i+2, 2, label, cellStyleGrayRowHeader);//字段名
-                this.insertCellValue(sheet, i+2, 3, attrInfo, cellStyleGrayRowHeader);
-                this.insertCellValue(sheet, i+2, 4, formatRule, cellStyleColumnHeader);//格式
-                this.insertCellValue(sheet, i+2, 5, defaultValue, cellStyleColumnHeader);//默认值
+                this.insertCellValue(sheet, i + 2, 2, label, cellStyleGrayRowHeader);// 字段名
+                this.insertCellValue(sheet, i + 2, 3, attrInfo, cellStyleGrayRowHeader);
+                this.insertCellValue(sheet, i + 2, 4, formatRule, cellStyleColumnHeader);// 格式
+                this.insertCellValue(sheet, i + 2, 5, defaultValue, cellStyleColumnHeader);// 默认值
             }
             flag = true;
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             flag = false;
             progressMessage.stateFailed();
-        }finally {
-            if(workbook != null && ifCloseWorkBook){
-                if(this.writeFileToDisk(workbook, fileOut)){
+        } finally {
+            if (workbook != null && ifCloseWorkBook) {
+                if (this.writeFileToDisk(workbook, fileOut)) {
                     flag = true;
-                }else {
+                } else {
                     progressMessage.stateFailed();
                 }
             }
@@ -163,7 +172,7 @@ public class ExportUtil extends CommonExcelUtil{
     }
 
     /**
-     *批量插入数据
+     * 批量插入数据
      *
      * @param workbook 工作簿
      * @param sheetNum 表格编号
@@ -174,26 +183,28 @@ public class ExportUtil extends CommonExcelUtil{
      * @param fileOut 文件流
      * @return true 成功, false 失败
      */
-    public boolean insertExcelData(final Workbook workbook, int sheetNum, int startRowNum, ExcelTemplate template, List<ExcelTemplate> excelTemplatesList, boolean ifCloseWorkBook, FileOutputStream fileOut, ProgressMessage progressMessage){
+    public boolean insertExcelData(final Workbook workbook, int sheetNum, int startRowNum, ExcelTemplate template,
+                                   List<ExcelTemplate> excelTemplatesList, boolean ifCloseWorkBook, FileOutputStream fileOut,
+                                   ProgressMessage progressMessage) {
         boolean flag = false;
-        if(workbook == null){
+        if (workbook == null) {
             return false;
         }
         Sheet sheet = workbook.getSheetAt(sheetNum);
-        if(sheet == null){
+        if (sheet == null) {
             return false;
         }
         String[] identifyString = this.getCellValue(sheet, 0, 0).split("&&");
-        if(!identifyString[2].equals(template.getClassCode()) || !identifyString[0].equals(template.getId())){
-            return false;//excel对应的类型和传入的excelTemplates类型不一致
+        if (!identifyString[2].equals(template.getClassCode()) || !identifyString[0].equals(template.getId())) {
+            return false;
         }
-        //设置字体
+        // 设置字体
         Font fontHeader = workbook.createFont();
         fontHeader.setFontName(HSSFFont.FONT_ARIAL);
         fontHeader.setItalic(false);
         fontHeader.setFontHeightInPoints((short) 10);
         Font fontValue = fontHeader;
-        try{
+        try {
             // 创建单元格格式
             CellStyle cellStyleValue = workbook.createCellStyle();
             cellStyleValue.setWrapText(true);
@@ -201,26 +212,26 @@ public class ExportUtil extends CommonExcelUtil{
             cellStyleValue.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
             cellStyleValue.setAlignment(CellStyle.ALIGN_LEFT);
             cellStyleValue.setLocked(false);
-            if(startRowNum < 6){
-                System.out.println("至少从第7(6+1)行开始插入数据!");
+            if (startRowNum < 6) {
+                System.out.println("Data insert must above row 7(6+1)");
                 progressMessage.stateFailed();
             }
-            for (int j = 0; j < excelTemplatesList.size(); j++){
-                for (int i = 0; i < excelTemplatesList.get(j).getAttrValues().size(); i++){
-                    this.insertCellValue(sheet, i+2, j+startRowNum, excelTemplatesList.get(j).getAttrValues().get(i), cellStyleValue);
+            for (int j = 0; j < excelTemplatesList.size(); j++) {
+                for (int i = 0; i < excelTemplatesList.get(j).getAttrValues().size(); i++) {
+                    this.insertCellValue(sheet, i + 2, j + startRowNum, excelTemplatesList.get(j).getAttrValues().get(i),
+                            cellStyleValue);
                 }
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("写入excel表格数据失败");
+            System.out.println("Failed while writing data!");
             flag = false;
             progressMessage.stateFailed();
-        }
-        finally {
-            if(workbook != null && ifCloseWorkBook){
-                if(this.writeFileToDisk(workbook, fileOut)){
+        } finally {
+            if (workbook != null && ifCloseWorkBook) {
+                if (this.writeFileToDisk(workbook, fileOut)) {
                     flag = true;
-                }else {
+                } else {
                     progressMessage.stateFailed();
                 }
             }

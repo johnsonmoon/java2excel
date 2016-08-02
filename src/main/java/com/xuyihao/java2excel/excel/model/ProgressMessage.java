@@ -193,8 +193,6 @@ public class ProgressMessage {
      */
     public void setDetailMessage(String detailMessage) {
         this.detailMessage = detailMessage;
-
-        //test-------------------------------//
         System.out.println(detailMessage);
     }
 
