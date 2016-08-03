@@ -4,7 +4,6 @@ import com.xuyihao.java2excel.excel.model.ProgressMessage;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.ss.util.CellRangeAddressList;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -23,7 +22,7 @@ public class CommonExcelUtil {
      * @param value 值
      * @param cellStyle 单元格样式风格
      * */
-    protected void insertCellValue(Sheet sheet, int collumn, int row, String value, CellStyle cellStyle){
+    public static void insertCellValue(Sheet sheet, int collumn, int row, String value, CellStyle cellStyle){
         Row targetRow = sheet.getRow(row);
         if(targetRow == null){
             targetRow = sheet.createRow(row);
@@ -43,7 +42,7 @@ public class CommonExcelUtil {
      * @param collumn 列
      * @return 单元格值
      * */
-    protected String getCellValue(Sheet sheet, int row, int collumn){
+    public static String getCellValue(Sheet sheet, int row, int collumn){
         String cellValue = "";
         Row targetRow = sheet.getRow(row);
         if(targetRow == null){
@@ -82,7 +81,7 @@ public class CommonExcelUtil {
      * @param fileOut 文件输出流
      * @return true if succeeded, false if failed
      */
-    protected boolean writeFileToDisk(Workbook workbook, FileOutputStream fileOut){
+    public static boolean writeFileToDisk(Workbook workbook, FileOutputStream fileOut){
         boolean flag = false;
         try{
             workbook.write(fileOut);
@@ -104,7 +103,7 @@ public class CommonExcelUtil {
      * @param progressMessage 进度消息
      * @return
      */
-    public boolean insertWarningMessageToSheet(final Workbook workbook, int sheetNumber, boolean ifCloseWorkBook, FileOutputStream fileOut, ProgressMessage progressMessage){
+    public static boolean insertWarningMessageToSheet(final Workbook workbook, int sheetNumber, boolean ifCloseWorkBook, FileOutputStream fileOut, ProgressMessage progressMessage){
         boolean flag = true;
         if(workbook == null){
             return false;
@@ -130,11 +129,11 @@ public class CommonExcelUtil {
             //合并单元格
             CellRangeAddress cellRangeAddress = new CellRangeAddress(0, 0, 0, 1);
             sheet.addMergedRegion(cellRangeAddress);
-            this.insertCellValue(sheet, 0, 0, "警告信息汇总", cellStyleValue);
-            this.insertCellValue(sheet, 0, 1, "信息", cellStyleValue);
+            insertCellValue(sheet, 0, 0, "警告信息汇总", cellStyleValue);
+            insertCellValue(sheet, 0, 1, "信息", cellStyleValue);
             //插入数据
             for (int j = 0; j < progressMessage.getWarningMessageList().size(); j++){
-                this.insertCellValue(sheet, 0, j+2, progressMessage.getWarningMessageList().get(j), cellStyleValue);
+                insertCellValue(sheet, 0, j+2, progressMessage.getWarningMessageList().get(j), cellStyleValue);
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -145,7 +144,7 @@ public class CommonExcelUtil {
         finally {
             progressMessage.setDetailMessage("Succeeded generating file!");
             if(workbook != null && ifCloseWorkBook){
-                if(this.writeFileToDisk(workbook, fileOut)){
+                if(writeFileToDisk(workbook, fileOut)){
                     flag = true;
                 }else {
                     progressMessage.stateFailed();

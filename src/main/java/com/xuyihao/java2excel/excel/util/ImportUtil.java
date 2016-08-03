@@ -1,9 +1,8 @@
-package com.xuyihao.java2excel.excel.importfunc.util;
+package com.xuyihao.java2excel.excel.util;
 
 import com.xuyihao.java2excel.excel.model.AttributeType;
 import com.xuyihao.java2excel.excel.model.ExcelTemplate;
 import com.xuyihao.java2excel.excel.model.ProgressMessage;
-import com.xuyihao.java2excel.excel.util.CommonExcelUtil;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
@@ -15,7 +14,7 @@ import java.util.List;
  *
  * Excel文件操作工具类（读取excel数据）
  */
-public class ImportUtil extends CommonExcelUtil{
+public class ImportUtil{
     /**
      * 从传入的workbook指定的sheet中获取ExcelTemplate对象
      *
@@ -24,11 +23,11 @@ public class ImportUtil extends CommonExcelUtil{
      * @param progressMessage 进度信息
      * @return ExcelTemplate对象
      */
-    public ExcelTemplate getExcelTemplateFromExcel(Workbook workbook, int sheetNumber, ProgressMessage progressMessage) {
+    public static ExcelTemplate getExcelTemplateFromExcel(Workbook workbook, int sheetNumber, ProgressMessage progressMessage) {
         ExcelTemplate excelTemplate = new ExcelTemplate();
         progressMessage.setDetailMessage("Analyzing sheet  " + sheetNumber + " .....");
         Sheet sheet = workbook.getSheetAt(sheetNumber);
-        String[] headValue = this.getCellValue(sheet, 0, 0).split("&&");
+        String[] headValue = CommonExcelUtil.getCellValue(sheet, 0, 0).split("&&");
         excelTemplate.setId(headValue[0]);
         excelTemplate.setTenant(headValue[1]);
         excelTemplate.setClassCode(headValue[2]);
@@ -36,7 +35,7 @@ public class ImportUtil extends CommonExcelUtil{
         List<AttributeType> attributeTypeList = excelTemplate.getAttrbuteTypes();
         int attrCount = sheet.getRow(3).getPhysicalNumberOfCells() - 2;
         for (int i = 0; i < attrCount; i++) {
-            String[] attributeTypeInfo = this.getCellValue(sheet, 3, i + 2).split("&&");
+            String[] attributeTypeInfo = CommonExcelUtil.getCellValue(sheet, 3, i + 2).split("&&");
             AttributeType attributeType = new AttributeType();
             attributeType.setAttrId(attributeTypeInfo[0]);
             attributeType.setAttrCode(attributeTypeInfo[1]);
@@ -55,12 +54,12 @@ public class ImportUtil extends CommonExcelUtil{
      * @param progressMessage 进度信息
      * @return 记录条数
      */
-    public int getAttrValueCount(Workbook workbook, int sheetNumber, ProgressMessage progressMessage) {
+    public static int getAttrValueCount(Workbook workbook, int sheetNumber, ProgressMessage progressMessage) {
         int totalValueCount = 0;
         progressMessage.setDetailMessage("Analyzing sheet  " + sheetNumber + " .....");
         int count = workbook.getSheetAt(sheetNumber).getLastRowNum();
         if (count == 6) {
-            String checkCellValue = this.getCellValue(workbook.getSheetAt(sheetNumber), 6, 2);
+            String checkCellValue = CommonExcelUtil.getCellValue(workbook.getSheetAt(sheetNumber), 6, 2);
             if (checkCellValue == null || checkCellValue.equals("")) {
                 totalValueCount = 0;
             }
@@ -81,10 +80,10 @@ public class ImportUtil extends CommonExcelUtil{
      * @param progressMessage 进度信息
      * @return 具体数据列表
      */
-    public List<ExcelTemplate> getExcelTemplateListDataFromExcel(Workbook workbook, int sheetNumber, int beginRow,
+    public static List<ExcelTemplate> getExcelTemplateListDataFromExcel(Workbook workbook, int sheetNumber, int beginRow,
                                                                  int readSize, ProgressMessage progressMessage) {
         List<ExcelTemplate> excelTemplateList = new ArrayList<ExcelTemplate>();
-        ExcelTemplate template = this.getExcelTemplateFromExcel(workbook, sheetNumber, progressMessage);
+        ExcelTemplate template = getExcelTemplateFromExcel(workbook, sheetNumber, progressMessage);
         Sheet sheet = workbook.getSheetAt(sheetNumber);
         progressMessage.setDetailMessage("Read begin row: " + beginRow + " Read size" + readSize);
         if (beginRow < 6) {
@@ -92,14 +91,14 @@ public class ImportUtil extends CommonExcelUtil{
             progressMessage.stateFailed();
         }
         for (int i = 0; i < readSize; i++) {
-            String value = this.getCellValue(sheet, i + beginRow, 2);
+            String value = CommonExcelUtil.getCellValue(sheet, i + beginRow, 2);
             if ((value == null) || (value.equals(""))) {
                 break;
             }
             ExcelTemplate template1 = new ExcelTemplate(template);
             List<String> attrValues = new ArrayList<String>();
             for (int j = 0; j < template1.getAttrbuteTypes().size(); j++) {
-                attrValues.add(this.getCellValue(sheet, i + beginRow, j + 2));
+                attrValues.add(CommonExcelUtil.getCellValue(sheet, i + beginRow, j + 2));
             }
             template1.setAttrValues(attrValues);
             excelTemplateList.add(template1);

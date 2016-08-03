@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * Created by Xuyh at 2016/07/28 下午 07:47.
  */
-public class RandomStringFactory {
+public class RandomStringUtil {
     /**
      * 生成指定长度的随机字符串
      *

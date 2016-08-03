@@ -1,4 +1,4 @@
-package com.xuyihao.java2excel.excel.importfunc;
+package com.xuyihao.java2excel.excel;
 
 import com.xuyihao.java2excel.excel.model.ExcelTemplate;
 import com.xuyihao.java2excel.excel.model.ProgressMessage;
@@ -22,7 +22,7 @@ import java.util.List;
  *   获取sheet数量，设置progressMessage的totalCount（对逐个sheet调用ImportUtil的getAttrValueCount获取单个sheet数据量）
  *   最后循环调用processSingleSheetData方法处理数据
  */
-public interface ReadExcel {
+public interface ExcelReader {
     /**
      * 读取excel文件内容，并且将数据保存到数据库
      * 根据不同业务系统进行重写

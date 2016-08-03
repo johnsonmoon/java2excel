@@ -1,11 +1,9 @@
-package com.xuyihao.java2excel.excel.exportfunc.util;
+package com.xuyihao.java2excel.excel.util;
 
-import com.xuyihao.java2excel.excel.util.CommonExcelUtil;
 import com.xuyihao.java2excel.excel.model.ExcelTemplate;
 import com.xuyihao.java2excel.excel.model.ProgressMessage;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.ss.formula.functions.Index;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 
@@ -28,7 +26,7 @@ public class ExportUtil extends CommonExcelUtil{
      * @param fileOut 文件流
      * @return true 成功, false 失败
      */
-    public boolean createExcel(final Workbook workbook, int sheetNum, ExcelTemplate excelTemplate,
+    public static boolean createExcel(final Workbook workbook, int sheetNum, ExcelTemplate excelTemplate,
                                boolean ifCloseWorkBook, FileOutputStream fileOut, ProgressMessage progressMessage) {
         boolean flag = false;
         progressMessage.setDetailMessage("Counting data counts...");
@@ -126,15 +124,15 @@ public class ExportUtil extends CommonExcelUtil{
             // 写入固定数据
             String templateDetailInfo = excelTemplate.getId() + "&&" + excelTemplate.getTenant() + "&&"
                     + excelTemplate.getClassCode() + "&&" + excelTemplate.getClassName();
-            this.insertCellValue(sheet, 0, 0, templateDetailInfo, cellStyleHideHeader);
-            this.insertCellValue(sheet, 1, 0, excelTemplate.getClassName(), cellStyleTitle);
-            this.insertCellValue(sheet, 0, 2, "字段", cellStyleRowHeader);
-            this.insertCellValue(sheet, 0, 3, "请勿编辑此行", cellStyleGrayRowHeader);
-            this.insertCellValue(sheet, 0, 4, "数据格式", cellStyleGrayRowHeader);
-            this.insertCellValue(sheet, 0, 5, "默认值", cellStyleRowHeader);
-            this.insertCellValue(sheet, 0, 6, "数据", cellStyleRowHeaderTopAlign);
-            this.insertCellValue(sheet, 1, 2, "配置项标识", cellStyleColumnHeader);
-            this.insertCellValue(sheet, 1, 3, "配置项标识", cellStyleWhiteHideHeader);
+            CommonExcelUtil.insertCellValue(sheet, 0, 0, templateDetailInfo, cellStyleHideHeader);
+            CommonExcelUtil.insertCellValue(sheet, 1, 0, excelTemplate.getClassName(), cellStyleTitle);
+            CommonExcelUtil.insertCellValue(sheet, 0, 2, "字段", cellStyleRowHeader);
+            CommonExcelUtil.insertCellValue(sheet, 0, 3, "请勿编辑此行", cellStyleGrayRowHeader);
+            CommonExcelUtil.insertCellValue(sheet, 0, 4, "数据格式", cellStyleGrayRowHeader);
+            CommonExcelUtil.insertCellValue(sheet, 0, 5, "默认值", cellStyleRowHeader);
+            CommonExcelUtil.insertCellValue(sheet, 0, 6, "数据", cellStyleRowHeaderTopAlign);
+            CommonExcelUtil.insertCellValue(sheet, 1, 2, "配置项标识", cellStyleColumnHeader);
+            CommonExcelUtil.insertCellValue(sheet, 1, 3, "配置项标识", cellStyleWhiteHideHeader);
             for (int i = 0; i < excelTemplate.getAttrbuteTypes().size(); i++) {
                 String label;
                 if (excelTemplate.getAttrbuteTypes().get(i).getUnit() == null
@@ -149,10 +147,10 @@ public class ExportUtil extends CommonExcelUtil{
                         + excelTemplate.getAttrbuteTypes().get(i).getAttrName();
                 String formatRule = excelTemplate.getAttrbuteTypes().get(i).getAttrFormatRule();
                 String defaultValue = excelTemplate.getAttrbuteTypes().get(i).getDefaultValue();
-                this.insertCellValue(sheet, i + 2, 2, label, cellStyleGrayRowHeader);// 字段名
-                this.insertCellValue(sheet, i + 2, 3, attrInfo, cellStyleGrayRowHeader);
-                this.insertCellValue(sheet, i + 2, 4, formatRule, cellStyleColumnHeader);// 格式
-                this.insertCellValue(sheet, i + 2, 5, defaultValue, cellStyleColumnHeader);// 默认值
+                CommonExcelUtil.insertCellValue(sheet, i + 2, 2, label, cellStyleGrayRowHeader);// 字段名
+                CommonExcelUtil.insertCellValue(sheet, i + 2, 3, attrInfo, cellStyleGrayRowHeader);
+                CommonExcelUtil.insertCellValue(sheet, i + 2, 4, formatRule, cellStyleColumnHeader);// 格式
+                CommonExcelUtil.insertCellValue(sheet, i + 2, 5, defaultValue, cellStyleColumnHeader);// 默认值
             }
             flag = true;
         } catch (Exception e) {
@@ -161,7 +159,7 @@ public class ExportUtil extends CommonExcelUtil{
             progressMessage.stateFailed();
         } finally {
             if (workbook != null && ifCloseWorkBook) {
-                if (this.writeFileToDisk(workbook, fileOut)) {
+                if (CommonExcelUtil.writeFileToDisk(workbook, fileOut)) {
                     flag = true;
                 } else {
                     progressMessage.stateFailed();
@@ -183,7 +181,7 @@ public class ExportUtil extends CommonExcelUtil{
      * @param fileOut 文件流
      * @return true 成功, false 失败
      */
-    public boolean insertExcelData(final Workbook workbook, int sheetNum, int startRowNum, ExcelTemplate template,
+    public static boolean insertExcelData(final Workbook workbook, int sheetNum, int startRowNum, ExcelTemplate template,
                                    List<ExcelTemplate> excelTemplatesList, boolean ifCloseWorkBook, FileOutputStream fileOut,
                                    ProgressMessage progressMessage) {
         boolean flag = false;
@@ -194,7 +192,7 @@ public class ExportUtil extends CommonExcelUtil{
         if (sheet == null) {
             return false;
         }
-        String[] identifyString = this.getCellValue(sheet, 0, 0).split("&&");
+        String[] identifyString = CommonExcelUtil.getCellValue(sheet, 0, 0).split("&&");
         if (!identifyString[2].equals(template.getClassCode()) || !identifyString[0].equals(template.getId())) {
             return false;
         }
@@ -218,7 +216,7 @@ public class ExportUtil extends CommonExcelUtil{
             }
             for (int j = 0; j < excelTemplatesList.size(); j++) {
                 for (int i = 0; i < excelTemplatesList.get(j).getAttrValues().size(); i++) {
-                    this.insertCellValue(sheet, i + 2, j + startRowNum, excelTemplatesList.get(j).getAttrValues().get(i),
+                    CommonExcelUtil.insertCellValue(sheet, i + 2, j + startRowNum, excelTemplatesList.get(j).getAttrValues().get(i),
                             cellStyleValue);
                 }
             }
@@ -229,7 +227,7 @@ public class ExportUtil extends CommonExcelUtil{
             progressMessage.stateFailed();
         } finally {
             if (workbook != null && ifCloseWorkBook) {
-                if (this.writeFileToDisk(workbook, fileOut)) {
+                if (CommonExcelUtil.writeFileToDisk(workbook, fileOut)) {
                     flag = true;
                 } else {
                     progressMessage.stateFailed();
