@@ -1,6 +1,6 @@
 package com.xuyihao.java2excel.excel;
 
-import com.xuyihao.java2excel.excel.model.ProgressMessage;
+import com.xuyihao.java2excel.excel.entity.ProgressMessage;
 import com.xuyihao.java2excel.excel.util.CommonExcelUtil;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;

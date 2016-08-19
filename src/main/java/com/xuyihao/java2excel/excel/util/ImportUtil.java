@@ -1,8 +1,8 @@
 package com.xuyihao.java2excel.excel.util;
 
-import com.xuyihao.java2excel.excel.model.AttributeType;
-import com.xuyihao.java2excel.excel.model.ExcelTemplate;
-import com.xuyihao.java2excel.excel.model.ProgressMessage;
+import com.xuyihao.java2excel.excel.entity.AttributeType;
+import com.xuyihao.java2excel.excel.entity.ExcelTemplate;
+import com.xuyihao.java2excel.excel.entity.ProgressMessage;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
@@ -14,7 +14,8 @@ import java.util.List;
  *
  * Excel文件操作工具类（读取excel数据）
  */
-public class ImportUtil{
+public class ImportUtil {
+
     /**
      * 从传入的workbook指定的sheet中获取ExcelTemplate对象
      *
@@ -23,12 +24,13 @@ public class ImportUtil{
      * @param progressMessage 进度信息
      * @return ExcelTemplate对象
      */
-    public static ExcelTemplate getExcelTemplateFromExcel(Workbook workbook, int sheetNumber, ProgressMessage progressMessage) {
+    public static ExcelTemplate getExcelTemplateFromExcel(Workbook workbook, int sheetNumber,
+                                                          ProgressMessage progressMessage) {
         ExcelTemplate excelTemplate = new ExcelTemplate();
         progressMessage.setDetailMessage("Analyzing sheet  " + sheetNumber + " .....");
         Sheet sheet = workbook.getSheetAt(sheetNumber);
         String[] headValue = CommonExcelUtil.getCellValue(sheet, 0, 0).split("&&");
-        excelTemplate.setId(headValue[0]);
+        excelTemplate.setTemplateId(headValue[0]);
         excelTemplate.setTenant(headValue[1]);
         excelTemplate.setClassCode(headValue[2]);
         excelTemplate.setClassName(headValue[3]);
@@ -40,6 +42,7 @@ public class ImportUtil{
             attributeType.setAttrId(attributeTypeInfo[0]);
             attributeType.setAttrCode(attributeTypeInfo[1]);
             attributeType.setAttrName(attributeTypeInfo[2]);
+            attributeType.setAttrType(attributeTypeInfo[3]);
             attributeTypeList.add(attributeType);
         }
         progressMessage.setDetailMessage("Class name: " + excelTemplate.getClassName());
@@ -62,6 +65,8 @@ public class ImportUtil{
             String checkCellValue = CommonExcelUtil.getCellValue(workbook.getSheetAt(sheetNumber), 6, 2);
             if (checkCellValue == null || checkCellValue.equals("")) {
                 totalValueCount = 0;
+            } else {
+                totalValueCount = 1;
             }
         } else {
             totalValueCount = count - 6 + 1;
@@ -81,7 +86,7 @@ public class ImportUtil{
      * @return 具体数据列表
      */
     public static List<ExcelTemplate> getExcelTemplateListDataFromExcel(Workbook workbook, int sheetNumber, int beginRow,
-                                                                 int readSize, ProgressMessage progressMessage) {
+                                                                        int readSize, ProgressMessage progressMessage) {
         List<ExcelTemplate> excelTemplateList = new ArrayList<ExcelTemplate>();
         ExcelTemplate template = getExcelTemplateFromExcel(workbook, sheetNumber, progressMessage);
         Sheet sheet = workbook.getSheetAt(sheetNumber);
@@ -91,15 +96,21 @@ public class ImportUtil{
             progressMessage.stateFailed();
         }
         for (int i = 0; i < readSize; i++) {
-            String value = CommonExcelUtil.getCellValue(sheet, i + beginRow, 2);
-            if ((value == null) || (value.equals(""))) {
-                break;
-            }
             ExcelTemplate template1 = new ExcelTemplate(template);
-            List<String> attrValues = new ArrayList<String>();
-            for (int j = 0; j < template1.getAttrbuteTypes().size(); j++) {
-                attrValues.add(CommonExcelUtil.getCellValue(sheet, i + beginRow, j + 2));
+            String CI_id = CommonExcelUtil.getCellValue(sheet, i + beginRow, 1);
+            if ((CI_id != null) && (!CI_id.equals(""))) {
+                template1.setDataId(CI_id);
             }
+            List<String> attrValues = new ArrayList<String>();
+            boolean allEmpty = true;// 规避空行数据
+            for (int j = 0; j < template1.getAttrbuteTypes().size(); j++) {
+                String value = CommonExcelUtil.getCellValue(sheet, i + beginRow, j + 2);
+                if (value != null && !value.isEmpty())
+                    allEmpty = false;
+                attrValues.add(value);
+            }
+            if (allEmpty)
+                continue;
             template1.setAttrValues(attrValues);
             excelTemplateList.add(template1);
         }

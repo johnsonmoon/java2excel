@@ -1,6 +1,6 @@
 package com.xuyihao.java2excel.excel.util;
 
-import com.xuyihao.java2excel.excel.model.ProgressMessage;
+import com.xuyihao.java2excel.excel.entity.ProgressMessage;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;

@@ -1,7 +1,7 @@
 package com.xuyihao.java2excel.excel;
 
-import com.xuyihao.java2excel.excel.model.ExcelTemplate;
-import com.xuyihao.java2excel.excel.model.ProgressMessage;
+import com.xuyihao.java2excel.excel.entity.ExcelTemplate;
+import com.xuyihao.java2excel.excel.entity.ProgressMessage;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import java.io.FileOutputStream;

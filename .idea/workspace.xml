@@ -2,34 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b8f7537-b91d-494d-989d-01346a62e458" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjrt_1_8_9.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_8_9.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_4_3_1_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_4_3_1_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_4_3_1_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_4_3_1_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_4_3_1_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_4_3_1_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_4_3_1_RELEASE.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/GenerateExcel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/impl/GenerateExcelImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/ReadExcel.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/impl/ReadExcelImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/GenerateWarningMessageFile.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/RandomStringFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/java2excel-context-beans-manage.xml" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/JohnsonExcelReaderTest.java" afterPath="$PROJECT_DIR$/src/main/test/JohnsonExcelReaderTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/JohnsonTestMain.java" afterPath="$PROJECT_DIR$/src/main/test/JohnsonTestMain.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/util/ExportUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/ExportUtil.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/util/ImportUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/ImportUtil.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/RandomUtils.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/TimeUtil.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/CurrentTimeUtil.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/RandomStringUtil.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/AttributeType.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/entity/AttributeType.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ExcelTemplate.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/entity/ExcelTemplate.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ProgressMessage.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/entity/ProgressMessage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java2excel.iml" afterPath="$PROJECT_DIR$/java2excel.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/ExcelReader.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/ExcelReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/ExcelWriter.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/ExcelWriter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/WarningMessageFileWriter.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/WarningMessageFileWriter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/CommonExcelUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/CommonExcelUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/ExportUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/ExportUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/ImportUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/ImportUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/test/JohnsonTestMain.java" afterPath="$PROJECT_DIR$/src/main/test/JohnsonTestMain.java" />
     </list>
     <ignored path="java2excel.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -80,8 +67,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/api/model/Student.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/export/GenerateExcelToDisk.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/export/GenerateExcel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/export/impl/GenerateExcelToDiskImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/biz/excel/export/impl/GenerateExcelImpl.java" />
@@ -106,29 +91,33 @@
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/ImportUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/RandomStringFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/impl/GenerateExcelImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/CurrentTimeUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/JohnsonTestMain.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/impl/ReadExcelImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/GenerateExcel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/ReadExcel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ProgressMessage.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ExcelTemplate.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/AttributeType.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/util/ImportUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/util/ExportUtil.java" />
         <option value="$PROJECT_DIR$/src/main/resources/java2excel-context-beans-manage.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/ImportUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/GenerateWarningMessageFile.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/CommonExcelUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/ExportUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/GenerateExcel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/GenerateWarningMessageFile.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/ReadExcel.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/ExcelReader.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/ExcelWriter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/WarningMessageFileWriter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ExcelTemplate.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/entity/ExcelTemplate.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/ImportUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/entity/AttributeType.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/ExportUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/entity/ProgressMessage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/RandomStringUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/CurrentTimeUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/TimeUtil.java" />
       </list>
     </option>
   </component>
@@ -146,9 +135,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="54" />
+    <option name="x" value="55" />
     <option name="y" value="-8" />
-    <option name="width" value="1394" />
+    <option name="width" value="1393" />
     <option name="height" value="916" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -207,7 +196,7 @@
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/cmdbproj" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.18045977" />
@@ -733,11 +722,12 @@
       <workItem from="1470102157152" duration="4871000" />
       <workItem from="1470123419142" duration="310000" />
       <workItem from="1470189911753" duration="2459000" />
+      <workItem from="1471594882119" duration="583000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="135815000" />
+    <option name="totallyTimeSpent" value="136398000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -760,12 +750,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="-8" width="1394" height="916" extended-state="6" />
+    <frame x="55" y="-8" width="1393" height="916" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976827" sideWeight="0.49923664" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908162" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976827" sideWeight="0.50076336" order="7" side_tool="true" content_ui="tabs" />
@@ -774,7 +763,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32976827" sideWeight="0.49923664" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28785607" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26181546" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -788,6 +777,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39923468" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32908162" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2869898" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32229298" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -886,37 +876,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/RandomStringFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/impl/GenerateExcelImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/impl/ReadExcelImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/java2excel-context-beans-manage.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/RandomStringFactory.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/impl/GenerateExcelImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/impl/ReadExcelImpl.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/resources/java2excel-context-beans-manage.xml" />
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="482">
@@ -925,27 +888,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/GenerateExcel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="24" column="32" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/ReadExcel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/exportfunc/GenerateExcel.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/importfunc/ReadExcel.java" />
     <entry file="file://$PROJECT_DIR$/src/main/test/JohnsonExcelReaderTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3454">
           <caret line="8" column="25" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -967,93 +915,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/AttributeType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="35" column="54" selection-start-line="35" selection-start-column="54" selection-end-line="35" selection-end-column="55" />
-          <caret line="36" column="54" selection-start-line="36" selection-start-column="54" selection-end-line="36" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ExcelTemplate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1121">
-          <caret line="84" column="1" selection-start-line="84" selection-start-column="1" selection-end-line="84" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/model/ProgressMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="717">
-          <caret line="194" column="43" selection-start-line="194" selection-start-column="43" selection-end-line="194" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/ExportUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#createExcel#0;class#ExportUtil#0" expanded="false" />
-            <element signature="method#insertExcelData#0;class#ExportUtil#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/CurrentTimeUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="10" column="17" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/CommonExcelUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1560">
-          <caret line="72" column="9" selection-start-line="72" selection-start-column="9" selection-end-line="72" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/GenerateWarningMessageFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="11" column="54" selection-start-line="11" selection-start-column="54" selection-end-line="11" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/GenerateWarningMessageFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/GenerateExcel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/ReadExcel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="3" column="58" selection-start-line="3" selection-start-column="58" selection-end-line="3" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/GenerateWarningMessageFile.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/GenerateWarningMessageFile.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/GenerateExcel.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/ReadExcel.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/WarningMessageFileWriter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -1078,27 +943,106 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/RandomStringFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/RandomStringFactory.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/ImportUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="25" column="17" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="17" />
+        <state relative-caret-position="1501">
+          <caret line="118" column="1" selection-start-line="118" selection-start-column="1" selection-end-line="118" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3644#3659#0" expanded="true" />
+            <element signature="e#4429#4437#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/entity/ExcelTemplate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-442">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/entity/ProgressMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3857">
+          <caret line="204" column="1" selection-start-line="204" selection-start-column="1" selection-end-line="204" selection-end-column="1" />
+          <folding>
+            <element signature="e#896#904#0" expanded="true" />
+            <element signature="e#1203#1204#0" expanded="true" />
+            <element signature="e#1231#1232#0" expanded="true" />
+            <element signature="e#1327#1328#0" expanded="true" />
+            <element signature="e#1361#1362#0" expanded="true" />
+            <element signature="e#1425#1426#0" expanded="true" />
+            <element signature="e#1471#1472#0" expanded="true" />
+            <element signature="e#1533#1534#0" expanded="true" />
+            <element signature="e#1577#1578#0" expanded="true" />
+            <element signature="e#2078#2079#0" expanded="true" />
+            <element signature="e#2113#2114#0" expanded="true" />
+            <element signature="e#2840#2841#0" expanded="true" />
+            <element signature="e#2873#2874#0" expanded="true" />
+            <element signature="e#2984#2985#0" expanded="true" />
+            <element signature="e#3028#3029#0" expanded="true" />
+            <element signature="e#3112#3113#0" expanded="true" />
+            <element signature="e#3143#3144#0" expanded="true" />
+            <element signature="e#3253#3254#0" expanded="true" />
+            <element signature="e#3293#3294#0" expanded="true" />
+            <element signature="e#3388#3389#0" expanded="true" />
+            <element signature="e#3424#3425#0" expanded="true" />
+            <element signature="e#3742#3743#0" expanded="true" />
+            <element signature="e#3788#3789#0" expanded="true" />
+            <element signature="e#3862#3863#0" expanded="true" />
+            <element signature="e#3922#3923#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/CommonExcelUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="81" column="49" selection-start-line="81" selection-start-column="49" selection-end-line="81" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/ExportUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/RandomUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="7" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/RandomStringUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/entity/AttributeType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="7" column="29" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
+        <state relative-caret-position="641">
+          <caret line="103" column="1" selection-start-line="103" selection-start-column="1" selection-end-line="103" selection-end-column="1" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/xuyihao/java2excel/excel/util/TimeUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-632">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

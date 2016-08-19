@@ -1,6 +1,4 @@
-package com.xuyihao.java2excel.excel.model;
-
-import org.openxmlformats.schemas.drawingml.x2006.main.CTTextListStyle;
+package com.xuyihao.java2excel.excel.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +13,8 @@ public class ProgressMessage {
     /**
      * 状态量
      *
-     * STATE_FAILED 操作失败
-     * STATE_NOT_START 操作还未开始
-     * STATE_STARTED 操作已经开始
-     * STATE_END 操作结束
+     * STATE_FAILED 操作失败 STATE_NOT_START 操作还未开始 STATE_STARTED 操作已经开始 STATE_END
+     * 操作结束
      */
     public static final int STATE_FAILED = -1;
     public static final int STATE_NOT_START = 0;
@@ -26,11 +22,8 @@ public class ProgressMessage {
     public static final int STATE_END = 2;
 
     /**
-     * state 状态(-1, 0, 1, 2)
-     * currentCount 操作的进度值
-     * totalCount 当前操作的计数量进行到的位置
-     * progress 操作的总计数量
-     * detailMessage 操作进度详细情况描述
+     * state 状态(-1, 0, 1, 2) currentCount 操作的进度值 totalCount 当前操作的计数量进行到的位置
+     * progress 操作的总计数量 detailMessage 操作进度详细情况描述
      */
     private int state = STATE_NOT_START;
     private int currentCount = 0;
@@ -42,10 +35,10 @@ public class ProgressMessage {
     /**
      * 重置进度
      */
-    public void reset(){
+    public void reset() {
         setState(STATE_NOT_START);
         this.progress = 0;
-        this.currentCount =0;
+        this.currentCount = 0;
         this.totalCount = 0;
         this.detailMessage = "";
     }
@@ -71,21 +64,21 @@ public class ProgressMessage {
     /**
      * 操作未开始
      */
-    public void stateNotStart(){
+    public void stateNotStart() {
         this.setState(STATE_NOT_START);
     }
 
     /**
      * 操作开始
      */
-    public void stateStarted(){
+    public void stateStarted() {
         this.setState(STATE_STARTED);
     }
 
     /**
      * 操作结束
      */
-    public void stateEnd(){
+    public void stateEnd() {
         this.setState(STATE_END);
         this.setProgress(100);
     }
@@ -93,22 +86,23 @@ public class ProgressMessage {
     /**
      * 操作失败
      */
-    public void stateFailed(){
+    public void stateFailed() {
         this.setState(STATE_FAILED);
-		this.setProgress(100);
+        this.setProgress(100);
     }
 
     /**
      * 当前操作位置增一
      *
      */
-    public void addCurrentCount(){
+    public void addCurrentCount() {
         currentCount++;
         setCurrentCount(currentCount);
     }
 
     /**
      * 获取当前操作到的位置
+     *
      * @return
      */
     public int getCurrentCount() {
@@ -122,17 +116,17 @@ public class ProgressMessage {
      */
     public void setCurrentCount(int currentCount) {
         this.currentCount = currentCount;
-        if(currentCount == 0){
+        if (currentCount == 0) {
             progress = 0;
             setState(STATE_STARTED);
             return;
         }
-        if(totalCount == 0){
+        if (totalCount == 0) {
             progress = 0;
             setState(STATE_NOT_START);
             return;
         }
-        if(currentCount >= totalCount){
+        if (currentCount >= totalCount) {
             progress = 100;
             setState(STATE_END);
             return;
@@ -193,18 +187,18 @@ public class ProgressMessage {
      */
     public void setDetailMessage(String detailMessage) {
         this.detailMessage = detailMessage;
-        System.out.println(detailMessage);
+        //System.out.println(detailMessage + "   Progress:  " + this.getProgress() + "%");
     }
 
-    public List<String> getWarningMessageList(){
+    public List<String> getWarningMessageList() {
         return this.warningMessageList;
     }
 
-    public void setWarningMessageList(List<String> warningMessageList){
+    public void setWarningMessageList(List<String> warningMessageList) {
         this.warningMessageList = warningMessageList;
     }
 
-    public void addWarningMessage(String warningMessage){
+    public void addWarningMessage(String warningMessage) {
         this.setDetailMessage("Warning: " + warningMessage);
         this.warningMessageList.add(warningMessage);
     }

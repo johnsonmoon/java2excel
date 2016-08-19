@@ -1,4 +1,4 @@
-package com.xuyihao.java2excel.excel.model;
+package com.xuyihao.java2excel.excel.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,15 +10,17 @@ import java.util.List;
  */
 public class ExcelTemplate {
 
-    private String id;
+    private String templateId; // 这个ID是类ID
+    private String dataId;// 这个ID是每条数据的ID
     private String tenant;
-    private String classCode;
-    private String className;
+    private String classCode; // 类型编码(Template的code)
+    private String className; // 类型的名称（Template的name）
     private List<AttributeType> attrbuteTypes;
     private List<String> attrValues;
 
     public ExcelTemplate() {
-        this.id = "";
+        this.templateId = "";
+        this.dataId = "";
         this.tenant = "";
         this.classCode = "";
         this.className = "";
@@ -27,7 +29,8 @@ public class ExcelTemplate {
     }
 
     public ExcelTemplate(ExcelTemplate template) {
-        this.id = template.getId();
+        this.templateId = template.getTemplateId();
+        this.dataId = template.getDataId();
         this.tenant = template.getTenant();
         this.classCode = template.getClassCode();
         this.className = template.getClassName();
@@ -51,12 +54,12 @@ public class ExcelTemplate {
         return this.attrValues;
     }
 
-    public String getId() {
-        return this.id;
+    public String getTemplateId() {
+        return this.templateId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setTemplateId(String templateId) {
+        this.templateId = templateId;
     }
 
     public String getTenant() {
@@ -81,5 +84,13 @@ public class ExcelTemplate {
 
     public void setClassName(String name) {
         this.className = name;
+    }
+
+    public String getDataId() {
+        return dataId;
+    }
+
+    public void setDataId(String dataId) {
+        this.dataId = dataId;
     }
 }

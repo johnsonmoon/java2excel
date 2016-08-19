@@ -1,10 +1,10 @@
 package com.xuyihao.java2excel;
 
 import com.xuyihao.java2excel.excel.util.ImportUtil;
-import com.xuyihao.java2excel.excel.model.AttributeType;
-import com.xuyihao.java2excel.excel.model.ExcelTemplate;
+import com.xuyihao.java2excel.excel.entity.AttributeType;
+import com.xuyihao.java2excel.excel.entity.ExcelTemplate;
 import com.xuyihao.java2excel.excel.util.ExportUtil;
-import com.xuyihao.java2excel.excel.model.ProgressMessage;
+import com.xuyihao.java2excel.excel.entity.ProgressMessage;
 import com.xuyihao.java2excel.excel.util.GenerateWarningMessageFile;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
