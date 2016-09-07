@@ -1,8 +1,8 @@
-package com.xuyihao.java2excel.excel.util;
+package xuyihao.java2excel.excel.util;
 
-import com.xuyihao.java2excel.excel.entity.AttributeType;
-import com.xuyihao.java2excel.excel.entity.ExcelTemplate;
-import com.xuyihao.java2excel.excel.entity.ProgressMessage;
+import xuyihao.java2excel.excel.entity.AttributeType;
+import xuyihao.java2excel.excel.entity.ExcelTemplate;
+import xuyihao.java2excel.excel.entity.ProgressMessage;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;

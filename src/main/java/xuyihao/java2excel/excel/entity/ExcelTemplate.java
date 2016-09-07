@@ -1,4 +1,4 @@
-package com.xuyihao.java2excel.excel.entity;
+package xuyihao.java2excel.excel.entity;
 
 import java.util.ArrayList;
 import java.util.List;

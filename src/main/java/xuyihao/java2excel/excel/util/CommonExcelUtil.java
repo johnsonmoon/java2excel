@@ -1,6 +1,6 @@
-package com.xuyihao.java2excel.excel.util;
+package xuyihao.java2excel.excel.util;
 
-import com.xuyihao.java2excel.excel.entity.ProgressMessage;
+import xuyihao.java2excel.excel.entity.ProgressMessage;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
@@ -52,13 +52,13 @@ public class CommonExcelUtil {
             if(cell == null){
                 cellValue = "";
             }else{
-                DecimalFormat decimalFormat = new DecimalFormat("#");
                 switch (cell.getCellType()){
                     case Cell.CELL_TYPE_STRING:
                         cellValue = cell.getRichStringCellValue().getString().trim();
                         break;
                     case Cell.CELL_TYPE_NUMERIC:
-                        cellValue = decimalFormat.format(cell.getNumericCellValue()).toString();
+                        cell.setCellType(Cell.CELL_TYPE_STRING);
+                        cellValue = cell.getRichStringCellValue().getString().trim();
                         break;
                     case Cell.CELL_TYPE_BOOLEAN:
                         cellValue = String.valueOf(cell.getBooleanCellValue()).trim();

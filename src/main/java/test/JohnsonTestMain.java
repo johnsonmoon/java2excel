@@ -1,11 +1,12 @@
-package com.xuyihao.java2excel;
+package test;
 
-import com.xuyihao.java2excel.excel.util.ImportUtil;
-import com.xuyihao.java2excel.excel.entity.AttributeType;
-import com.xuyihao.java2excel.excel.entity.ExcelTemplate;
-import com.xuyihao.java2excel.excel.util.ExportUtil;
-import com.xuyihao.java2excel.excel.entity.ProgressMessage;
-import com.xuyihao.java2excel.excel.util.GenerateWarningMessageFile;
+import org.apache.poi.ss.usermodel.Sheet;
+import xuyihao.java2excel.excel.util.CommonExcelUtil;
+import xuyihao.java2excel.excel.util.ImportUtil;
+import xuyihao.java2excel.excel.entity.AttributeType;
+import xuyihao.java2excel.excel.entity.ExcelTemplate;
+import xuyihao.java2excel.excel.util.ExportUtil;
+import xuyihao.java2excel.excel.entity.ProgressMessage;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -30,13 +31,26 @@ public class JohnsonTestMain {
             //System.out.println(insertExcelDataTest(new ProgressMessage()));
             //System.out.println(CurrentTimeUtil.getCurrentTime());
             //createExcelTest(new ProgressMessage());
+            testGetCellValue();
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
+    public static void testGetCellValue()throws Exception{
+        File file = new File("C:\\Users\\Administrator\\Desktop\\number_Template.xlsx");
+        FileInputStream fis = new FileInputStream(file);
+        Workbook workbook = new XSSFWorkbook(fis);
+        ProgressMessage progressMessage = new ProgressMessage();
+        ImportUtil importUtil = new ImportUtil();
+        Sheet sheet = workbook.getSheetAt(0);
+        for (int i = 6; i <= 8; i++) {
+            String value = CommonExcelUtil.getCellValue(sheet, i, 5);
+            System.out.println(value);
+        }
+    }
+
     public static void testGenerateWarningMessage() throws FileNotFoundException{
-        GenerateWarningMessageFile generateWarningMessageFile = new GenerateWarningMessageFile();
         File file = new File("E:\\JUnitTestPath\\WarningMessageExcelTest.xlsx");
         FileOutputStream outputStream = new FileOutputStream(file);
         ProgressMessage progressMessage = new ProgressMessage();
@@ -45,7 +59,6 @@ public class JohnsonTestMain {
             warningMessageList.add("ifahouh" + String.valueOf(i+8));
         }
         progressMessage.setWarningMessageList(warningMessageList);
-        System.out.println(generateWarningMessageFile.generateWarningFile(outputStream, progressMessage));
     }
 
     public static void getExcelTemplateListDataFromExcel() throws Exception{
@@ -87,7 +100,6 @@ public class JohnsonTestMain {
         ProgressMessage progressMessage = new ProgressMessage();
         ImportUtil importUtil = new ImportUtil();
         ExcelTemplate template = importUtil.getExcelTemplateFromExcel(workbook, 0, progressMessage);
-        System.out.println(template.getId());
         System.out.println(template.getTenant());
         System.out.println(template.getClassCode());
         System.out.println(template.getClassName());
@@ -122,7 +134,6 @@ public class JohnsonTestMain {
         int sheetNum = 0;
         ExcelTemplate template = new ExcelTemplate();
         template.setTenant("adhauihdiuahfd");
-        template.setId("13415641");
         template.setClassCode("Y_Application");
         template.setClassName("应用");
         List<AttributeType> attributeTypes = new ArrayList<AttributeType>();
@@ -186,7 +197,6 @@ public class JohnsonTestMain {
     public static void setValues(List<ExcelTemplate> excelTemplates){
         ExcelTemplate template = new ExcelTemplate();
         template.setTenant("adhauihdiuahfd");
-        template.setId("13415641");
         template.setClassCode("Y_Application");
         template.setClassName("应用");
         List<String> data = template.getAttrValues();
@@ -198,7 +208,6 @@ public class JohnsonTestMain {
 
         ExcelTemplate template2 = new ExcelTemplate();
         template2.setTenant("adhauihdiuahfd");
-        template2.setId("13415641");
         template2.setClassCode("Y_Application");
         template2.setClassName("应用");
         List<String> data2 = template2.getAttrValues();
@@ -210,7 +219,6 @@ public class JohnsonTestMain {
 
         ExcelTemplate template3 = new ExcelTemplate();
         template3.setTenant("adhauihdiuahfd");
-        template3.setId("13415641");
         template3.setClassCode("Y_Application");
         template3.setClassName("应用");
         List<String> data3 = template3.getAttrValues();
@@ -222,7 +230,6 @@ public class JohnsonTestMain {
 
         ExcelTemplate template4 = new ExcelTemplate();
         template4.setTenant("adhauihdiuahfd");
-        template4.setId("13415641");
         template4.setClassCode("Y_Application");
         template4.setClassName("应用");
         List<String> data4 = template4.getAttrValues();

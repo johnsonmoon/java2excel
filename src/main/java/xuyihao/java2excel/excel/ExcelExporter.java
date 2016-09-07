@@ -1,7 +1,7 @@
-package com.xuyihao.java2excel.excel;
+package xuyihao.java2excel.excel;
 
-import com.xuyihao.java2excel.excel.entity.ExcelTemplate;
-import com.xuyihao.java2excel.excel.entity.ProgressMessage;
+import xuyihao.java2excel.excel.entity.ExcelTemplate;
+import xuyihao.java2excel.excel.entity.ProgressMessage;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import java.io.FileOutputStream;
@@ -21,7 +21,7 @@ import java.util.List;
  * 3.generateSheet方法逻辑：分析模型，写入模板（调用ExportUtil的createExcel方法），
  *   写入数据（调用convertModelToExcelTemplate方法获取ExcelTemplate对象列表，调用ExportUtil的insertExcelData插入数据）
  */
-public interface ExcelWriter {
+public interface ExcelExporter {
     /**
      * 通过ExcelTemplate生成表格模板
      *

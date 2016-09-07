@@ -1,4 +1,4 @@
-package com.xuyihao.java2excel.excel.entity;
+package xuyihao.java2excel.excel.entity;
 
 /**
  * 用来存储属性code, name, default value的class。
