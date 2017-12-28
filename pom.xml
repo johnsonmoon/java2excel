@@ -48,7 +48,7 @@
                 <version>3.0.1</version>
                 <executions>
                     <execution>
-                        <id>attach-sources</id>
+                        <name>attach-sources</name>
                         <phase>verify</phase>
                         <goals>
                             <goal>jar-no-fork</goal>
@@ -69,6 +69,12 @@
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
             <version>3.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.22</version>
         </dependency>
 
         <dependency>
