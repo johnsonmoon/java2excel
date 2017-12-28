@@ -1,8 +1,8 @@
-package com.xuyihao.java2excel.excel.util;
+package xuyihao.java2excel.core.util;
 
-import com.xuyihao.java2excel.excel.model.AttributeType;
-import com.xuyihao.java2excel.excel.model.ExcelTemplate;
-import com.xuyihao.java2excel.excel.model.ProgressMessage;
+import xuyihao.java2excel.core.model.AttributeType;
+import xuyihao.java2excel.core.model.ExcelTemplate;
+import xuyihao.java2excel.core.model.ProgressMessage;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 

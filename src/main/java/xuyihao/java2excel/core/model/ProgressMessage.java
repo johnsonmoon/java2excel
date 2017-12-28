@@ -1,4 +1,4 @@
-package com.xuyihao.java2excel.excel.model;
+package xuyihao.java2excel.core.model;
 
 import org.openxmlformats.schemas.drawingml.x2006.main.CTTextListStyle;
 

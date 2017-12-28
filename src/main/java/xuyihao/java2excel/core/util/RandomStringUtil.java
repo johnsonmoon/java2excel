@@ -1,4 +1,4 @@
-package com.xuyihao.java2excel.excel.util;
+package xuyihao.java2excel.core.util;
 
 import java.util.Random;
 

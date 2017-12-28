@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * Created by Xuyh at 2016/07/27 下午 02:16.
  */
-public class JohnsonExcelReaderTest {
+public class ExcelReaderTest {
     private POIFSFileSystem fs;
     private HSSFWorkbook wb;
     private HSSFSheet sheet;
@@ -204,7 +204,7 @@ public class JohnsonExcelReaderTest {
                 }
             }
             FileInputStream fileInputStream = new FileInputStream(file);
-            JohnsonExcelReaderTest excelReader = new JohnsonExcelReaderTest();
+            com.xuyihao.java2excel.ExcelReaderTest excelReader = new com.xuyihao.java2excel.ExcelReaderTest();
             String[] title = excelReader.readExcelTitle(fileInputStream);
             System.out.println("获得Excel表格的标题:");
             for (String s : title) {

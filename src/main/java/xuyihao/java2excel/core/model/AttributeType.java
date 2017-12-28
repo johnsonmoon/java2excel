@@ -1,4 +1,4 @@
-package com.xuyihao.java2excel.excel.model;
+package xuyihao.java2excel.core.model;
 
 /**
  * Created by Xuyh at 2016/07/22 上午 10:42.
@@ -6,10 +6,6 @@ package com.xuyihao.java2excel.excel.model;
  * 用来存储属性code, name, default value的class
  */
 public class AttributeType {
-    /**
-     * fields
-     *
-     * */
     private String attrId;
     private String attrCode;
     private String attrName;

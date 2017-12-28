@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by Xuyh at 2016/07/25 下午 03:55.
  */
-public class JohnsonTestMain {
+public class TestMain {
     public static void main(String args[]){
         try{
             //testGenerateWarningMessage();
