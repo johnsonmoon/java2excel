@@ -46,7 +46,7 @@ public class ExportTest {
 			datas.add(data);
 		}
 
-		System.out.println(String.format("CreateResult : [%s]", Export.createExcel(workbook, 0, template)));
+		System.out.println(String.format("CreateResult : [%s]", Export.createExcel(workbook, 0, template, "en_US")));
 		System.out.println(String.format("InsertResult : [%s]", Export.insertExcelData(workbook, 0, 6, datas)));
 		Common.writeFileToDisk(workbook, new FileOutputStream(new File(filePath)));
 	}

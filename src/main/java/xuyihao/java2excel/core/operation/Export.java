@@ -2,6 +2,7 @@ package xuyihao.java2excel.core.operation;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import xuyihao.java2excel.core.entity.dict.Meta;
 import xuyihao.java2excel.core.entity.model.Template;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
@@ -22,9 +23,11 @@ public class Export {
 	 * @param workbook 表格
 	 * @param sheetNum 工作簿编号
 	 * @param template 数据模型
+	 * @param language 表头数据显示的语言(en_US, zh_CN, etc.)
+	 * {@link xuyihao.java2excel.core.entity.dict.Meta}
 	 * @return true 成功, false 失败
 	 */
-	public static boolean createExcel(final Workbook workbook, int sheetNum, Template template) {
+	public static boolean createExcel(final Workbook workbook, int sheetNum, Template template, String language) {
 		boolean flag;
 		try {
 			if (workbook == null)
@@ -55,19 +58,19 @@ public class Export {
 					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_HEADER_HIDE));
 			Common.insertCellValue(sheet, 1, 0, template.getName(),
 					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_TITLE));
-			Common.insertCellValue(sheet, 0, 2, "字段",
+			Common.insertCellValue(sheet, 0, 2, Meta.FILEDS.getMeta(language),
 					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER));
-			Common.insertCellValue(sheet, 0, 3, "请勿编辑此行",
+			Common.insertCellValue(sheet, 0, 3, Meta.DONT_MODIFY.getMeta(language),
 					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER_GRAY));
-			Common.insertCellValue(sheet, 0, 4, "数据格式",
+			Common.insertCellValue(sheet, 0, 4, Meta.DATA_FORMAT.getMeta(language),
 					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER_GRAY));
-			Common.insertCellValue(sheet, 0, 5, "默认值",
+			Common.insertCellValue(sheet, 0, 5, Meta.DEFAULT_VALUE.getMeta(language),
 					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER));
-			Common.insertCellValue(sheet, 0, 6, "数据",
+			Common.insertCellValue(sheet, 0, 6, Meta.DATA.getMeta(language),
 					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER_TOP_ALIGN));
-			Common.insertCellValue(sheet, 1, 2, "数据标识",
+			Common.insertCellValue(sheet, 1, 2, Meta.DATA_FLAG.getMeta(language),
 					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_COLUMN_HEADER));
-			Common.insertCellValue(sheet, 1, 3, "数据标识",
+			Common.insertCellValue(sheet, 1, 3, Meta.DATA_FLAG.getMeta(language),
 					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_HEADER_HIDE_WHITE));
 			for (int i = 0; i < template.getAttributes().size(); i++) {
 				String label;
