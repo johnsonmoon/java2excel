@@ -24,32 +24,33 @@ import java.util.List;
  *   </pre>
  */
 public interface ExcelReader {
-    /**
-     * 读取excel文件内容，并且将数据保存到数据库
-     * 根据不同业务系统进行重写
-     *
-     * @param fileIn          文件输入流
-     * @param progressMessage 进度消息
-     * @return false 失败， true 成功
-     */
-    public boolean processDatas(FileInputStream fileIn, ProgressMessage progressMessage);
+	/**
+	 * 读取excel文件内容，并且将数据保存到数据库
+	 * 根据不同业务系统进行重写
+	 *
+	 * @param fileIn          文件输入流
+	 * @param progressMessage 进度消息
+	 * @return false 失败， true 成功
+	 */
+	public boolean processDatas(FileInputStream fileIn, ProgressMessage progressMessage);
 
-    /**
-     * 对excel表中的单个sheet的数据进行处理
-     *
-     * @param workbook        excel表格
-     * @param sheetNumber     sheet编号
-     * @param progressMessage 进度消息
-     */
-    public void processSingleSheetData(Workbook workbook, int sheetNumber, ProgressMessage progressMessage);
+	/**
+	 * 对excel表中的单个sheet的数据进行处理
+	 *
+	 * @param workbook        excel表格
+	 * @param sheetNumber     sheet编号
+	 * @param progressMessage 进度消息
+	 */
+	public void processSingleSheetData(Workbook workbook, int sheetNumber, ProgressMessage progressMessage);
 
-    /**
-     * 逐个处理ExcelTemplateList中的数据
-     *
-     * @param templateList    ExcelTemplate对象列表
-     * @param sheetNumber     工作簿编号
-     * @param progressMessage 进度消息对象
-     * @param currentStartRow 在excel文件的当前sheet中的当前开始的行，用来给ProgressMessage对象进行currentCount赋值进行计数
-     */
-    public void processExcelTemplateList(List<Template> templateList, int sheetNumber, ProgressMessage progressMessage, int currentStartRow);
+	/**
+	 * 逐个处理ExcelTemplateList中的数据
+	 *
+	 * @param templateList    ExcelTemplate对象列表
+	 * @param sheetNumber     工作簿编号
+	 * @param progressMessage 进度消息对象
+	 * @param currentStartRow 在excel文件的当前sheet中的当前开始的行，用来给ProgressMessage对象进行currentCount赋值进行计数
+	 */
+	public void processExcelTemplateList(List<Template> templateList, int sheetNumber, ProgressMessage progressMessage,
+			int currentStartRow);
 }
