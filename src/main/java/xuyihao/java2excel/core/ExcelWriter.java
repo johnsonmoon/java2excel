@@ -32,7 +32,7 @@ public interface ExcelWriter {
 	 * @param progressMessage 进度通知
 	 * @return false 失败， true 成功
 	 */
-	public boolean generateTemplate(FileOutputStream fileOut, String classCode, ProgressMessage progressMessage);
+	boolean generateTemplate(FileOutputStream fileOut, String classCode, ProgressMessage progressMessage);
 
 	/**
 	 * 通过classCode生成表格模板,将类列表的所有类数据全部放在同一张excel的不同sheet中
@@ -42,7 +42,7 @@ public interface ExcelWriter {
 	 * @param progressMessage 进度通知
 	 * @return false 失败， true 成功
 	 */
-	public boolean generateTemplateWithMultiSheets(FileOutputStream fileOut, List<String> classCodeList,
+	boolean generateTemplateWithMultiSheets(FileOutputStream fileOut, List<String> classCodeList,
 			ProgressMessage progressMessage);
 
 	/**
@@ -53,7 +53,7 @@ public interface ExcelWriter {
 	 * @param progressMessage 进度通知
 	 * @return false 失败， true 成功
 	 */
-	public boolean generateDataFile(FileOutputStream fileOut, String classCode, ProgressMessage progressMessage);
+	boolean generateDataFile(FileOutputStream fileOut, String classCode, ProgressMessage progressMessage);
 
 	/**
 	 * 连同数据一起生成完整表格,并将类列表的所有类数据全部放在同一张excel的不同sheet中
@@ -63,7 +63,7 @@ public interface ExcelWriter {
 	 * @param progressMessage 进度通知
 	 * @return false 失败， true 成功
 	 */
-	public boolean generateDataFileWithMutiSheets(FileOutputStream fileOut, List<String> classCodeList,
+	boolean generateDataFileWithMutiSheets(FileOutputStream fileOut, List<String> classCodeList,
 			ProgressMessage progressMessage);
 
 	/**
@@ -76,7 +76,7 @@ public interface ExcelWriter {
 	 * @param progressMessage 消息进度编号
 	 * @return false 失败， true 成功
 	 */
-	public boolean generateSheet(Workbook workbook, int sheetNumber, FileOutputStream fileOut, String classCode,
+	boolean generateSheet(Workbook workbook, int sheetNumber, FileOutputStream fileOut, String classCode,
 			ProgressMessage progressMessage);
 
 	/**
@@ -85,7 +85,7 @@ public interface ExcelWriter {
 	 * @param classCode 模型类型编码
 	 * @return ExcelTemplate对象
 	 */
-	public Template getExcelTemplateByClassCode(String classCode);
+	Template getExcelTemplateByClassCode(String classCode);
 
 	/**
 	 * 通过具体的业务模型对象对ExcelTemplate进行赋值，这里需要进行重写
@@ -93,7 +93,7 @@ public interface ExcelWriter {
 	 * @param model 业务模型对象
 	 * @return ExcelTemplate对象
 	 */
-	public Template getExcelTemplateByModel(Object model);
+	Template getExcelTemplateByModel(Object model);
 
 	/**
 	 * 将模型对象列表转化为ExcelTemplate对象列表，需要对不同业务模型进行重写
@@ -102,5 +102,5 @@ public interface ExcelWriter {
 	 * @param template  已经转化过的单个ExcelTemplate对象
 	 * @return ExcelTemplate对象列表
 	 */
-	public List<Template> convertModelToExcelTemplate(List<Object> modelList, Template template);
+	List<Template> convertModelToExcelTemplate(List<Object> modelList, Template template);
 }
