@@ -50,7 +50,7 @@ public class Common {
     public static Font createFontWhiteArial(Workbook workbook, int size) {
         Font font = workbook.createFont();
         font.setFontName(HSSFFont.FONT_ARIAL);
-        font.setColor(HSSFColor.WHITE.index);
+        font.setColor(HSSFColor.HSSFColorPredefined.WHITE.getIndex());
         font.setItalic(false);
         font.setFontHeightInPoints((short) size);
         return font;
@@ -66,37 +66,37 @@ public class Common {
     public static CellStyle createCellStyle(Workbook workbook, int cellStyleType) {
         CellStyle cellStyleGeneral = workbook.createCellStyle();
         cellStyleGeneral.setWrapText(false);
-        cellStyleGeneral.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+        cellStyleGeneral.setVerticalAlignment(VerticalAlignment.CENTER);
 
         CellStyle cellStyleTitle = workbook.createCellStyle();
         cellStyleTitle.cloneStyleFrom(cellStyleGeneral);
         cellStyleTitle.setFont(createFontArial(workbook, 10));
-        cellStyleTitle.setAlignment(CellStyle.ALIGN_CENTER);
+        cellStyleTitle.setAlignment(HorizontalAlignment.CENTER);
 
         CellStyle cellStyleColumnHeader = workbook.createCellStyle();
         cellStyleColumnHeader.cloneStyleFrom(cellStyleGeneral);
         cellStyleColumnHeader.setFont(createFontArial(workbook, 10));
-        cellStyleColumnHeader.setAlignment(CellStyle.ALIGN_CENTER);
+        cellStyleColumnHeader.setAlignment(HorizontalAlignment.CENTER);
 
         CellStyle cellStyleRowHeader = workbook.createCellStyle();
         cellStyleRowHeader.cloneStyleFrom(cellStyleGeneral);
         cellStyleRowHeader.setFont(createFontArial(workbook, 10));
-        cellStyleRowHeader.setAlignment(CellStyle.ALIGN_CENTER);
+        cellStyleRowHeader.setAlignment(HorizontalAlignment.CENTER);
         cellStyleRowHeader.setFillForegroundColor(IndexedColors.LIGHT_GREEN.index);
-        cellStyleRowHeader.setFillPattern(CellStyle.SOLID_FOREGROUND);
+        cellStyleRowHeader.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 
         CellStyle cellStyleGrayRowHeader = workbook.createCellStyle();
         cellStyleGrayRowHeader.cloneStyleFrom(cellStyleRowHeader);
 
         CellStyle cellStyleRowHeaderTopAlign = workbook.createCellStyle();
         cellStyleRowHeaderTopAlign.cloneStyleFrom(cellStyleRowHeader);
-        cellStyleRowHeaderTopAlign.setVerticalAlignment(CellStyle.VERTICAL_TOP);
+        cellStyleRowHeaderTopAlign.setVerticalAlignment(VerticalAlignment.TOP);
 
         CellStyle cellStyleHideHeader = workbook.createCellStyle();
         cellStyleHideHeader.setFont(createFontWhiteArial(workbook, 10));
         cellStyleHideHeader.setWrapText(true);
-        cellStyleHideHeader.setAlignment(CellStyle.ALIGN_LEFT);
-        cellStyleHideHeader.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+        cellStyleHideHeader.setAlignment(HorizontalAlignment.LEFT);
+        cellStyleHideHeader.setVerticalAlignment(VerticalAlignment.CENTER);
         cellStyleHideHeader.setLocked(true);
         cellStyleHideHeader.setFillForegroundColor(IndexedColors.WHITE.getIndex());
 
@@ -107,7 +107,7 @@ public class Common {
         CellStyle cellStyleValue = workbook.createCellStyle();
         cellStyleValue.cloneStyleFrom(cellStyleGeneral);
         cellStyleValue.setFont(createFontArial(workbook, 10));
-        cellStyleValue.setAlignment(CellStyle.ALIGN_LEFT);
+        cellStyleValue.setAlignment(HorizontalAlignment.CENTER);
         cellStyleValue.setWrapText(true);
         cellStyleValue.setLocked(false);
 
@@ -176,17 +176,17 @@ public class Common {
                 cellValue = "";
             } else {
                 DecimalFormat decimalFormat = new DecimalFormat("#");
-                switch (cell.getCellType()) {
-                    case Cell.CELL_TYPE_STRING:
+                switch (cell.getCellTypeEnum()) {
+                    case STRING:
                         cellValue = cell.getRichStringCellValue().getString().trim();
                         break;
-                    case Cell.CELL_TYPE_NUMERIC:
-                        cellValue = decimalFormat.format(cell.getNumericCellValue()).toString();
+                    case NUMERIC:
+                        cellValue = decimalFormat.format(cell.getNumericCellValue()).trim();
                         break;
-                    case Cell.CELL_TYPE_BOOLEAN:
+                    case BOOLEAN:
                         cellValue = String.valueOf(cell.getBooleanCellValue()).trim();
                         break;
-                    case Cell.CELL_TYPE_FORMULA:
+                    case FORMULA:
                         cellValue = cell.getCellFormula();
                         break;
                     default:

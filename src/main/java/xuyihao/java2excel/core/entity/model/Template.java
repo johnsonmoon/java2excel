@@ -71,4 +71,13 @@ public class Template {
         if (attrValues.contains(attrValue))
             attrValues.remove(attrValue);
     }
+
+    @Override
+    public String toString() {
+        return "Template{" +
+                "name='" + name + '\'' +
+                ", attributes=" + attributes +
+                ", attrValues=" + attrValues +
+                '}';
+    }
 }

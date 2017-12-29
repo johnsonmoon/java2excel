@@ -69,12 +69,18 @@ public class Export {
                     label = template.getAttributes().get(i).getAttrName() + "("
                             + template.getAttributes().get(i).getUnit() + ")";
                 }
-                String attrInfo = template.getAttributes().get(i).getAttrCode() + "&&"
-                        + template.getAttributes().get(i).getAttrName() + "&&" + template.getAttributes().get(i).getAttrType();
+                String attrInfo = template.getAttributes().get(i).getAttrCode()
+                        + "&&" + template.getAttributes().get(i).getAttrName()
+                        + "&&" + template.getAttributes().get(i).getAttrType()
+                        + "&&" + template.getAttributes().get(i).getFormatInfo()
+                        + "&&" + template.getAttributes().get(i).getDefaultValue()
+                        + "&&" + template.getAttributes().get(i).getUnit();
+                String formatInfo = template.getAttributes().get(i).getFormatInfo();
                 String defaultValue = template.getAttributes().get(i).getDefaultValue();
                 Common.insertCellValue(sheet, i + 2, 2, label, Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER));// 字段名
                 Common.insertCellValue(sheet, i + 2, 3, attrInfo, Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER_GRAY));
-                Common.insertCellValue(sheet, i + 2, 4, defaultValue, Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_COLUMN_HEADER));// 默认值
+                Common.insertCellValue(sheet, i + 2, 4, formatInfo, Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER));
+                Common.insertCellValue(sheet, i + 2, 5, defaultValue, Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_COLUMN_HEADER));// 默认值
             }
             flag = true;
         } catch (Exception e) {

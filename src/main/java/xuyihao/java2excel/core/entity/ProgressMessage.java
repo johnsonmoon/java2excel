@@ -72,4 +72,14 @@ public class ProgressMessage {
     public int getProgress() {
         return progress;
     }
+
+    @Override
+    public String toString() {
+        return "ProgressMessage{" +
+                "state=" + state +
+                ", currentCount=" + currentCount +
+                ", totalCount=" + totalCount +
+                ", progress=" + progress +
+                '}';
+    }
 }
