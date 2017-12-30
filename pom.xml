@@ -13,7 +13,7 @@
 	</properties>
 
 	<build>
-		<finalName>java2excel-${version}</finalName>
+		<finalName>java2excel-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
