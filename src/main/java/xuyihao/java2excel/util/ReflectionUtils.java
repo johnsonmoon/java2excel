@@ -12,6 +12,22 @@ import java.util.List;
  */
 public class ReflectionUtils {
 	/**
+	 * get class type by name (entire name)
+	 *
+	 * @param name entire name of a type
+	 * @return class type
+	 */
+	public static Class<?> getClassByName(String name) {
+		Class<?> clazz;
+		try {
+			clazz = Class.forName(name);
+		} catch (Exception e) {
+			clazz = null;
+		}
+		return clazz;
+	}
+
+	/**
 	 * set field value for the given object with given field name
 	 *
 	 * @param o     given object
@@ -69,6 +85,18 @@ public class ReflectionUtils {
 	}
 
 	/**
+	 * get entire name of given clazz like "java.lang.String"
+	 *
+	 * @param clazz given clazz
+	 * @return name String
+	 */
+	public static String getClassNameEntire(Class<?> clazz) {
+		if (clazz == null)
+			return "";
+		return clazz.getName();
+	}
+
+	/**
 	 * get short name of given class like "Integer"
 	 *
 	 * @param field given field
@@ -77,12 +105,24 @@ public class ReflectionUtils {
 	public static String getFieldTypeNameShort(Field field) {
 		if (field == null)
 			return "";
-		String allName = field.getType().toString();
+		String allName = field.getType().getName();
 		if (allName.isEmpty())
 			return "";
 		if (!allName.contains("."))
 			return allName;
 		return allName.substring(allName.lastIndexOf(".") + 1, allName.length());
+	}
+
+	/**
+	 * get entire name of given class like "java.lang.Integer"
+	 *
+	 * @param field given field
+	 * @return name String
+	 */
+	public static String getFieldTypeNameEntire(Field field) {
+		if (field == null)
+			return "";
+		return field.getType().getName();
 	}
 
 	/**

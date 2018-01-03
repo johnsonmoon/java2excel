@@ -7,10 +7,7 @@ import xuyihao.java2excel.core.entity.model.Attribute;
 import xuyihao.java2excel.core.entity.model.Template;
 import xuyihao.java2excel.core.operation.Common;
 import xuyihao.java2excel.core.operation.Export;
-import xuyihao.java2excel.util.AnnotationUtils;
-import xuyihao.java2excel.util.FileUtils;
-import xuyihao.java2excel.util.ReflectionUtils;
-import xuyihao.java2excel.util.StringUtils;
+import xuyihao.java2excel.util.*;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -119,6 +116,7 @@ public class Writer {
 			attribute.setAttrCode(field.getName());
 			attribute.setAttrName(field.getName());
 			attribute.setAttrType(ReflectionUtils.getFieldTypeNameShort(field));
+			attribute.setJavaClassName(ReflectionUtils.getFieldTypeNameEntire(field));
 			template.addAttribute(attribute);
 		}
 	}
@@ -146,12 +144,12 @@ public class Writer {
 			attribute.setFormatInfo(StringUtils.replaceEmptyToNull(attributeAnnotation.formatInfo()));
 			attribute.setDefaultValue(StringUtils.replaceEmptyToNull(attributeAnnotation.defaultValue()));
 			attribute.setUnit(StringUtils.replaceEmptyToNull(attributeAnnotation.unit()));
+			attribute.setJavaClassName(ReflectionUtils.getFieldTypeNameEntire(field));
 			template.addAttribute(attribute);
 		}
 	}
 
 	private List<Template> generateData(List<?> tList) {
-		//TODO 对不同的数据类型添加不同的attrValue格式(推荐使用json格式)
 		//Attribute value. Complex data(map, list .etc) with json format.(For read data from excel into objects).
 		List<Template> templates = new ArrayList<>();
 		for (Object t : tList) {
@@ -160,10 +158,26 @@ public class Writer {
 			template.setAttributes(this.template.getAttributes());
 			for (Attribute attribute : template.getAttributes()) {
 				Object value = ReflectionUtils.getFieldValue(t, attribute.getAttrCode());
-				template.addAttrValue(value == null ? "" : String.valueOf(value));
+				template.addAttrValue(formatValue(value));
 			}
 			templates.add(template);
 		}
 		return templates;
+	}
+
+	private static String formatValue(Object object) {
+		if (object == null)
+			return "";
+		if (object instanceof Integer
+				|| object instanceof Float
+				|| object instanceof Byte
+				|| object instanceof Double
+				|| object instanceof Boolean
+				|| object instanceof Character
+				|| object instanceof Long
+				|| object instanceof Short
+				|| object instanceof String)
+			return String.valueOf(object);
+		return JsonUtils.obj2JsonStr(object);
 	}
 }

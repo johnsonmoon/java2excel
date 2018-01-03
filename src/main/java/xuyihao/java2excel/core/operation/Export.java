@@ -86,7 +86,8 @@ public class Export {
 						+ "&&" + template.getAttributes().get(i).getAttrType()
 						+ "&&" + template.getAttributes().get(i).getFormatInfo()
 						+ "&&" + template.getAttributes().get(i).getDefaultValue()
-						+ "&&" + template.getAttributes().get(i).getUnit();
+						+ "&&" + template.getAttributes().get(i).getUnit()
+						+ "&&" + template.getAttributes().get(i).getJavaClassName();
 				String formatInfo = template.getAttributes().get(i).getFormatInfo();
 				String defaultValue = template.getAttributes().get(i).getDefaultValue();
 				Common.insertCellValue(sheet, i + 2, 2, label,

@@ -41,6 +41,7 @@ public class Import {
 			attribute.setFormatInfo(replaceNull(attributeTypeInfo[3]));
 			attribute.setDefaultValue(replaceNull(attributeTypeInfo[4]));
 			attribute.setUnit(replaceNull(attributeTypeInfo[5]));
+			attribute.setJavaClassName(replaceNull(attributeTypeInfo[6]));
 			attributeList.add(attribute);
 		}
 		template.setAttributes(attributeList);
@@ -51,7 +52,7 @@ public class Import {
 		if (arrayValue == null)
 			return null;
 		if (arrayValue.isEmpty())
-			return "";
+			return null;
 		if (arrayValue.equals("null"))
 			return null;
 		return arrayValue;

@@ -15,6 +15,7 @@ public class Attribute {
 	private String formatInfo;//数据格式信息
 	private String defaultValue;//属性默认值
 	private String unit;//属性单位
+	private String javaClassName;//对应java类型名称(必须全称)
 
 	public Attribute() {
 	}
@@ -82,6 +83,14 @@ public class Attribute {
 		this.unit = unit;
 	}
 
+	public String getJavaClassName() {
+		return javaClassName;
+	}
+
+	public void setJavaClassName(String javaClassName) {
+		this.javaClassName = javaClassName;
+	}
+
 	@Override
 	public String toString() {
 		return "Attribute{" +
@@ -91,6 +100,7 @@ public class Attribute {
 				", formatInfo='" + formatInfo + '\'' +
 				", defaultValue='" + defaultValue + '\'' +
 				", unit='" + unit + '\'' +
+				", javaClassName='" + javaClassName + '\'' +
 				'}';
 	}
 }
