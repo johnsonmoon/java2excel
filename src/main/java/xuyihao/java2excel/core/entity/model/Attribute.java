@@ -6,6 +6,9 @@ package xuyihao.java2excel.core.entity.model;
  * Created by Xuyh at 2016/07/22 上午 10:42.
  */
 public class Attribute {
+	/**
+	 * {@link java.lang.reflect.Field#getName()}
+	 */
 	private String attrCode;//属性码
 	private String attrName;//属性名
 	private String attrType;//属性类型
@@ -34,6 +37,11 @@ public class Attribute {
 		this.formatInfo = formatInfo;
 	}
 
+	/**
+	 * attrCode - fieldName
+	 * <p>
+	 * {@link java.lang.reflect.Field#getName()}
+	 */
 	public String getAttrCode() {
 		return attrCode;
 	}

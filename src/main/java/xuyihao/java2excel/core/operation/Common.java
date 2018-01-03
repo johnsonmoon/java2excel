@@ -6,6 +6,7 @@ import org.apache.poi.ss.usermodel.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.text.DecimalFormat;
 
@@ -200,13 +201,45 @@ public class Common {
 	 * 将workbook写入磁盘
 	 *
 	 * @param workbook excel表格
-	 * @param fileOut  文件输出流
+	 * @param file     文件
 	 * @return true if succeeded, false if failed
 	 * @throws Exception
 	 */
-	public static boolean writeFileToDisk(Workbook workbook, FileOutputStream fileOut) {
+	public static boolean writeFileToDisk(Workbook workbook, File file) {
+		if (file == null || !file.exists())
+			return false;
+		if (workbook == null)
+			return false;
+		FileOutputStream fileOutputStream = null;
 		try {
-			workbook.write(fileOut);
+			fileOutputStream = new FileOutputStream(file);
+			workbook.write(fileOutputStream);
+		} catch (Exception e) {
+			logger.warn(e.getMessage(), e);
+			return false;
+		} finally {
+			if (fileOutputStream != null) {
+				try {
+					fileOutputStream.close();
+				} catch (Exception e) {
+					logger.warn(e.getMessage(), e);
+				}
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Close the workbook
+	 *
+	 * @param workbook excel表格
+	 * @return
+	 */
+	public static boolean closeWorkbook(Workbook workbook) {
+		if (workbook == null)
+			return false;
+		try {
+			workbook.close();
 		} catch (Exception e) {
 			logger.warn(e.getMessage(), e);
 			return false;

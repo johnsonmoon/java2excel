@@ -5,10 +5,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Test;
 import xuyihao.java2excel.core.entity.model.Attribute;
 import xuyihao.java2excel.core.entity.model.Template;
+import xuyihao.java2excel.util.FileUtils;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,11 +17,7 @@ import java.util.List;
 public class ExportTest {
 	@Test
 	public void test() throws Exception {
-		String filePath = "C:\\Users\\johnson\\Desktop\\test.xlsx";
-
-		FileInputStream fis = new FileInputStream(new File(filePath));
-		Workbook workbook = new XSSFWorkbook(fis);
-
+		Workbook workbook = new XSSFWorkbook();
 		//template
 		Template template = new Template();
 		template.setName("学生统计");
@@ -30,7 +25,6 @@ public class ExportTest {
 		template.addAttribute(new Attribute("number", "学生学号", "String", "文本", null, null));
 		template.addAttribute(new Attribute("phone", "学生电话", "String", "文本", null, null));
 		template.addAttribute(new Attribute("email", "学生电邮", "String", "文本", null, null));
-
 		//data
 		List<Template> datas = new ArrayList<>();
 		for (int i = 0; i < 10; i++) {
@@ -45,9 +39,13 @@ public class ExportTest {
 
 			datas.add(data);
 		}
-
-		System.out.println(String.format("CreateResult : [%s]", Export.createExcel(workbook, 0, template, "en_US")));
+		System.out.println(String.format("CreateResult : [%s]", Export.createExcel(workbook, 0, template, "zh_CN")));
 		System.out.println(String.format("InsertResult : [%s]", Export.insertExcelData(workbook, 0, 6, datas)));
-		Common.writeFileToDisk(workbook, new FileOutputStream(new File(filePath)));
+
+		//write file
+		String filePath = "C:\\Users\\johnson\\Desktop\\test.xlsx";
+		FileUtils.createFileDE(filePath);
+		Common.writeFileToDisk(workbook, new File(filePath));
+		Common.closeWorkbook(workbook);
 	}
 }
