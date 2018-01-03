@@ -3,6 +3,7 @@ package xuyihao.java2excel;
 import org.junit.Ignore;
 import org.junit.Test;
 import xuyihao.java2excel.entity.Student;
+import xuyihao.java2excel.entity.Teacher;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,7 +20,7 @@ public class WriterTest {
 		System.out.println(writer.writeExcelTemplate(Student.class, "D:\\test.xlsx"));
 	}
 
-	@Test
+	@Ignore
 	public void testExcelData() {
 		Writer writer = new Writer();
 		writer.setTemplateLanguage("zh_CN");
@@ -36,5 +37,12 @@ public class WriterTest {
 		}
 
 		System.out.println(writer.writeExcelData(students, "D:\\test.xlsx"));
+	}
+
+	@Test
+	public void testExcelTemplateWithAnnotation() {
+		Writer writer = new Writer();
+		writer.setTemplateLanguage("zh_CN");
+		System.out.println(writer.writeExcelTemplate(Teacher.class, "D:\\teacher.xlsx"));
 	}
 }

@@ -7,8 +7,10 @@ import xuyihao.java2excel.core.entity.model.Attribute;
 import xuyihao.java2excel.core.entity.model.Template;
 import xuyihao.java2excel.core.operation.Common;
 import xuyihao.java2excel.core.operation.Export;
+import xuyihao.java2excel.util.AnnotationUtils;
 import xuyihao.java2excel.util.FileUtils;
 import xuyihao.java2excel.util.ReflectionUtils;
+import xuyihao.java2excel.util.StringUtils;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -100,8 +102,13 @@ public class Writer {
 	}
 
 	private void generateTemplate(Class<?> tClass) {
-		//TODO 定义注解来定义业务模型和template，模型字段和attribute之间的映射关系
-
+		//If type has @Template annotation modifier, do generate template by annotations.
+		//If type has no annotation modifiers, do generate template by reflection only.
+		if (!AnnotationUtils.hasAnnotationTemplate(tClass)) {
+			generateTemplateWithReflectionOnly(tClass);
+		} else {
+			generateTemplateWithAnnotation(tClass);
+		}
 	}
 
 	private void generateTemplateWithReflectionOnly(Class<?> clazz) {
@@ -117,11 +124,35 @@ public class Writer {
 	}
 
 	private void generateTemplateWithAnnotation(Class<?> clazz) {
-		// TODO: 2018/1/3
+		if (!AnnotationUtils.hasAnnotationTemplate(clazz))
+			return;
+		this.template = new Template();
+		xuyihao.java2excel.core.entity.annotation.Template templateAnnotation = AnnotationUtils
+				.getAnnotationTemplate(clazz);
+		if (templateAnnotation == null)
+			return;
+		template.setName(templateAnnotation.name());
+		for (Field field : ReflectionUtils.getFieldsAll(clazz)) {
+			if (!AnnotationUtils.hasAnnotationAttribute(field))
+				continue;
+			xuyihao.java2excel.core.entity.annotation.Attribute attributeAnnotation = AnnotationUtils
+					.getAnnotationAttribute(field);
+			if (attributeAnnotation == null)
+				continue;
+			Attribute attribute = new Attribute();
+			attribute.setAttrCode(StringUtils.replaceEmptyToNull(attributeAnnotation.attrCode()));
+			attribute.setAttrName(StringUtils.replaceEmptyToNull(attributeAnnotation.attrName()));
+			attribute.setAttrType(StringUtils.replaceEmptyToNull(attributeAnnotation.attrType()));
+			attribute.setFormatInfo(StringUtils.replaceEmptyToNull(attributeAnnotation.formatInfo()));
+			attribute.setDefaultValue(StringUtils.replaceEmptyToNull(attributeAnnotation.defaultValue()));
+			attribute.setUnit(StringUtils.replaceEmptyToNull(attributeAnnotation.unit()));
+			template.addAttribute(attribute);
+		}
 	}
 
 	private List<Template> generateData(List<?> tList) {
 		//TODO 对不同的数据类型添加不同的attrValue格式(推荐使用json格式)
+		//Attribute value. Complex data(map, list .etc) with json format.(For read data from excel into objects).
 		List<Template> templates = new ArrayList<>();
 		for (Object t : tList) {
 			Template template = new Template();
