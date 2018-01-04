@@ -12,6 +12,30 @@ import java.util.List;
  */
 public class ReflectionUtils {
 	/**
+	 * Create new object instance with type clazz.
+	 *
+	 * @param clazz         given type
+	 * @param constructArgs arguments to construct the object instance
+	 * @return object instance (null when exception occurred)
+	 */
+	public static Object newObjectInstance(Class<?> clazz, Object... constructArgs) {
+		Object object;
+		try {
+			object = null;
+			int argCount = constructArgs.length;
+			for (Constructor<?> constructor : getConstructorsAll(clazz)) {
+				if (constructor.getParameterCount() == argCount) {
+					makeConstructorAccessible(constructor);
+					object = constructor.newInstance(constructArgs);
+				}
+			}
+		} catch (Exception e) {
+			object = null;
+		}
+		return object;
+	}
+
+	/**
 	 * get class type by name (entire name)
 	 * <p>
 	 * <pre>
@@ -192,6 +216,23 @@ public class ReflectionUtils {
 	}
 
 	/**
+	 * get declared constructors of given clazz
+	 *
+	 * @param clazz given clazz
+	 * @return list of constructors
+	 */
+	public static List<Constructor<?>> getConstructorsAll(Class<?> clazz) {
+		List<Constructor<?>> constructors = new ArrayList<>();
+		if (clazz == null)
+			return constructors;
+		Constructor<?>[] constructorsArray = clazz.getDeclaredConstructors();
+		for (Constructor<?> constructor : constructorsArray) {
+			constructors.add(constructor);
+		}
+		return constructors;
+	}
+
+	/**
 	 * Determine whether the given field is a "public static final *" constant.
 	 *
 	 * @param field the field to check
@@ -248,6 +289,36 @@ public class ReflectionUtils {
 	 */
 	public static boolean isFieldPrivate(Field field) {
 		int modifiers = field.getModifiers();
+		return Modifier.isPrivate(modifiers);
+	}
+
+	/**
+	 * Determine whether the given constructor is a "protected *" constant.
+	 *
+	 * @param constructor the field to check
+	 */
+	public static boolean isConstructorProtected(Constructor<?> constructor) {
+		int modifiers = constructor.getModifiers();
+		return Modifier.isProtected(modifiers);
+	}
+
+	/**
+	 * Determine whether the given constructor is a "public *" constant.
+	 *
+	 * @param constructor the field to check
+	 */
+	public static boolean isConstructorPublic(Constructor<?> constructor) {
+		int modifiers = constructor.getModifiers();
+		return Modifier.isPublic(modifiers);
+	}
+
+	/**
+	 * Determine whether the given constructor is a "private *" constant.
+	 *
+	 * @param constructor the field to check
+	 */
+	public static boolean isConstructorPrivate(Constructor<?> constructor) {
+		int modifiers = constructor.getModifiers();
 		return Modifier.isPrivate(modifiers);
 	}
 

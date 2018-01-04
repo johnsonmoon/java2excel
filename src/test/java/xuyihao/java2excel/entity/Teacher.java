@@ -8,6 +8,7 @@ import java.util.List;
 /**
  * Created by xuyh at 2018/1/3 13:41.
  */
+@SuppressWarnings("all")
 @Template(name = "Teacher")
 public class Teacher {
 	public static final String COLLLECTION_NAME = "Teacher";
@@ -17,18 +18,32 @@ public class Teacher {
 	public static final String FIELD_CODE_EMAIL = "email";
 	public static final String FIELD_CODE_ADDRESS = "address";
 
-	@Attribute(attrCode = "id", attrName = "ID", attrType = "String", formatInfo = "text")
+	@Attribute(attrName = "ID", attrType = "String", formatInfo = "text")
 	private String id;
-	@Attribute(attrCode = "name", attrName = "NAME", attrType = "String", formatInfo = "text")
+	@Attribute(attrName = "NAME", attrType = "String", formatInfo = "text")
 	private String name;
-	@Attribute(attrCode = "phoneNumber", attrName = "PHONE_NUMBER", attrType = "String", formatInfo = "text")
+	@Attribute(attrName = "PHONE_NUMBER", attrType = "String", formatInfo = "text")
 	private String phoneNumber;
-	@Attribute(attrCode = "email", attrName = "EMAIL", attrType = "String", formatInfo = "text")
+	@Attribute(attrName = "EMAIL", attrType = "String", formatInfo = "text")
 	private String email;
-	@Attribute(attrCode = "address", attrName = "ADDRESS", attrType = "List<String>", formatInfo = "[\"a\", \"b\", ...]")
+	@Attribute(attrName = "ADDRESS", attrType = "List<String>", formatInfo = "[\"a\", \"b\", ...]")
 	private List<String> address;
-	@Attribute(attrCode = "avgScore", attrName = "AVG_SCORE", attrType = "Integer", formatInfo = "text")
+	@Attribute(attrName = "AVG_SCORE", attrType = "Integer", formatInfo = "text")
 	private int avgScore;
+
+	public Teacher() {
+	}
+
+	public Teacher(String name, String phoneNumber, String email) {
+		this.name = name;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+	}
+
+	private Teacher(String id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
 	public String getId() {
 		return id;

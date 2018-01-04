@@ -17,4 +17,16 @@ public class StringUtils {
 			return null;
 		return value;
 	}
+
+	/**
+	 * if value equals null return ""
+	 *
+	 * @param value given value
+	 * @return "" if value equals null
+	 */
+	public static String replaceNullToEmpty(String value) {
+		if (value == null)
+			return "";
+		return value;
+	}
 }

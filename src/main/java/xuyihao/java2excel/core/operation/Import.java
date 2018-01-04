@@ -26,14 +26,19 @@ public class Import {
 	 * @return ExcelTemplate对象
 	 */
 	public static Template getTemplateFromExcel(Workbook workbook, int sheetNumber) {
+		if (workbook == null)
+			return null;
+		if (sheetNumber < 0)
+			sheetNumber = 0;
 		Template template = new Template();
 		Sheet sheet = workbook.getSheetAt(sheetNumber);
 		String headValue = Common.getCellValue(sheet, 0, 0);
-		template.setName(headValue);
-		List<Attribute> attributeList = new ArrayList<>();
+		template.setJavaClassName(headValue);
+		String nameValue = Common.getCellValue(sheet, 1, 0);
+		template.setName(nameValue);
 		int attrCount = sheet.getRow(3).getPhysicalNumberOfCells() - 2;
 		for (int i = 0; i < attrCount; i++) {
-			String[] attributeTypeInfo = Common.getCellValue(sheet, 3, i + 2).split("&&");
+			String[] attributeTypeInfo = Common.getCellValue(sheet, i + 2, 3).split("&&");
 			Attribute attribute = new Attribute();
 			attribute.setAttrCode(replaceNull(attributeTypeInfo[0]));
 			attribute.setAttrName(replaceNull(attributeTypeInfo[1]));
@@ -42,9 +47,8 @@ public class Import {
 			attribute.setDefaultValue(replaceNull(attributeTypeInfo[4]));
 			attribute.setUnit(replaceNull(attributeTypeInfo[5]));
 			attribute.setJavaClassName(replaceNull(attributeTypeInfo[6]));
-			attributeList.add(attribute);
+			template.addAttribute(attribute);
 		}
-		template.setAttributes(attributeList);
 		return template;
 	}
 
@@ -66,10 +70,14 @@ public class Import {
 	 * @return 记录条数
 	 */
 	public static int getDataCountFromExcel(Workbook workbook, int sheetNumber) {
+		if (workbook == null)
+			return 0;
+		if (sheetNumber < 0)
+			sheetNumber = 0;
 		int totalValueCount = 0;
 		int count = workbook.getSheetAt(sheetNumber).getLastRowNum();
 		if (count == 6) {
-			String checkCellValue = Common.getCellValue(workbook.getSheetAt(sheetNumber), 6, 2);
+			String checkCellValue = Common.getCellValue(workbook.getSheetAt(sheetNumber), 2, 6);
 			if (checkCellValue == null || checkCellValue.equals("")) {
 				totalValueCount = 0;
 			}
@@ -84,30 +92,39 @@ public class Import {
 	 *
 	 * @param workbook    表格
 	 * @param sheetNumber 工作簿编号
-	 * @param beginRow    读取起始行
+	 * @param beginRow    读取起始行（begin from 0）
 	 * @param readSize    一次读取的行数
 	 * @return 具体数据列表
 	 */
 	public static List<Template> getDataFromExcel(Workbook workbook, int sheetNumber, int beginRow,
 			int readSize) {
 		List<Template> templateList = new ArrayList<>();
-		if (beginRow < 6) {
-			logger.warn("Insert position must above 7(6+1)!");
+		if (workbook == null)
+			return templateList;
+		if (sheetNumber < 0)
+			sheetNumber = 0;
+		if (beginRow < 0) {
+			logger.warn("Read position must above 0!");
+			return templateList;
+		}
+		if (readSize < 0) {
+			logger.warn("Read size must not below 0!");
 			return templateList;
 		}
 		Template template = getTemplateFromExcel(workbook, sheetNumber);
 		Sheet sheet = workbook.getSheetAt(sheetNumber);
 		for (int i = 0; i < readSize; i++) {
-			String value = Common.getCellValue(sheet, i + beginRow, 2);
+			String value = Common.getCellValue(sheet, 2, i + beginRow + 6);
 			if ((value == null) || (value.equals(""))) {
 				break;
 			}
 			Template data = new Template();
 			data.setName(template.getName());
+			data.setJavaClassName(template.getJavaClassName());
 			data.setAttributes(template.getAttributes());
 			List<String> attrValues = new ArrayList<>();
 			for (int j = 0; j < data.getAttributes().size(); j++) {
-				attrValues.add(Common.getCellValue(sheet, i + beginRow, j + 2));
+				attrValues.add(Common.getCellValue(sheet, j + 2, i + beginRow + 6));
 			}
 			data.setAttrValues(attrValues);
 			templateList.add(data);

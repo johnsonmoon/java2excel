@@ -40,7 +40,7 @@ public class AnnotationUtilsTest {
 		for (Field field : teacher.getClass().getDeclaredFields()) {
 			if (AnnotationUtils.hasAnnotationAttribute(field)) {
 				Attribute attribute = AnnotationUtils.getAnnotationAttribute(field);
-				System.out.println(attribute.attrCode() + " " + attribute.attrName() + " " + attribute.attrType() + " "
+				System.out.println(attribute.attrName() + " " + attribute.attrType() + " "
 						+ attribute.formatInfo()
 						+ " " + attribute.defaultValue()
 						+ " " + attribute.unit());

@@ -65,7 +65,7 @@ public class Writer {
 	 * @param excelFilepathName excel file path name
 	 * @return
 	 */
-	public boolean writeExcelData(List<?> tList, String excelFilepathName) {
+	public boolean writeExcelDataAll(List<?> tList, String excelFilepathName) {
 		if (tList == null || tList.isEmpty())
 			return false;
 		generateTemplate(tList.get(0).getClass());
@@ -77,7 +77,7 @@ public class Writer {
 			workbook = new XSSFWorkbook();
 			if (!Export.createExcel(workbook, 0, template, this.templateLanguage))
 				return false;
-			if (!Export.insertExcelData(workbook, 0, 6, generateData(tList)))
+			if (!Export.insertExcelData(workbook, 0, 0, generateData(tList)))
 				return false;
 			if (!Common.writeFileToDisk(workbook, file))
 				return false;
@@ -103,6 +103,7 @@ public class Writer {
 	private void generateTemplateWithReflectionOnly(Class<?> clazz) {
 		this.template = new Template();
 		template.setName(ReflectionUtils.getClassNameShort(clazz));
+		template.setJavaClassName(ReflectionUtils.getClassNameEntire(clazz));
 		for (Field field : ReflectionUtils.getFieldsUnStaticUnFinal(clazz)) {
 			Attribute attribute = new Attribute();
 			attribute.setAttrCode(field.getName());
@@ -122,6 +123,7 @@ public class Writer {
 		if (templateAnnotation == null)
 			return;
 		template.setName(templateAnnotation.name());
+		template.setJavaClassName(ReflectionUtils.getClassNameEntire(clazz));
 		for (Field field : ReflectionUtils.getFieldsAll(clazz)) {
 			if (!AnnotationUtils.hasAnnotationAttribute(field))
 				continue;
@@ -130,7 +132,7 @@ public class Writer {
 			if (attributeAnnotation == null)
 				continue;
 			Attribute attribute = new Attribute();
-			attribute.setAttrCode(StringUtils.replaceEmptyToNull(attributeAnnotation.attrCode()));
+			attribute.setAttrCode(field.getName());
 			attribute.setAttrName(StringUtils.replaceEmptyToNull(attributeAnnotation.attrName()));
 			attribute.setAttrType(StringUtils.replaceEmptyToNull(attributeAnnotation.attrType()));
 			attribute.setFormatInfo(StringUtils.replaceEmptyToNull(attributeAnnotation.formatInfo()));
@@ -147,6 +149,7 @@ public class Writer {
 		for (Object t : tList) {
 			Template template = new Template();
 			template.setName(this.template.getName());
+			template.setJavaClassName(this.template.getJavaClassName());
 			template.setAttributes(this.template.getAttributes());
 			for (Attribute attribute : template.getAttributes()) {
 				Object value = ReflectionUtils.getFieldValue(t, attribute.getAttrCode());

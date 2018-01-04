@@ -14,13 +14,6 @@ import java.lang.annotation.Target;
 @Target({ ElementType.FIELD })
 public @interface Attribute {
 	/**
-	 * {@link xuyihao.java2excel.core.entity.model.Attribute#attrCode}
-	 *
-	 * @return
-	 */
-	String attrCode();
-
-	/**
 	 * {@link xuyihao.java2excel.core.entity.model.Attribute#attrName}
 	 *
 	 * @return

@@ -61,7 +61,7 @@ public class Common {
 	 * 创建单元格格式
 	 *
 	 * @param workbook      excel表格
-	 * @param cellStyleType 格式类型
+	 * @param cellStyleType 格式类型 {Common#CELL_STYLE_TYPE_*}
 	 * @return
 	 */
 	public static CellStyle createCellStyle(Workbook workbook, int cellStyleType) {
@@ -161,11 +161,11 @@ public class Common {
 	 * 获取单元格值
 	 *
 	 * @param sheet  工作表
-	 * @param row    行
 	 * @param column 列
+	 * @param row    行
 	 * @return 单元格值
 	 */
-	public static String getCellValue(Sheet sheet, int row, int column) {
+	public static String getCellValue(Sheet sheet, int column, int row) {
 		String cellValue;
 		Row targetRow = sheet.getRow(row);
 		if (targetRow == null) {

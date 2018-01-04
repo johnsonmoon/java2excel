@@ -6,6 +6,7 @@ import xuyihao.java2excel.core.entity.dict.Meta;
 import xuyihao.java2excel.core.entity.model.Template;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
+import xuyihao.java2excel.util.StringUtils;
 
 import java.util.*;
 
@@ -54,7 +55,7 @@ public class Export {
 			sheet.addMergedRegion(cellRangeAddress1);
 			sheet.addMergedRegion(cellRangeAddress3);
 			// 写入固定数据
-			Common.insertCellValue(sheet, 0, 0, template.getName(),
+			Common.insertCellValue(sheet, 0, 0, template.getJavaClassName(),
 					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_HEADER_HIDE));
 			Common.insertCellValue(sheet, 1, 0, template.getName(),
 					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_TITLE));
@@ -112,7 +113,7 @@ public class Export {
 	 *
 	 * @param workbook      工作簿
 	 * @param sheetNum      表格编号
-	 * @param startRowNum   写入数据的起始行（第一次写入应当从第七行即startRowNum=6开始）
+	 * @param startRowNum   写入数据的起始行 (begin from 0)
 	 * @param templatesList 数据列表
 	 * @return true 成功, false 失败
 	 */
@@ -122,24 +123,27 @@ public class Export {
 		try {
 			if (templatesList == null || templatesList.isEmpty())
 				return false;
+
 			if (workbook == null) {
 				return false;
 			}
+
 			Sheet sheet = workbook.getSheetAt(sheetNum);
 			if (sheet == null) {
 				return false;
 			}
+
 			String identifyString = Common.getCellValue(sheet, 0, 0);
-			if (!identifyString.equals(templatesList.get(0).getName())) {
+			if (!identifyString.equals(StringUtils.replaceNullToEmpty(templatesList.get(0).getJavaClassName()))) {
 				return false;
 			}
 
-			if (startRowNum < 6) {
-				logger.warn("Data insert must above row 7(6+1)");
+			if (startRowNum < 0) {
+				logger.warn("Data insert must above 0!");
 			}
 			for (int j = 0; j < templatesList.size(); j++) {
 				for (int i = 0; i < templatesList.get(j).getAttrValues().size(); i++) {
-					Common.insertCellValue(sheet, i + 2, j + startRowNum, templatesList.get(j).getAttrValues().get(i),
+					Common.insertCellValue(sheet, i + 2, j + startRowNum + 6, templatesList.get(j).getAttrValues().get(i),
 							Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_VALUE));
 				}
 			}

@@ -10,6 +10,7 @@ import java.util.List;
  */
 public class Template {
 	private String name;//模型名称(Sheet名称)
+	private String javaClassName;//对应java实体类全称
 	private List<Attribute> attributes;//模型的属性
 	private List<String> attrValues;//模型的属性值
 
@@ -28,6 +29,14 @@ public class Template {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getJavaClassName() {
+		return javaClassName;
+	}
+
+	public void setJavaClassName(String javaClassName) {
+		this.javaClassName = javaClassName;
 	}
 
 	public List<Attribute> getAttributes() {
@@ -76,6 +85,7 @@ public class Template {
 	public String toString() {
 		return "Template{" +
 				"name='" + name + '\'' +
+				", javaClassName='" + javaClassName + '\'' +
 				", attributes=" + attributes +
 				", attrValues=" + attrValues +
 				'}';
