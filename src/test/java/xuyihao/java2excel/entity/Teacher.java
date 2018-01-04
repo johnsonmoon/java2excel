@@ -27,6 +27,8 @@ public class Teacher {
 	private String email;
 	@Attribute(attrCode = "address", attrName = "ADDRESS", attrType = "List<String>", formatInfo = "[\"a\", \"b\", ...]")
 	private List<String> address;
+	@Attribute(attrCode = "avgScore", attrName = "AVG_SCORE", attrType = "Integer", formatInfo = "text")
+	private int avgScore;
 
 	public String getId() {
 		return id;
@@ -68,6 +70,14 @@ public class Teacher {
 		this.address = address;
 	}
 
+	public int getAvgScore() {
+		return avgScore;
+	}
+
+	public void setAvgScore(int avgScore) {
+		this.avgScore = avgScore;
+	}
+
 	@Override
 	public String toString() {
 		return "Teacher{" +
@@ -76,6 +86,7 @@ public class Teacher {
 				", phoneNumber='" + phoneNumber + '\'' +
 				", email='" + email + '\'' +
 				", address=" + address +
+				", avgScore=" + avgScore +
 				'}';
 	}
 }

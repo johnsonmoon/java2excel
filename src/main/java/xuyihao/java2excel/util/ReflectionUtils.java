@@ -13,12 +13,42 @@ import java.util.List;
 public class ReflectionUtils {
 	/**
 	 * get class type by name (entire name)
+	 * <p>
+	 * <pre>
+	 *     For basic types :
+	 *      int ---> {@link java.lang.Integer}
+	 *      float ---> {@link java.lang.Float}
+	 *      byte ---> {@link java.lang.Byte}
+	 *      double ---> {@link java.lang.Double}
+	 *      boolean ---> {@link java.lang.Boolean}
+	 *      char ---> {@link java.lang.Character}
+	 *      long ---> {@link java.lang.Long}
+	 *      short ---> {@link java.lang.Short}
+	 * </pre>
 	 *
 	 * @param name entire name of a type
 	 * @return class type
 	 */
 	public static Class<?> getClassByName(String name) {
 		Class<?> clazz;
+		switch (name) {
+		case "int":
+			return Integer.class;
+		case "float":
+			return Float.class;
+		case "byte":
+			return Byte.class;
+		case "double":
+			return Double.class;
+		case "boolean":
+			return Boolean.class;
+		case "char":
+			return Character.class;
+		case "long":
+			return Long.class;
+		case "short":
+			return Short.class;
+		}
 		try {
 			clazz = Class.forName(name);
 		} catch (Exception e) {

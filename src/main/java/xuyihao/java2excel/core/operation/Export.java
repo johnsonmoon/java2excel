@@ -97,7 +97,7 @@ public class Export {
 				Common.insertCellValue(sheet, i + 2, 4, formatInfo,
 						Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER));
 				Common.insertCellValue(sheet, i + 2, 5, defaultValue,
-						Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_COLUMN_HEADER));// 默认值
+						Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER));// 默认值
 			}
 			flag = true;
 		} catch (Exception e) {

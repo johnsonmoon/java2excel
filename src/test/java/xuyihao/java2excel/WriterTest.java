@@ -1,6 +1,5 @@
 package xuyihao.java2excel;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import xuyihao.java2excel.entity.Student;
 import xuyihao.java2excel.entity.Teacher;
@@ -13,36 +12,53 @@ import java.util.List;
  * Created by xuyh at 2018/1/2 14:00.
  */
 public class WriterTest {
-	@Ignore
-	public void testExcelTemplate() {
-		Writer writer = new Writer();
-		writer.setTemplateLanguage("zh_CN");
-		System.out.println(writer.writeExcelTemplate(Student.class, "D:\\test.xlsx"));
-	}
+    @Test
+    public void testExcelTemplate() {
+        Writer writer = new Writer();
+        writer.setTemplateLanguage("zh_CN");
+        System.out.println(writer.writeExcelTemplate(Student.class, "D:\\studentTemplate.xlsx"));
+    }
 
-	@Ignore
-	public void testExcelData() {
-		Writer writer = new Writer();
-		writer.setTemplateLanguage("zh_CN");
+    @Test
+    public void testExcelData() {
+        Writer writer = new Writer();
+        writer.setTemplateLanguage("zh_CN");
 
-		List<Student> students = new ArrayList<>();
-		for (int i = 0; i < 10; i++) {
-			Student student = new Student();
-			student.setName("name" + (i + 1));
-			student.setEmail("email" + (i + 1));
-			student.setNumber("number" + (i + 1));
-			student.setPhoneNumber("phoneNumber" + (i + 1));
-			student.setAddresses(Arrays.asList("address0" + (i + 1), "address1" + (i + 1)));
-			students.add(student);
-		}
+        List<Student> students = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            Student student = new Student();
+            student.setName("name" + (i + 1));
+            student.setEmail("email" + (i + 1));
+            student.setNumber("number" + (i + 1));
+            student.setPhoneNumber("phoneNumber" + (i + 1));
+            student.setAddresses(Arrays.asList("address0" + (i + 1), "address1" + (i + 1)));
+            students.add(student);
+        }
 
-		System.out.println(writer.writeExcelData(students, "D:\\test.xlsx"));
-	}
+        System.out.println(writer.writeExcelData(students, "D:\\studentData.xlsx"));
+    }
 
-	@Test
-	public void testExcelTemplateWithAnnotation() {
-		Writer writer = new Writer();
-		writer.setTemplateLanguage("zh_CN");
-		System.out.println(writer.writeExcelTemplate(Teacher.class, "D:\\teacher.xlsx"));
-	}
+    @Test
+    public void testExcelTemplateWithAnnotation() {
+        Writer writer = new Writer();
+        writer.setTemplateLanguage("zh_CN");
+        System.out.println(writer.writeExcelTemplate(Teacher.class, "D:\\teacherTemplate.xlsx"));
+    }
+
+    @Test
+    public void testExcelDataWithAnnotation() {
+        Writer writer = new Writer();
+        writer.setTemplateLanguage("zh_CN");
+        List<Teacher> teachers = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            Teacher teacher = new Teacher();
+            teacher.setId("testId" + i);
+            teacher.setName("testName" + i);
+            teacher.setEmail("testEmail@xxx.com");
+            teacher.setPhoneNumber("111111111" + i);
+            teacher.setAddress(Arrays.asList("testAddress1" + i, "testAddress2" + i, "testAddress3" + i));
+            teachers.add(teacher);
+        }
+        System.out.println(writer.writeExcelData(teachers, "D:\\teacherData.xlsx"));
+    }
 }

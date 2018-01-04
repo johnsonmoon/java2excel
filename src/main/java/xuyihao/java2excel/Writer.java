@@ -22,14 +22,6 @@ public class Writer {
 	private Template template;
 	private String templateLanguage = "en_US";
 
-	public Template getTemplate() {
-		return template;
-	}
-
-	public void setTemplate(Template template) {
-		this.template = template;
-	}
-
 	public String getTemplateLanguage() {
 		return templateLanguage;
 	}
@@ -165,7 +157,18 @@ public class Writer {
 		return templates;
 	}
 
-	private static String formatValue(Object object) {
+	/**
+	 * Format object to String instance.
+	 * <p>
+	 * <pre>
+	 *     Integer, Float, Byte, Double, Boolean, Character, Long, Short, String ---> String instance
+	 *     Other type ---> json format String instance
+	 * </pre>
+	 *
+	 * @param object object to be format
+	 * @return formatted String instance
+	 */
+	public static String formatValue(Object object) {
 		if (object == null)
 			return "";
 		if (object instanceof Integer

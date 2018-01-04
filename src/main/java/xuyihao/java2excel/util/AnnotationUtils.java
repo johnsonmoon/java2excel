@@ -57,6 +57,16 @@ public class AnnotationUtils {
 	}
 
 	/**
+	 * get declared annotations of the given field
+	 *
+	 * @param field given field
+	 * @return annotations
+	 */
+	public static Annotation[] getFieldAnnotations(Field field) {
+		return field.getAnnotations();
+	}
+
+	/**
 	 * Whether the given field has annotation @Attribute
 	 *
 	 * @param field given field

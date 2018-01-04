@@ -7,8 +7,24 @@ import xuyihao.java2excel.util.JsonUtils;
  */
 public class Reader {
 
-	private static <T> Object formatValue(String value, Class<T> clazz) {
+	/**
+	 * Format string instance into given type object.
+	 * <p>
+	 * <pre>
+	 *     from String format   <--- Integer, Float, Byte, Double, Boolean, Character, Long, Short, String
+	 *     from json format   <--- Other type
+	 * </pre>
+	 *
+	 * @param value String instance to be parsed
+	 * @param clazz object type String instance to be parsed
+	 * @param <T>   type
+	 * @return object parsed
+	 */
+	public static <T> Object formatValue(String value, Class<T> clazz) {
 		if (value == null)
+			return null;
+
+		if (clazz == null)
 			return null;
 
 		if (clazz == Float.class) {

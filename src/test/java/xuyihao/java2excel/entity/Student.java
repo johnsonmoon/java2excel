@@ -14,6 +14,8 @@ public class Student {
 	private String number;
 	private String phoneNumber;
 	private String email;
+	private int score;
+	private double avgScore;
 	private List<String> addresses;
 
 	public Student() {
@@ -66,6 +68,22 @@ public class Student {
 		this.addresses = addresses;
 	}
 
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+
+	public double getAvgScore() {
+		return avgScore;
+	}
+
+	public void setAvgScore(double avgScore) {
+		this.avgScore = avgScore;
+	}
+
 	@Override
 	public String toString() {
 		return "Student{" +
@@ -73,6 +91,8 @@ public class Student {
 				", number='" + number + '\'' +
 				", phoneNumber='" + phoneNumber + '\'' +
 				", email='" + email + '\'' +
+				", score=" + score +
+				", avgScore=" + avgScore +
 				", addresses=" + addresses +
 				'}';
 	}
