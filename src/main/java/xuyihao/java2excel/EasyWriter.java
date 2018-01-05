@@ -7,10 +7,15 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 /**
+ * EasyWriter
+ *
+ * <pre>
+ *  Quickly write information into excel file at sheet 0.
+ * </pre>
  * Created by Xuyh at 2017/12/30 下午 03:15.
  */
-public class QuickWriter extends AbstractWriter {
-	private static Logger logger = LoggerFactory.getLogger(QuickWriter.class);
+public class EasyWriter extends AbstractWriter {
+	private static Logger logger = LoggerFactory.getLogger(EasyWriter.class);
 
 	/**
 	 * Write excel template file using type clazz.

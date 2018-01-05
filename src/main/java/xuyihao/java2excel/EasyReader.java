@@ -11,10 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * EasyReader
+ *
+ * <pre>
+ * 	Quickly read excel file at sheet 0.
+ * </pre>
  * Created by Xuyh at 2017/12/30 下午 03:15.
  */
-public class QuickReader extends AbstractReader {
-	private static Logger logger = LoggerFactory.getLogger(QuickReader.class);
+public class EasyReader extends AbstractReader {
+	private static Logger logger = LoggerFactory.getLogger(EasyReader.class);
 
 	/**
 	 * read type info from a given excel file path (if type info exists)

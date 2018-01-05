@@ -12,10 +12,10 @@ import java.util.List;
 /**
  * Created by xuyh at 2018/1/4 10:00.
  */
-public class QuickReaderTest {
+public class EasyReaderTest {
 	@Test
 	public void testReadStudentClassType() {
-		QuickReader reader = new QuickReader();
+		EasyReader reader = new EasyReader();
 		Class<?> clazz = reader.readExcelJavaClass("D:\\studentTemplate.xlsx");
 		Assert.assertNotNull(clazz);
 		System.out.println(clazz.getName());
@@ -23,7 +23,7 @@ public class QuickReaderTest {
 
 	@Test
 	public void testReadStudentTemplate() {
-		QuickReader reader = new QuickReader();
+		EasyReader reader = new EasyReader();
 		Template template = reader.readExcelTemplate("D:\\studentTemplate.xlsx");
 		Assert.assertNotNull(template);
 		System.out.println(JsonUtils.obj2JsonStr(template));
@@ -31,7 +31,7 @@ public class QuickReaderTest {
 
 	@Test
 	public void testReadTeacherTemplate() {
-		QuickReader reader = new QuickReader();
+		EasyReader reader = new EasyReader();
 		Template template = reader.readExcelTemplate("D:\\teacherTemplate.xlsx");
 		Assert.assertNotNull(template);
 		System.out.println(JsonUtils.obj2JsonStr(template));
@@ -39,7 +39,7 @@ public class QuickReaderTest {
 
 	@Test
 	public void testReadStudentTemplateData() {
-		QuickReader reader = new QuickReader();
+		EasyReader reader = new EasyReader();
 		List<Template> templates = reader.readExcelDataAll("D:\\studentData.xlsx");
 		Assert.assertNotNull(templates);
 		System.out.println(JsonUtils.obj2JsonStr(templates));
@@ -47,7 +47,7 @@ public class QuickReaderTest {
 
 	@Test
 	public void testReadTeacherTemplateData() {
-		QuickReader reader = new QuickReader();
+		EasyReader reader = new EasyReader();
 		List<Template> templates = reader.readExcelDataAll("D:\\teacherData.xlsx");
 		Assert.assertNotNull(templates);
 		System.out.println(JsonUtils.obj2JsonStr(templates));
@@ -55,7 +55,7 @@ public class QuickReaderTest {
 
 	@Test
 	public void testReadTeacherData() {
-		QuickReader reader = new QuickReader();
+		EasyReader reader = new EasyReader();
 		List<Teacher> teachers = reader.readExcelDataAll("D:\\teacherData.xlsx", Teacher.class);
 		Assert.assertNotNull(teachers);
 		System.out.println(JsonUtils.obj2JsonStr(teachers));
@@ -63,7 +63,7 @@ public class QuickReaderTest {
 
 	@Test
 	public void testReadStudentData() {
-		QuickReader reader = new QuickReader();
+		EasyReader reader = new EasyReader();
 		List<Student> students = reader.readExcelDataAll("D:\\studentData.xlsx", Student.class);
 		Assert.assertNotNull(students);
 		System.out.println(JsonUtils.obj2JsonStr(students));
