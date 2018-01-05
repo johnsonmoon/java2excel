@@ -1,7 +1,6 @@
 package xuyihao.java2excel.util;
 
 import org.junit.Test;
-import xuyihao.java2excel.Reader;
 import xuyihao.java2excel.entity.BaseTypes;
 import xuyihao.java2excel.entity.School;
 import xuyihao.java2excel.entity.Student;
@@ -74,7 +73,7 @@ public class ReflectionUtilsTest {
 
 		try {
 			Class<?> clazz = ReflectionUtils.getClassByName(className);
-			double var = (double) Reader.formatValue(value, clazz);
+			double var = (double) ValueUtils.parseValue(value, clazz);
 			System.out.println(var);
 		} catch (Exception e) {
 			System.out.println("class not found");
