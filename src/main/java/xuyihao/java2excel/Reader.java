@@ -16,8 +16,8 @@ import java.util.Map;
  * <p>
  * <pre>
  * 	Read excel file at multiple sheets.
- * 
- * 	1.invoke readExcelTemplate to read template info from excel file. {@link Reader#readExcelTemplate(int)}
+ *
+ * 	1.invoke readExcelModel to read model info from excel file. {@link Reader#readExcelModel(int)}
  * 	2.invoke readExcelJavaClass to read type info from excel file. {@link Reader#readExcelJavaClass(int)}
  * 	3.invoke readExcelDataCount to read data count from excel file. {@link Reader#readExcelDataCount(int)}
  * 	4.invoke readExcelData to read data from excel file. {@link Reader#readExcelData(int, int)} {@link Reader#readExcelData(int, Model[])} {@link Reader#readExcelData(int, int, Class)} {@link Reader#readExcelData(int, Object[], Class)}
@@ -31,7 +31,7 @@ public class Reader extends AbstractReader {
 	private static Logger logger = LoggerFactory.getLogger(Reader.class);
 	private Workbook workbook;
 	private String filePathName;
-	private Map<Integer, Integer> templateSheetCurrentRowNumberMap = new HashMap<>();
+	private Map<Integer, Integer> modelSheetCurrentRowNumberMap = new HashMap<>();
 	private Map<Integer, Integer> typeSheetCurrentRowNumberMap = new HashMap<>();
 
 	public Reader(String filePathName) {
@@ -39,20 +39,20 @@ public class Reader extends AbstractReader {
 		openWorkBook(filePathName);
 	}
 
-	private void setTemplateSheetCurrentRowNumber(int sheetNumber, int currentRowNumber) {
-		templateSheetCurrentRowNumberMap.put(sheetNumber, currentRowNumber);
+	private void setModelSheetCurrentRowNumber(int sheetNumber, int currentRowNumber) {
+		modelSheetCurrentRowNumberMap.put(sheetNumber, currentRowNumber);
 	}
 
-	private Integer getTemplateSheetCurrentRowNumber(int sheetNumber) {
-		if (!templateSheetCurrentRowNumberMap.containsKey(sheetNumber)) {
-			templateSheetCurrentRowNumberMap.put(sheetNumber, 0);
+	private Integer getModelSheetCurrentRowNumber(int sheetNumber) {
+		if (!modelSheetCurrentRowNumberMap.containsKey(sheetNumber)) {
+			modelSheetCurrentRowNumberMap.put(sheetNumber, 0);
 			return 0;
 		} else {
-			return templateSheetCurrentRowNumberMap.get(sheetNumber);
+			return modelSheetCurrentRowNumberMap.get(sheetNumber);
 		}
 	}
 
-	private void setTyepSheetCurrentRowNumber(int sheetNumber, int currentRowNumber) {
+	private void setTypeSheetCurrentRowNumber(int sheetNumber, int currentRowNumber) {
 		typeSheetCurrentRowNumberMap.put(sheetNumber, currentRowNumber);
 	}
 
@@ -86,17 +86,17 @@ public class Reader extends AbstractReader {
 	}
 
 	/**
-	 * Read template info at sheet sheetNumber.
+	 * Read model info at sheet sheetNumber.
 	 *
 	 * @param sheetNumber sheet number
-	 * @return template (nullable)
+	 * @return model instance (nullable)
 	 */
-	public Model readExcelTemplate(int sheetNumber) {
+	public Model readExcelModel(int sheetNumber) {
 		Model model = null;
 		try {
 			if (workbook == null)
 				openWorkBook(filePathName);
-			model = readTemplate(workbook, sheetNumber);
+			model = readModel(workbook, sheetNumber);
 		} catch (Exception e) {
 			logger.warn(e.getMessage(), e);
 		} finally {
@@ -124,11 +124,11 @@ public class Reader extends AbstractReader {
 	}
 
 	/**
-	 * Read template data at sheet sheetNumber.
+	 * Read model data at sheet sheetNumber.
 	 *
 	 * @param sheetNumber sheet number
 	 * @param readSize    given size to read
-	 * @return template list of given size
+	 * @return model list of given size
 	 */
 	public List<Model> readExcelData(int sheetNumber, int readSize) {
 		List<Model> models = new ArrayList<>();
@@ -139,9 +139,9 @@ public class Reader extends AbstractReader {
 		try {
 			if (workbook == null)
 				openWorkBook(filePathName);
-			int currentRowNumber = getTemplateSheetCurrentRowNumber(sheetNumber);
+			int currentRowNumber = getModelSheetCurrentRowNumber(sheetNumber);
 			models.addAll(readData(workbook, sheetNumber, currentRowNumber, readSize));
-			setTemplateSheetCurrentRowNumber(sheetNumber, currentRowNumber + models.size());
+			setModelSheetCurrentRowNumber(sheetNumber, currentRowNumber + models.size());
 		} catch (Exception e) {
 			logger.warn(e.getMessage(), e);
 		}
@@ -149,10 +149,10 @@ public class Reader extends AbstractReader {
 	}
 
 	/**
-	 * Read template data at sheet sheetNumber and filling data into given template array.
+	 * Read model data at sheet sheetNumber and filling data into given model array.
 	 *
 	 * @param sheetNumber sheet number
-	 * @param models   given template array [not null]
+	 * @param models      given model array [not null]
 	 * @return read size
 	 */
 	public int readExcelData(int sheetNumber, Model[] models) {
@@ -165,13 +165,13 @@ public class Reader extends AbstractReader {
 			if (workbook == null)
 				openWorkBook(filePathName);
 			int arrayLength = models.length;
-			int currentRowNumber = getTemplateSheetCurrentRowNumber(sheetNumber);
+			int currentRowNumber = getModelSheetCurrentRowNumber(sheetNumber);
 			List<Model> modelList = readData(workbook, sheetNumber, currentRowNumber, arrayLength);
 			if (modelList == null)
 				return readCount;
 			readCount = modelList.size();
 			if (readCount != 0)
-				setTemplateSheetCurrentRowNumber(sheetNumber, currentRowNumber + readCount);
+				setModelSheetCurrentRowNumber(sheetNumber, currentRowNumber + readCount);
 			for (int i = 0; i < readCount; i++) {
 				models[i] = modelList.get(i);
 			}
@@ -200,7 +200,7 @@ public class Reader extends AbstractReader {
 				openWorkBook(filePathName);
 			int currentRowNumber = getTypeSheetCurrentRowNumber(sheetNumber);
 			tList.addAll(readData(clazz, workbook, sheetNumber, currentRowNumber, readSize));
-			setTyepSheetCurrentRowNumber(sheetNumber, currentRowNumber + tList.size());
+			setTypeSheetCurrentRowNumber(sheetNumber, currentRowNumber + tList.size());
 		} catch (Exception e) {
 			logger.warn(e.getMessage());
 		}
@@ -211,7 +211,7 @@ public class Reader extends AbstractReader {
 	 * Read type data at sheet sheetNumber and filling data into given type data array.
 	 *
 	 * @param sheetNumber sheet number
-	 * @param ts          given template array [not null]
+	 * @param ts          given model array [not null]
 	 * @param clazz       given type
 	 * @return read size
 	 */
@@ -231,7 +231,7 @@ public class Reader extends AbstractReader {
 				return readCount;
 			readCount = tList.size();
 			if (readCount != 0)
-				setTyepSheetCurrentRowNumber(sheetNumber, currentRowNumber + readCount);
+				setTypeSheetCurrentRowNumber(sheetNumber, currentRowNumber + readCount);
 			for (int i = 0; i < readCount; i++) {
 				ts[i] = tList.get(i);
 			}
@@ -265,12 +265,12 @@ public class Reader extends AbstractReader {
 	 */
 	public boolean refresh() {
 		try {
-			for (Integer integer : templateSheetCurrentRowNumberMap.keySet()) {
-				setTemplateSheetCurrentRowNumber(integer, 0);
+			for (Integer integer : modelSheetCurrentRowNumberMap.keySet()) {
+				setModelSheetCurrentRowNumber(integer, 0);
 			}
 
 			for (Integer integer : typeSheetCurrentRowNumberMap.keySet()) {
-				setTyepSheetCurrentRowNumber(integer, 0);
+				setTypeSheetCurrentRowNumber(integer, 0);
 			}
 			return true;
 		} catch (Exception e) {

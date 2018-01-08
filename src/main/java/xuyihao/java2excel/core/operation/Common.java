@@ -27,11 +27,11 @@ public class Common {
 	public static final int CELL_STYLE_TYPE_VALUE = 8;
 
 	/**
-	 * 创建ARIAL字体
+	 * create ARIAL font
 	 *
-	 * @param workbook excel表格
-	 * @param size     字体大小
-	 * @return
+	 * @param workbook excel workbook
+	 * @param size     font size
+	 * @return Font
 	 */
 	public static Font createFontArial(Workbook workbook, int size) {
 		Font font = workbook.createFont();
@@ -42,11 +42,11 @@ public class Common {
 	}
 
 	/**
-	 * 创建ARIAL字体
+	 * create ARIAL font with white color
 	 *
-	 * @param workbook excel表格
-	 * @param size     字体大小
-	 * @return
+	 * @param workbook excel workbook
+	 * @param size     font size
+	 * @return Font
 	 */
 	public static Font createFontWhiteArial(Workbook workbook, int size) {
 		Font font = workbook.createFont();
@@ -58,11 +58,11 @@ public class Common {
 	}
 
 	/**
-	 * 创建单元格格式
+	 * create cell style
 	 *
-	 * @param workbook      excel表格
-	 * @param cellStyleType 格式类型 {Common#CELL_STYLE_TYPE_*}
-	 * @return
+	 * @param workbook      excel workbook
+	 * @param cellStyleType {Common#CELL_STYLE_TYPE_*}
+	 * @return cell style
 	 */
 	public static CellStyle createCellStyle(Workbook workbook, int cellStyleType) {
 		CellStyle cellStyleGeneral = workbook.createCellStyle();
@@ -137,13 +137,13 @@ public class Common {
 	}
 
 	/**
-	 * 插入单元格数据
+	 * insert value into cell
 	 *
-	 * @param sheet     工作表
-	 * @param column    列
-	 * @param row       行
-	 * @param value     值
-	 * @param cellStyle 单元格样式风格
+	 * @param sheet     sheet
+	 * @param column    column
+	 * @param row       row
+	 * @param value     value
+	 * @param cellStyle cell style
 	 */
 	public static void insertCellValue(Sheet sheet, int column, int row, String value, CellStyle cellStyle) {
 		Row targetRow = sheet.getRow(row);
@@ -158,12 +158,12 @@ public class Common {
 	}
 
 	/**
-	 * 获取单元格值
+	 * get value of cell
 	 *
-	 * @param sheet  工作表
-	 * @param column 列
-	 * @param row    行
-	 * @return 单元格值
+	 * @param sheet  sheet
+	 * @param column column
+	 * @param row    row
+	 * @return cell value
 	 */
 	public static String getCellValue(Sheet sheet, int column, int row) {
 		String cellValue;
@@ -198,12 +198,12 @@ public class Common {
 	}
 
 	/**
-	 * 将workbook写入磁盘
+	 * write workbook into disk file
 	 *
-	 * @param workbook excel表格
-	 * @param file     文件
+	 * @param workbook excel workbook
+	 * @param file     disk file
 	 * @return true if succeeded, false if failed
-	 * @throws Exception
+	 * @throws Exception exceptions
 	 */
 	public static boolean writeFileToDisk(Workbook workbook, File file) {
 		if (file == null || !file.exists())
@@ -232,8 +232,8 @@ public class Common {
 	/**
 	 * Close the workbook
 	 *
-	 * @param workbook excel表格
-	 * @return
+	 * @param workbook excel workbook
+	 * @return true/false
 	 */
 	public static boolean closeWorkbook(Workbook workbook) {
 		if (workbook == null)

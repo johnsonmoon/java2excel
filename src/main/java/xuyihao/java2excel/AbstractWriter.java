@@ -16,28 +16,28 @@ import java.util.List;
  * Created by xuyh at 2018/1/5 10:21.
  */
 public abstract class AbstractWriter {
-	private String templateLanguage = "en_US";
+	private String language = "en_US";
 
 	/**
-	 * Get template language
+	 * Get writer language
 	 *
 	 * @return language
 	 */
-	public String getTemplateLanguage() {
-		return templateLanguage;
+	public String getLanguage() {
+		return language;
 	}
 
 	/**
-	 * Set template language
+	 * Set writer language
 	 *
-	 * @param templateLanguage language (en_US, zh_CN .etc)
+	 * @param language language (en_US, zh_CN .etc)
 	 */
-	public void setTemplateLanguage(String templateLanguage) {
-		this.templateLanguage = templateLanguage;
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 
 	/**
-	 * Generate excel data template instance from given class.
+	 * Generate excel data model instance from given class.
 	 * <p>
 	 * <pre>
 	 *     If given class has not declared @Model or @Attribute annotations,
@@ -49,20 +49,20 @@ public abstract class AbstractWriter {
 	 * @see xuyihao.java2excel.core.entity.model.annotation.Model
 	 * @see xuyihao.java2excel.core.entity.model.annotation.Attribute
 	 */
-	public Model generateTemplate(Class<?> tClass) {
-		if (!AnnotationUtils.hasAnnotationTemplate(tClass)) {
-			return generateTemplateWithReflectionOnly(tClass);
+	public Model generateModel(Class<?> tClass) {
+		if (!AnnotationUtils.hasAnnotationModel(tClass)) {
+			return generateModelWithReflectionOnly(tClass);
 		} else {
-			return generateTemplateWithAnnotation(tClass);
+			return generateModelWithAnnotation(tClass);
 		}
 	}
 
 	/**
-	 * Generate template with name and fields of the given clazz.
+	 * Generate model with name and fields of the given clazz.
 	 *
 	 * @param clazz given clazz
 	 */
-	private Model generateTemplateWithReflectionOnly(Class<?> clazz) {
+	private Model generateModelWithReflectionOnly(Class<?> clazz) {
 		Model model = new Model();
 		model.setName(ReflectionUtils.getClassNameShort(clazz));
 		model.setJavaClassName(ReflectionUtils.getClassNameEntire(clazz));
@@ -78,18 +78,18 @@ public abstract class AbstractWriter {
 	}
 
 	/**
-	 * Generate template with declared annotations and reflection.
+	 * Generate model with declared annotations and reflection.
 	 *
 	 * @param clazz given clazz.
 	 * @see xuyihao.java2excel.core.entity.model.annotation.Model
 	 * @see xuyihao.java2excel.core.entity.model.annotation.Attribute
 	 */
-	private Model generateTemplateWithAnnotation(Class<?> clazz) {
-		if (!AnnotationUtils.hasAnnotationTemplate(clazz))
+	private Model generateModelWithAnnotation(Class<?> clazz) {
+		if (!AnnotationUtils.hasAnnotationModel(clazz))
 			return null;
 		Model model = new Model();
 		xuyihao.java2excel.core.entity.model.annotation.Model modelAnnotation = AnnotationUtils
-				.getAnnotationTemplate(clazz);
+				.getAnnotationModel(clazz);
 		if (modelAnnotation == null)
 			return null;
 		model.setName(modelAnnotation.name());
@@ -115,21 +115,21 @@ public abstract class AbstractWriter {
 	}
 
 	/**
-	 * Generate template data from given type instance list.
-	 *
+	 * Generate data from given type instance list.
+	 * <p>
 	 * <pre>
 	 * 	Attribute value. Complex data(map, list .etc) with json format.(For read data from excel into objects).
 	 * </pre>
 	 *
 	 * @param tList given type instance list.
-	 * @return template data list
+	 * @return model data list
 	 */
 	private List<Model> generateData(List<?> tList) {
 		List<Model> models = new ArrayList<>();
 		if (tList == null || tList.isEmpty())
 			return models;
 		Class<?> clazz = tList.get(0).getClass();
-		Model model = generateTemplate(clazz);
+		Model model = generateModel(clazz);
 		if (model == null)
 			return models;
 		for (Object t : tList) {
@@ -147,20 +147,20 @@ public abstract class AbstractWriter {
 	}
 
 	/**
-	 * Write template into a workbook's given sheet.
+	 * Write model into a workbook's given sheet.
 	 *
-	 * @param clazz       given clazz to generate template.
+	 * @param clazz       given clazz to generate model.
 	 * @param workbook    given workbook.
 	 * @param sheetNumber given sheet number.
 	 * @return true/false
 	 */
-	protected boolean writeTemplate(Class<?> clazz, Workbook workbook, int sheetNumber) {
-		Model model = generateTemplate(clazz);
-		return Export.createExcel(workbook, sheetNumber, model, templateLanguage);
+	protected boolean writeModel(Class<?> clazz, Workbook workbook, int sheetNumber) {
+		Model model = generateModel(clazz);
+		return Export.createExcel(workbook, sheetNumber, model, language);
 	}
 
 	/**
-	 * Write template data into a workbook's given sheet starting from given start row number.
+	 * Write data into a workbook's given sheet starting from given start row number.
 	 *
 	 * @param tList          given clazz data list
 	 * @param workbook       given workbook

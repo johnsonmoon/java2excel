@@ -2,7 +2,7 @@ package xuyihao.java2excel.util;
 
 /**
  * Utilities for excel cell value
- *
+ * <p>
  * Created by xuyh at 2018/1/5 10:30.
  */
 public class ValueUtils {

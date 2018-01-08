@@ -29,7 +29,7 @@ public abstract class AbstractReader {
 			throw new NullPointerException("workbook can not be null.");
 		if (sheetNumber < 0)
 			throw new RuntimeException("sheet number can not below 0.");
-		Model model = readTemplate(workbook, sheetNumber);
+		Model model = readModel(workbook, sheetNumber);
 		if (model == null)
 			return null;
 		String className = model.getJavaClassName();
@@ -39,24 +39,24 @@ public abstract class AbstractReader {
 	}
 
 	/**
-	 * Read template from a given workbook in sheet from a sheetNumber.
+	 * Read model from a given workbook in sheet from a sheetNumber.
 	 *
 	 * @param workbook    given workbook
 	 * @param sheetNumber given sheet number
 	 * @return Model instance
 	 * @throws Exception exceptions
 	 */
-	protected Model readTemplate(Workbook workbook, int sheetNumber) throws Exception {
+	protected Model readModel(Workbook workbook, int sheetNumber) throws Exception {
 		if (workbook == null)
 			throw new NullPointerException("workbook can not be null.");
 		if (sheetNumber < 0)
 			throw new RuntimeException("sheet number can not below 0.");
-		Model model = Import.getTemplateFromExcel(workbook, sheetNumber);
+		Model model = Import.getModelFromExcel(workbook, sheetNumber);
 		return model;
 	}
 
 	/**
-	 * Read template data from a given workbook in sheet from a sheetNumber.
+	 * Read model data from a given workbook in sheet from a sheetNumber.
 	 *
 	 * @param workbook       given workbook
 	 * @param sheetNumber    given sheet number
@@ -67,7 +67,7 @@ public abstract class AbstractReader {
 	 */
 	protected List<Model> readData(Workbook workbook, int sheetNumber, int beginRowNumber, int readSize)
 			throws Exception {
-		return readTemplates(workbook, sheetNumber, beginRowNumber, readSize);
+		return readModels(workbook, sheetNumber, beginRowNumber, readSize);
 	}
 
 	/**
@@ -83,9 +83,9 @@ public abstract class AbstractReader {
 	 */
 	protected <T> List<T> readData(Class<T> clazz, Workbook workbook, int sheetNumber, int beginRowNumber, int readSize)
 			throws Exception {
-		List<Model> modelList = readTemplates(workbook, sheetNumber, beginRowNumber, readSize);
+		List<Model> modelList = readModels(workbook, sheetNumber, beginRowNumber, readSize);
 		List<T> dataList = new ArrayList<>();
-		Model model = readTemplate(workbook, sheetNumber);
+		Model model = readModel(workbook, sheetNumber);
 		if (model == null)
 			return dataList;
 		if (model.getJavaClassName() == null || model.getJavaClassName().isEmpty())
@@ -131,7 +131,7 @@ public abstract class AbstractReader {
 		return dataList;
 	}
 
-	private List<Model> readTemplates(Workbook workbook, int sheetNumber, int beginRowNumber, int readSize)
+	private List<Model> readModels(Workbook workbook, int sheetNumber, int beginRowNumber, int readSize)
 			throws Exception {
 		if (workbook == null)
 			throw new NullPointerException("workbook can not be null.");
@@ -141,9 +141,9 @@ public abstract class AbstractReader {
 			throw new RuntimeException("beginRowNumber can not below 0.");
 		if (readSize < 0)
 			throw new RuntimeException("readSize can not below 0.");
-		Model model = readTemplate(workbook, sheetNumber);
+		Model model = readModel(workbook, sheetNumber);
 		if (model == null)
-			readTemplate(workbook, sheetNumber);
+			readModel(workbook, sheetNumber);
 		List<Model> models = new ArrayList<>();
 		models.addAll(Import.getDataFromExcel(workbook, sheetNumber, beginRowNumber, readSize));
 		return models;

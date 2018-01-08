@@ -26,7 +26,7 @@ public class AnnotationUtils {
 	 * @param clazz given class
 	 * @return true/false
 	 */
-	public static boolean hasAnnotationTemplate(Class<?> clazz) {
+	public static boolean hasAnnotationModel(Class<?> clazz) {
 		Annotation[] annotations = clazz.getAnnotations();
 		if (annotations == null || annotations.length == 0)
 			return false;
@@ -43,7 +43,7 @@ public class AnnotationUtils {
 	 * @param clazz given class
 	 * @return @Model annotation instance
 	 */
-	public static Model getAnnotationTemplate(Class<?> clazz) {
+	public static Model getAnnotationModel(Class<?> clazz) {
 		if (clazz == null)
 			return null;
 		Annotation[] annotations = clazz.getAnnotations();

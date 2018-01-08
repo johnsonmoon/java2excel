@@ -1,7 +1,7 @@
 package xuyihao.java2excel.core.entity.model;
 
 /**
- * 对象属性，对应模型中的字段，excel表头
+ * Model field
  * <p>
  * Created by Xuyh at 2016/07/22 上午 10:42.
  */
@@ -9,13 +9,13 @@ public class Attribute {
 	/**
 	 * {@link java.lang.reflect.Field#getName()}
 	 */
-	private String attrCode;//属性码
-	private String attrName;//属性名
-	private String attrType;//属性类型
-	private String formatInfo;//数据格式信息
-	private String defaultValue;//属性默认值
-	private String unit;//属性单位
-	private String javaClassName;//对应java类型名称(必须全称)
+	private String attrCode;//field code
+	private String attrName;//field name
+	private String attrType;//field type
+	private String formatInfo;//data format info
+	private String defaultValue;//field data default value
+	private String unit;//field data value unit
+	private String javaClassName;//java (class) type full name
 
 	public Attribute() {
 	}

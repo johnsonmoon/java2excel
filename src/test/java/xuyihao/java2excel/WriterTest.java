@@ -38,8 +38,8 @@ public class WriterTest {
 
 		Writer writer = new Writer("D:\\complex.xlsx");
 
-		Assert.assertTrue(writer.writeExcelTemplate(Teacher.class, 0));
-		Assert.assertTrue(writer.writeExcelTemplate(Student.class, 1));
+		Assert.assertTrue(writer.writeExcelModel(Teacher.class, 0));
+		Assert.assertTrue(writer.writeExcelModel(Student.class, 1));
 
 		for (int i = 0; i < 100; i += 10) {
 

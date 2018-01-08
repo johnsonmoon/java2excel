@@ -26,7 +26,7 @@ public class AnnotationUtilsTest {
 			System.out.println(annotation.toString());
 		}
 
-		System.out.println(AnnotationUtils.hasAnnotationTemplate(Teacher.class));
+		System.out.println(AnnotationUtils.hasAnnotationModel(Teacher.class));
 
 		for (Field field : teacher.getClass().getDeclaredFields()) {
 			System.out.println(String.format("Field: [%s] has Annotation @Attribute: [%s]", field.getName(),
@@ -35,8 +35,8 @@ public class AnnotationUtilsTest {
 
 		//-----------------------test-------------------------------
 
-		if (AnnotationUtils.hasAnnotationTemplate(teacher.getClass()))
-			System.out.println(AnnotationUtils.getAnnotationTemplate(teacher.getClass()).name());
+		if (AnnotationUtils.hasAnnotationModel(teacher.getClass()))
+			System.out.println(AnnotationUtils.getAnnotationModel(teacher.getClass()).name());
 		for (Field field : teacher.getClass().getDeclaredFields()) {
 			if (AnnotationUtils.hasAnnotationAttribute(field)) {
 				Attribute attribute = AnnotationUtils.getAnnotationAttribute(field);

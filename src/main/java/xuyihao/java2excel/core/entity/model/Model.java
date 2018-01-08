@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 数据模型
+ * Data model
  * <p>
  * Created by Xuyh at 2016/07/21 下午 01:40.
  */
 public class Model {
-	private String name;//模型名称(Sheet名称)
-	private String javaClassName;//对应java实体类全称
-	private List<Attribute> attributes;//模型的属性
-	private List<String> attrValues;//模型的属性值
+	private String name;//model name (Sheet name)
+	private String javaClassName;//java entity (class) type full name
+	private List<Attribute> attributes;//fields
+	private List<String> attrValues;//fields' value
 
 	public Model() {
 	}

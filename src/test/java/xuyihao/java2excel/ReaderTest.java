@@ -13,9 +13,9 @@ import java.util.List;
  */
 public class ReaderTest {
 	@Test
-	public void testTemplateData() {
+	public void testModelData() {
 		Reader reader = new Reader("D:\\complex.xlsx");
-		Model model = reader.readExcelTemplate(0);
+		Model model = reader.readExcelModel(0);
 		Assert.assertNotNull(model);
 		System.out.println(JsonUtils.obj2JsonStr(model));
 		int count = reader.readExcelDataCount(0);
@@ -27,7 +27,7 @@ public class ReaderTest {
 		do {
 			List<Model> models = reader.readExcelData(0, 10);
 			listCount = models.size();
-			models.forEach(template1 -> System.out.println(JsonUtils.obj2JsonStr(template1)));
+			models.forEach(model1 -> System.out.println(JsonUtils.obj2JsonStr(model1)));
 		} while (listCount > 0);
 
 		reader.refresh();

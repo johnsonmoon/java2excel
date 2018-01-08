@@ -12,21 +12,19 @@ import java.util.*;
 
 /**
  * Created by Xuyh at 2016/07/22 上午 11:36.
- * <p>
- * Excel文件导出操作工具类
  */
 public class Export {
 	private static Logger logger = LoggerFactory.getLogger(Export.class);
 
 	/**
-	 * 创建表格
+	 * create excel sheet
 	 *
-	 * @param workbook 表格
-	 * @param sheetNum 工作簿编号
-	 * @param model 数据模型
-	 * @param language 表头数据显示的语言(en_US, zh_CN, etc.)
-	 * {@link xuyihao.java2excel.core.entity.dict.Meta}
-	 * @return true 成功, false 失败
+	 * @param workbook excel workbook
+	 * @param sheetNum sheet number
+	 * @param model    model
+	 * @param language meta info language(en_US, zh_CN, etc.)
+	 *                 {@link xuyihao.java2excel.core.entity.dict.Meta}
+	 * @return true/false
 	 */
 	public static boolean createExcel(final Workbook workbook, int sheetNum, Model model, String language) {
 		boolean flag;
@@ -37,24 +35,24 @@ public class Export {
 				return false;
 			Sheet sheet = workbook.createSheet(model.getName());
 			workbook.setSheetOrder(model.getName(), sheetNum);
-			// 总列数
+			// column summary
 			int columnSize;
 			int attrValueSize = model.getAttributes().size();
 			columnSize = attrValueSize + 1;
-			// 设置属性列宽
+			// column width
 			for (int i = 0; i < columnSize; i++) {
 				sheet.setColumnWidth(i + 1, 4800);
 			}
-			// 隐藏列
+			// hide column
 			sheet.setColumnHidden(1, true);
-			// 隐藏行（设置行高为零）
+			// hide row
 			sheet.createRow(3).setZeroHeight(true);
-			// 合并单元格
+			// merge cells
 			CellRangeAddress cellRangeAddress1 = new CellRangeAddress(0, 1, 0, 0);
 			CellRangeAddress cellRangeAddress3 = new CellRangeAddress(0, 1, 1, columnSize);
 			sheet.addMergedRegion(cellRangeAddress1);
 			sheet.addMergedRegion(cellRangeAddress3);
-			// 写入固定数据
+			// insert meta info
 			Common.insertCellValue(sheet, 0, 0, model.getJavaClassName(),
 					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_HEADER_HIDE));
 			Common.insertCellValue(sheet, 1, 0, model.getName(),
@@ -109,19 +107,19 @@ public class Export {
 	}
 
 	/**
-	 * 批量插入数据
+	 * insert data
 	 *
-	 * @param workbook      工作簿
-	 * @param sheetNum      表格编号
-	 * @param startRowNum   写入数据的起始行 (begin from 0)
-	 * @param templatesList 数据列表
-	 * @return true 成功, false 失败
+	 * @param workbook    excel workbook
+	 * @param sheetNum    sheet number
+	 * @param startRowNum row number to start writing (begin from 0)
+	 * @param modelList   model data list to write with
+	 * @return true/false
 	 */
 	public static boolean insertExcelData(final Workbook workbook, int sheetNum, int startRowNum,
-			List<Model> templatesList) {
+			List<Model> modelList) {
 		boolean flag;
 		try {
-			if (templatesList == null || templatesList.isEmpty())
+			if (modelList == null || modelList.isEmpty())
 				return false;
 
 			if (workbook == null) {
@@ -134,16 +132,16 @@ public class Export {
 			}
 
 			String identifyString = Common.getCellValue(sheet, 0, 0);
-			if (!identifyString.equals(StringUtils.replaceNullToEmpty(templatesList.get(0).getJavaClassName()))) {
+			if (!identifyString.equals(StringUtils.replaceNullToEmpty(modelList.get(0).getJavaClassName()))) {
 				return false;
 			}
 
 			if (startRowNum < 0) {
 				logger.warn("Data insert must above 0!");
 			}
-			for (int j = 0; j < templatesList.size(); j++) {
-				for (int i = 0; i < templatesList.get(j).getAttrValues().size(); i++) {
-					Common.insertCellValue(sheet, i + 2, j + startRowNum + 6, templatesList.get(j).getAttrValues().get(i),
+			for (int j = 0; j < modelList.size(); j++) {
+				for (int i = 0; i < modelList.get(j).getAttrValues().size(); i++) {
+					Common.insertCellValue(sheet, i + 2, j + startRowNum + 6, modelList.get(j).getAttrValues().get(i),
 							Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_VALUE));
 				}
 			}

@@ -14,7 +14,7 @@ public class ImportTest {
 		Workbook workbook = new XSSFWorkbook(filePath);
 
 		System.out.println("Model:");
-		System.out.println(Import.getTemplateFromExcel(workbook, 0));
+		System.out.println(Import.getModelFromExcel(workbook, 0));
 
 		System.out.println("\n\nDataCount");
 		int dataCount = Import.getDataCountFromExcel(workbook, 0);

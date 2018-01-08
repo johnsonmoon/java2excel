@@ -12,20 +12,18 @@ import java.util.List;
 
 /**
  * Created by Xuyh at 2016/07/27 下午 12:48.
- * <p>
- * Excel文件操作工具类（读取excel数据）
  */
 public class Import {
 	private static Logger logger = LoggerFactory.getLogger(Import.class);
 
 	/**
-	 * 从传入的workbook指定的sheet中获取ExcelTemplate对象
+	 * Getting model info from excel workbook sheet.
 	 *
-	 * @param workbook    表格
-	 * @param sheetNumber 工作簿编号
-	 * @return ExcelTemplate对象
+	 * @param workbook    excel workbook
+	 * @param sheetNumber sheet number
+	 * @return model instance
 	 */
-	public static Model getTemplateFromExcel(Workbook workbook, int sheetNumber) {
+	public static Model getModelFromExcel(Workbook workbook, int sheetNumber) {
 		if (workbook == null)
 			return null;
 		if (sheetNumber < 0)
@@ -63,11 +61,11 @@ public class Import {
 	}
 
 	/**
-	 * 从传入的workbook指定的sheet中获取具体数据条数（记录条数）
+	 * Get data count from excel workbook sheet.
 	 *
-	 * @param workbook    表格
-	 * @param sheetNumber 工作簿编号
-	 * @return 记录条数
+	 * @param workbook    excel workbook
+	 * @param sheetNumber sheet number
+	 * @return data count
 	 */
 	public static int getDataCountFromExcel(Workbook workbook, int sheetNumber) {
 		if (workbook == null)
@@ -88,13 +86,13 @@ public class Import {
 	}
 
 	/**
-	 * 从excel表格中获取具体的数据，返回一个列表
+	 * get model data from sheet
 	 *
-	 * @param workbook    表格
-	 * @param sheetNumber 工作簿编号
-	 * @param beginRow    读取起始行（begin from 0）
-	 * @param readSize    一次读取的行数
-	 * @return 具体数据列表
+	 * @param workbook    excel workbook
+	 * @param sheetNumber sheet number
+	 * @param beginRow    row to read with（begin from 0）
+	 * @param readSize    row count to read
+	 * @return model data
 	 */
 	public static List<Model> getDataFromExcel(Workbook workbook, int sheetNumber, int beginRow,
 			int readSize) {
@@ -111,7 +109,7 @@ public class Import {
 			logger.warn("Read size must not below 0!");
 			return modelList;
 		}
-		Model model = getTemplateFromExcel(workbook, sheetNumber);
+		Model model = getModelFromExcel(workbook, sheetNumber);
 		Sheet sheet = workbook.getSheetAt(sheetNumber);
 		for (int i = 0; i < readSize; i++) {
 			String value = Common.getCellValue(sheet, 2, i + beginRow + 6);

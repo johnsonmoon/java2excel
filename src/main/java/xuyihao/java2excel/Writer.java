@@ -15,10 +15,10 @@ import java.util.Map;
  * <pre>
  * 	Write excel file at multiple sheets.
  *
- * 	1. invoke writeExcelTemplate write template information. {@link Writer#writeExcelTemplate(Class, int)}
+ * 	1. invoke writeExcelModel write model information. {@link Writer#writeExcelModel(Class, int)}
  * 	2. invoke writeExcelData append data into workbook. {@link Writer#writeExcelData(List, int)}
  * 	3. invoke flush to write workbook into disk file. {@link Writer#flush()} {@link Writer#flush(String)}
- *	4. invoke close to close writer. {@link Writer#close}
+ * 	4. invoke close to close writer. {@link Writer#close}
  * </pre>
  * <p>
  * Created by xuyh at 2018/1/5 16:52.
@@ -50,18 +50,18 @@ public class Writer extends AbstractWriter {
 	}
 
 	/**
-	 * Write template info into excel workbook at sheet number sheetNumber.
+	 * Write model info into excel workbook at sheet number sheetNumber.
 	 *
 	 * @param clazz       given type
 	 * @param sheetNumber given sheet number
 	 * @return true/false
 	 */
-	public boolean writeExcelTemplate(Class<?> clazz, int sheetNumber) {
+	public boolean writeExcelModel(Class<?> clazz, int sheetNumber) {
 		if (workbook == null)
 			return false;
 		if (sheetNumber < 0)
 			return false;
-		return writeTemplate(clazz, workbook, sheetNumber);
+		return writeModel(clazz, workbook, sheetNumber);
 	}
 
 	/**
