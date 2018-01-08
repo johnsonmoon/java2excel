@@ -11,10 +11,10 @@ import java.util.List;
 /**
  * Created by xuyh at 2018/1/8 14:25.
  */
-public class ComplexReaderTest {
+public class ReaderTest {
 	@Test
 	public void testTemplateData() {
-		ComplexReader reader = new ComplexReader("D:\\complex.xlsx");
+		Reader reader = new Reader("D:\\complex.xlsx");
 		Template template = reader.readExcelTemplate(0);
 		Assert.assertNotNull(template);
 		System.out.println(JsonUtils.obj2JsonStr(template));
@@ -46,7 +46,7 @@ public class ComplexReaderTest {
 
 	@Test
 	public void testTypeData() {
-		ComplexReader reader = new ComplexReader("D:\\complex.xlsx");
+		Reader reader = new Reader("D:\\complex.xlsx");
 		Class<?> clazz = reader.readExcelJavaClass(1);
 		Assert.assertNotNull(clazz);
 		System.out.println(JsonUtils.obj2JsonStr(clazz));

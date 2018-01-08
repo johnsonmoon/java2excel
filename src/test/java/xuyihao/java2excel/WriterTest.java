@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by xuyh at 2018/1/5 18:03.
  */
-public class ComplexWriterTest {
+public class WriterTest {
 	@Test
 	public void test() {
 		List<Teacher> teachers = new ArrayList<>();
@@ -36,10 +36,10 @@ public class ComplexWriterTest {
 			students.add(student);
 		}
 
-		ComplexWriter complexWriter = new ComplexWriter("D:\\complex.xlsx");
+		Writer writer = new Writer("D:\\complex.xlsx");
 
-		Assert.assertTrue(complexWriter.writeExcelTemplate(Teacher.class, 0));
-		Assert.assertTrue(complexWriter.writeExcelTemplate(Student.class, 1));
+		Assert.assertTrue(writer.writeExcelTemplate(Teacher.class, 0));
+		Assert.assertTrue(writer.writeExcelTemplate(Student.class, 1));
 
 		for (int i = 0; i < 100; i += 10) {
 
@@ -47,17 +47,17 @@ public class ComplexWriterTest {
 			for (int j = i; j < i + 10; j++) {
 				t.add(teachers.get(j));
 			}
-			Assert.assertTrue(complexWriter.writeExcelData(t, 0));
+			Assert.assertTrue(writer.writeExcelData(t, 0));
 
 			List<Student> s = new ArrayList<>();
 			for (int k = i; k < i + 10; k++) {
 				s.add(students.get(k));
 			}
-			Assert.assertTrue(complexWriter.writeExcelData(s, 1));
+			Assert.assertTrue(writer.writeExcelData(s, 1));
 
 		}
 
-		Assert.assertTrue(complexWriter.flush());
-		Assert.assertTrue(complexWriter.close());
+		Assert.assertTrue(writer.flush());
+		Assert.assertTrue(writer.close());
 	}
 }

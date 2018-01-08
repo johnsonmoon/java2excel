@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * ComplexReader
+ * Reader
  * <p>
  * <pre>
  * 	Read excel file at multiple sheets.
@@ -20,14 +20,14 @@ import java.util.Map;
  * <p>
  * Created by xuyh at 2018/1/5 16:52.
  */
-public class ComplexReader extends AbstractReader {
-	private static Logger logger = LoggerFactory.getLogger(ComplexReader.class);
+public class Reader extends AbstractReader {
+	private static Logger logger = LoggerFactory.getLogger(Reader.class);
 	private Workbook workbook;
 	private String filePathName;
 	private Map<Integer, Integer> templateSheetCurrentRowNumberMap = new HashMap<>();
 	private Map<Integer, Integer> typeSheetCurrentRowNumberMap = new HashMap<>();
 
-	public ComplexReader(String filePathName) {
+	public Reader(String filePathName) {
 		this.filePathName = filePathName;
 		openWorkBook(filePathName);
 	}

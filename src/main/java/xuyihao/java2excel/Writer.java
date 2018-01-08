@@ -10,28 +10,28 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * ComplexWriter
+ * Writer
  * <p>
  * <pre>
  * 	Write excel file at multiple sheets.
  *
- * 	1. invoke writeExcelTemplate write template information. {@link ComplexWriter#writeExcelTemplate(Class, int)}
- * 	2. invoke writeExcelData append data into workbook. {@link ComplexWriter#writeExcelData(List, int)}
+ * 	1. invoke writeExcelTemplate write template information. {@link Writer#writeExcelTemplate(Class, int)}
+ * 	2. invoke writeExcelData append data into workbook. {@link Writer#writeExcelData(List, int)}
  *
  * </pre>
  * <p>
  * Created by xuyh at 2018/1/5 16:52.
  */
-public class ComplexWriter extends AbstractWriter {
-	private static Logger logger = LoggerFactory.getLogger(ComplexWriter.class);
+public class Writer extends AbstractWriter {
+	private static Logger logger = LoggerFactory.getLogger(Writer.class);
 	private Workbook workbook = new XSSFWorkbook();
 	private Map<Integer, Integer> sheetCurrentRowNumberMap = new HashMap<>();
 	private String filePathName;
 
-	public ComplexWriter() {
+	public Writer() {
 	}
 
-	public ComplexWriter(String filePathName) {
+	public Writer(String filePathName) {
 		this.filePathName = filePathName;
 	}
 
