@@ -3,7 +3,7 @@ package xuyihao.java2excel.core.operation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xuyihao.java2excel.core.entity.dict.Meta;
-import xuyihao.java2excel.core.entity.model.Template;
+import xuyihao.java2excel.core.entity.model.Model;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import xuyihao.java2excel.util.StringUtils;
@@ -23,23 +23,23 @@ public class Export {
 	 *
 	 * @param workbook 表格
 	 * @param sheetNum 工作簿编号
-	 * @param template 数据模型
+	 * @param model 数据模型
 	 * @param language 表头数据显示的语言(en_US, zh_CN, etc.)
 	 * {@link xuyihao.java2excel.core.entity.dict.Meta}
 	 * @return true 成功, false 失败
 	 */
-	public static boolean createExcel(final Workbook workbook, int sheetNum, Template template, String language) {
+	public static boolean createExcel(final Workbook workbook, int sheetNum, Model model, String language) {
 		boolean flag;
 		try {
 			if (workbook == null)
 				return false;
-			if (template == null)
+			if (model == null)
 				return false;
-			Sheet sheet = workbook.createSheet(template.getName());
-			workbook.setSheetOrder(template.getName(), sheetNum);
+			Sheet sheet = workbook.createSheet(model.getName());
+			workbook.setSheetOrder(model.getName(), sheetNum);
 			// 总列数
 			int columnSize;
-			int attrValueSize = template.getAttributes().size();
+			int attrValueSize = model.getAttributes().size();
 			columnSize = attrValueSize + 1;
 			// 设置属性列宽
 			for (int i = 0; i < columnSize; i++) {
@@ -55,9 +55,9 @@ public class Export {
 			sheet.addMergedRegion(cellRangeAddress1);
 			sheet.addMergedRegion(cellRangeAddress3);
 			// 写入固定数据
-			Common.insertCellValue(sheet, 0, 0, template.getJavaClassName(),
+			Common.insertCellValue(sheet, 0, 0, model.getJavaClassName(),
 					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_HEADER_HIDE));
-			Common.insertCellValue(sheet, 1, 0, template.getName(),
+			Common.insertCellValue(sheet, 1, 0, model.getName(),
 					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_TITLE));
 			Common.insertCellValue(sheet, 0, 2, Meta.FILEDS.getMeta(language),
 					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER));
@@ -73,24 +73,24 @@ public class Export {
 					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_COLUMN_HEADER));
 			Common.insertCellValue(sheet, 1, 3, Meta.DATA_FLAG.getMeta(language),
 					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_HEADER_HIDE_WHITE));
-			for (int i = 0; i < template.getAttributes().size(); i++) {
+			for (int i = 0; i < model.getAttributes().size(); i++) {
 				String label;
-				if (template.getAttributes().get(i).getUnit() == null
-						|| template.getAttributes().get(i).getUnit().equals("")) {
-					label = template.getAttributes().get(i).getAttrName();
+				if (model.getAttributes().get(i).getUnit() == null
+						|| model.getAttributes().get(i).getUnit().equals("")) {
+					label = model.getAttributes().get(i).getAttrName();
 				} else {
-					label = template.getAttributes().get(i).getAttrName() + "("
-							+ template.getAttributes().get(i).getUnit() + ")";
+					label = model.getAttributes().get(i).getAttrName() + "("
+							+ model.getAttributes().get(i).getUnit() + ")";
 				}
-				String attrInfo = template.getAttributes().get(i).getAttrCode()
-						+ "&&" + template.getAttributes().get(i).getAttrName()
-						+ "&&" + template.getAttributes().get(i).getAttrType()
-						+ "&&" + template.getAttributes().get(i).getFormatInfo()
-						+ "&&" + template.getAttributes().get(i).getDefaultValue()
-						+ "&&" + template.getAttributes().get(i).getUnit()
-						+ "&&" + template.getAttributes().get(i).getJavaClassName();
-				String formatInfo = template.getAttributes().get(i).getFormatInfo();
-				String defaultValue = template.getAttributes().get(i).getDefaultValue();
+				String attrInfo = model.getAttributes().get(i).getAttrCode()
+						+ "&&" + model.getAttributes().get(i).getAttrName()
+						+ "&&" + model.getAttributes().get(i).getAttrType()
+						+ "&&" + model.getAttributes().get(i).getFormatInfo()
+						+ "&&" + model.getAttributes().get(i).getDefaultValue()
+						+ "&&" + model.getAttributes().get(i).getUnit()
+						+ "&&" + model.getAttributes().get(i).getJavaClassName();
+				String formatInfo = model.getAttributes().get(i).getFormatInfo();
+				String defaultValue = model.getAttributes().get(i).getDefaultValue();
 				Common.insertCellValue(sheet, i + 2, 2, label,
 						Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER));// 字段名
 				Common.insertCellValue(sheet, i + 2, 3, attrInfo,
@@ -118,7 +118,7 @@ public class Export {
 	 * @return true 成功, false 失败
 	 */
 	public static boolean insertExcelData(final Workbook workbook, int sheetNum, int startRowNum,
-			List<Template> templatesList) {
+			List<Model> templatesList) {
 		boolean flag;
 		try {
 			if (templatesList == null || templatesList.isEmpty())

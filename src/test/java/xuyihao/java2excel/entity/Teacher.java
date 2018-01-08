@@ -1,7 +1,7 @@
 package xuyihao.java2excel.entity;
 
-import xuyihao.java2excel.core.entity.annotation.Attribute;
-import xuyihao.java2excel.core.entity.annotation.Template;
+import xuyihao.java2excel.core.entity.model.annotation.Attribute;
+import xuyihao.java2excel.core.entity.model.annotation.Model;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
  * Created by xuyh at 2018/1/3 13:41.
  */
 @SuppressWarnings("all")
-@Template(name = "Teacher")
+@Model(name = "Teacher")
 public class Teacher {
 	public static final String COLLLECTION_NAME = "Teacher";
 	public static final String FIELD_CODE_ID = "id";

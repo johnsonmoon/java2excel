@@ -4,7 +4,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xuyihao.java2excel.core.entity.model.Template;
+import xuyihao.java2excel.core.entity.model.Model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,6 +16,13 @@ import java.util.Map;
  * <p>
  * <pre>
  * 	Read excel file at multiple sheets.
+ * 
+ * 	1.invoke readExcelTemplate to read template info from excel file. {@link Reader#readExcelTemplate(int)}
+ * 	2.invoke readExcelJavaClass to read type info from excel file. {@link Reader#readExcelJavaClass(int)}
+ * 	3.invoke readExcelDataCount to read data count from excel file. {@link Reader#readExcelDataCount(int)}
+ * 	4.invoke readExcelData to read data from excel file. {@link Reader#readExcelData(int, int)} {@link Reader#readExcelData(int, Model[])} {@link Reader#readExcelData(int, int, Class)} {@link Reader#readExcelData(int, Object[], Class)}
+ * 	5.invoke refresh to reset read position of current excel file.(from head of sheet) {@link Reader#refresh()}
+ * 	6.invoke close to close current excel file. {@link Reader#close()}
  * </pre>
  * <p>
  * Created by xuyh at 2018/1/5 16:52.
@@ -84,18 +91,18 @@ public class Reader extends AbstractReader {
 	 * @param sheetNumber sheet number
 	 * @return template (nullable)
 	 */
-	public Template readExcelTemplate(int sheetNumber) {
-		Template template = null;
+	public Model readExcelTemplate(int sheetNumber) {
+		Model model = null;
 		try {
 			if (workbook == null)
 				openWorkBook(filePathName);
-			template = readTemplate(workbook, sheetNumber);
+			model = readTemplate(workbook, sheetNumber);
 		} catch (Exception e) {
 			logger.warn(e.getMessage(), e);
 		} finally {
 			close(workbook);
 		}
-		return template;
+		return model;
 	}
 
 	/**
@@ -123,50 +130,50 @@ public class Reader extends AbstractReader {
 	 * @param readSize    given size to read
 	 * @return template list of given size
 	 */
-	public List<Template> readExcelData(int sheetNumber, int readSize) {
-		List<Template> templates = new ArrayList<>();
+	public List<Model> readExcelData(int sheetNumber, int readSize) {
+		List<Model> models = new ArrayList<>();
 		if (readSize <= 0)
-			return templates;
+			return models;
 		if (sheetNumber < 0)
-			return templates;
+			return models;
 		try {
 			if (workbook == null)
 				openWorkBook(filePathName);
 			int currentRowNumber = getTemplateSheetCurrentRowNumber(sheetNumber);
-			templates.addAll(readData(workbook, sheetNumber, currentRowNumber, readSize));
-			setTemplateSheetCurrentRowNumber(sheetNumber, currentRowNumber + templates.size());
+			models.addAll(readData(workbook, sheetNumber, currentRowNumber, readSize));
+			setTemplateSheetCurrentRowNumber(sheetNumber, currentRowNumber + models.size());
 		} catch (Exception e) {
 			logger.warn(e.getMessage(), e);
 		}
-		return templates;
+		return models;
 	}
 
 	/**
 	 * Read template data at sheet sheetNumber and filling data into given template array.
 	 *
 	 * @param sheetNumber sheet number
-	 * @param templates   given template array [not null]
+	 * @param models   given template array [not null]
 	 * @return read size
 	 */
-	public int readExcelData(int sheetNumber, Template[] templates) {
+	public int readExcelData(int sheetNumber, Model[] models) {
 		int readCount = 0;
-		if (templates == null)
+		if (models == null)
 			return readCount;
-		if (templates.length == 0)
+		if (models.length == 0)
 			return readCount;
 		try {
 			if (workbook == null)
 				openWorkBook(filePathName);
-			int arrayLength = templates.length;
+			int arrayLength = models.length;
 			int currentRowNumber = getTemplateSheetCurrentRowNumber(sheetNumber);
-			List<Template> templateList = readData(workbook, sheetNumber, currentRowNumber, arrayLength);
-			if (templateList == null)
+			List<Model> modelList = readData(workbook, sheetNumber, currentRowNumber, arrayLength);
+			if (modelList == null)
 				return readCount;
-			readCount = templateList.size();
+			readCount = modelList.size();
 			if (readCount != 0)
 				setTemplateSheetCurrentRowNumber(sheetNumber, currentRowNumber + readCount);
 			for (int i = 0; i < readCount; i++) {
-				templates[i] = templateList.get(i);
+				models[i] = modelList.get(i);
 			}
 		} catch (Exception e) {
 			logger.warn(e.getMessage(), e);

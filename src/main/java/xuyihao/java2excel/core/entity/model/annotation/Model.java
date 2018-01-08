@@ -1,4 +1,4 @@
-package xuyihao.java2excel.core.entity.annotation;
+package xuyihao.java2excel.core.entity.model.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,15 +6,15 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Template annotation for entity which is going to generate excel
+ * Model annotation for entity which is going to generate excel
  * <p>
  * Created by xuyh at 2018/1/3 11:46.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.TYPE })
-public @interface Template {
+public @interface Model {
 	/**
-	 * {@link xuyihao.java2excel.core.entity.model.Template#name}
+	 * {@link xuyihao.java2excel.core.entity.model.Model#name}
 	 *
 	 * @return
 	 */

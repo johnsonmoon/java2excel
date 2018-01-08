@@ -17,7 +17,8 @@ import java.util.Map;
  *
  * 	1. invoke writeExcelTemplate write template information. {@link Writer#writeExcelTemplate(Class, int)}
  * 	2. invoke writeExcelData append data into workbook. {@link Writer#writeExcelData(List, int)}
- *
+ * 	3. invoke flush to write workbook into disk file. {@link Writer#flush()} {@link Writer#flush(String)}
+ *	4. invoke close to close writer. {@link Writer#close}
  * </pre>
  * <p>
  * Created by xuyh at 2018/1/5 16:52.

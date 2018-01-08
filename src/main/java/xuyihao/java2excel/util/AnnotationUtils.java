@@ -1,7 +1,7 @@
 package xuyihao.java2excel.util;
 
-import xuyihao.java2excel.core.entity.annotation.Attribute;
-import xuyihao.java2excel.core.entity.annotation.Template;
+import xuyihao.java2excel.core.entity.model.annotation.Attribute;
+import xuyihao.java2excel.core.entity.model.annotation.Model;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -21,7 +21,7 @@ public class AnnotationUtils {
 	}
 
 	/**
-	 * Whether the given class has annotation @Template
+	 * Whether the given class has annotation @Model
 	 *
 	 * @param clazz given class
 	 * @return true/false
@@ -31,27 +31,27 @@ public class AnnotationUtils {
 		if (annotations == null || annotations.length == 0)
 			return false;
 		for (Annotation annotation : annotations) {
-			if (annotation instanceof Template)
+			if (annotation instanceof Model)
 				return true;
 		}
 		return false;
 	}
 
 	/**
-	 * Get annotation @Template instance of the given class if exists.
+	 * Get annotation @Model instance of the given class if exists.
 	 *
 	 * @param clazz given class
-	 * @return @Template annotation instance
+	 * @return @Model annotation instance
 	 */
-	public static Template getAnnotationTemplate(Class<?> clazz) {
+	public static Model getAnnotationTemplate(Class<?> clazz) {
 		if (clazz == null)
 			return null;
 		Annotation[] annotations = clazz.getAnnotations();
 		if (annotations == null || annotations.length == 0)
 			return null;
 		for (Annotation annotation : annotations) {
-			if (annotation instanceof Template)
-				return (Template) annotation;
+			if (annotation instanceof Model)
+				return (Model) annotation;
 		}
 		return null;
 	}

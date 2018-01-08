@@ -3,7 +3,7 @@ package xuyihao.java2excel.core.operation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xuyihao.java2excel.core.entity.model.Attribute;
-import xuyihao.java2excel.core.entity.model.Template;
+import xuyihao.java2excel.core.entity.model.Model;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
@@ -25,17 +25,17 @@ public class Import {
 	 * @param sheetNumber 工作簿编号
 	 * @return ExcelTemplate对象
 	 */
-	public static Template getTemplateFromExcel(Workbook workbook, int sheetNumber) {
+	public static Model getTemplateFromExcel(Workbook workbook, int sheetNumber) {
 		if (workbook == null)
 			return null;
 		if (sheetNumber < 0)
 			sheetNumber = 0;
-		Template template = new Template();
+		Model model = new Model();
 		Sheet sheet = workbook.getSheetAt(sheetNumber);
 		String headValue = Common.getCellValue(sheet, 0, 0);
-		template.setJavaClassName(headValue);
+		model.setJavaClassName(headValue);
 		String nameValue = Common.getCellValue(sheet, 1, 0);
-		template.setName(nameValue);
+		model.setName(nameValue);
 		int attrCount = sheet.getRow(3).getPhysicalNumberOfCells() - 2;
 		for (int i = 0; i < attrCount; i++) {
 			String[] attributeTypeInfo = Common.getCellValue(sheet, i + 2, 3).split("&&");
@@ -47,9 +47,9 @@ public class Import {
 			attribute.setDefaultValue(replaceNull(attributeTypeInfo[4]));
 			attribute.setUnit(replaceNull(attributeTypeInfo[5]));
 			attribute.setJavaClassName(replaceNull(attributeTypeInfo[6]));
-			template.addAttribute(attribute);
+			model.addAttribute(attribute);
 		}
-		return template;
+		return model;
 	}
 
 	private static String replaceNull(String arrayValue) {
@@ -96,39 +96,39 @@ public class Import {
 	 * @param readSize    一次读取的行数
 	 * @return 具体数据列表
 	 */
-	public static List<Template> getDataFromExcel(Workbook workbook, int sheetNumber, int beginRow,
+	public static List<Model> getDataFromExcel(Workbook workbook, int sheetNumber, int beginRow,
 			int readSize) {
-		List<Template> templateList = new ArrayList<>();
+		List<Model> modelList = new ArrayList<>();
 		if (workbook == null)
-			return templateList;
+			return modelList;
 		if (sheetNumber < 0)
 			sheetNumber = 0;
 		if (beginRow < 0) {
 			logger.warn("Read position must above 0!");
-			return templateList;
+			return modelList;
 		}
 		if (readSize < 0) {
 			logger.warn("Read size must not below 0!");
-			return templateList;
+			return modelList;
 		}
-		Template template = getTemplateFromExcel(workbook, sheetNumber);
+		Model model = getTemplateFromExcel(workbook, sheetNumber);
 		Sheet sheet = workbook.getSheetAt(sheetNumber);
 		for (int i = 0; i < readSize; i++) {
 			String value = Common.getCellValue(sheet, 2, i + beginRow + 6);
 			if ((value == null) || (value.equals(""))) {
 				break;
 			}
-			Template data = new Template();
-			data.setName(template.getName());
-			data.setJavaClassName(template.getJavaClassName());
-			data.setAttributes(template.getAttributes());
+			Model data = new Model();
+			data.setName(model.getName());
+			data.setJavaClassName(model.getJavaClassName());
+			data.setAttributes(model.getAttributes());
 			List<String> attrValues = new ArrayList<>();
 			for (int j = 0; j < data.getAttributes().size(); j++) {
 				attrValues.add(Common.getCellValue(sheet, j + 2, i + beginRow + 6));
 			}
 			data.setAttrValues(attrValues);
-			templateList.add(data);
+			modelList.add(data);
 		}
-		return templateList;
+		return modelList;
 	}
 }

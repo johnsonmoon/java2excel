@@ -2,7 +2,7 @@ package xuyihao.java2excel;
 
 import org.apache.poi.ss.usermodel.Workbook;
 import xuyihao.java2excel.core.entity.model.Attribute;
-import xuyihao.java2excel.core.entity.model.Template;
+import xuyihao.java2excel.core.entity.model.Model;
 import xuyihao.java2excel.core.operation.Common;
 import xuyihao.java2excel.core.operation.Export;
 import xuyihao.java2excel.util.*;
@@ -40,16 +40,16 @@ public abstract class AbstractWriter {
 	 * Generate excel data template instance from given class.
 	 * <p>
 	 * <pre>
-	 *     If given class has not declared @Template or @Attribute annotations,
+	 *     If given class has not declared @Model or @Attribute annotations,
 	 *     generate from reflection only. Otherwise generate by annotation declaration
 	 *     and reflection.
 	 * </pre>
 	 *
 	 * @param tClass given class
-	 * @see xuyihao.java2excel.core.entity.annotation.Template
-	 * @see xuyihao.java2excel.core.entity.annotation.Attribute
+	 * @see xuyihao.java2excel.core.entity.model.annotation.Model
+	 * @see xuyihao.java2excel.core.entity.model.annotation.Attribute
 	 */
-	public Template generateTemplate(Class<?> tClass) {
+	public Model generateTemplate(Class<?> tClass) {
 		if (!AnnotationUtils.hasAnnotationTemplate(tClass)) {
 			return generateTemplateWithReflectionOnly(tClass);
 		} else {
@@ -62,42 +62,42 @@ public abstract class AbstractWriter {
 	 *
 	 * @param clazz given clazz
 	 */
-	private Template generateTemplateWithReflectionOnly(Class<?> clazz) {
-		Template template = new Template();
-		template.setName(ReflectionUtils.getClassNameShort(clazz));
-		template.setJavaClassName(ReflectionUtils.getClassNameEntire(clazz));
+	private Model generateTemplateWithReflectionOnly(Class<?> clazz) {
+		Model model = new Model();
+		model.setName(ReflectionUtils.getClassNameShort(clazz));
+		model.setJavaClassName(ReflectionUtils.getClassNameEntire(clazz));
 		for (Field field : ReflectionUtils.getFieldsUnStaticUnFinal(clazz)) {
 			Attribute attribute = new Attribute();
 			attribute.setAttrCode(field.getName());
 			attribute.setAttrName(field.getName());
 			attribute.setAttrType(ReflectionUtils.getFieldTypeNameShort(field));
 			attribute.setJavaClassName(ReflectionUtils.getFieldTypeNameEntire(field));
-			template.addAttribute(attribute);
+			model.addAttribute(attribute);
 		}
-		return template;
+		return model;
 	}
 
 	/**
 	 * Generate template with declared annotations and reflection.
 	 *
 	 * @param clazz given clazz.
-	 * @see xuyihao.java2excel.core.entity.annotation.Template
-	 * @see xuyihao.java2excel.core.entity.annotation.Attribute
+	 * @see xuyihao.java2excel.core.entity.model.annotation.Model
+	 * @see xuyihao.java2excel.core.entity.model.annotation.Attribute
 	 */
-	private Template generateTemplateWithAnnotation(Class<?> clazz) {
+	private Model generateTemplateWithAnnotation(Class<?> clazz) {
 		if (!AnnotationUtils.hasAnnotationTemplate(clazz))
 			return null;
-		Template template = new Template();
-		xuyihao.java2excel.core.entity.annotation.Template templateAnnotation = AnnotationUtils
+		Model model = new Model();
+		xuyihao.java2excel.core.entity.model.annotation.Model modelAnnotation = AnnotationUtils
 				.getAnnotationTemplate(clazz);
-		if (templateAnnotation == null)
+		if (modelAnnotation == null)
 			return null;
-		template.setName(templateAnnotation.name());
-		template.setJavaClassName(ReflectionUtils.getClassNameEntire(clazz));
+		model.setName(modelAnnotation.name());
+		model.setJavaClassName(ReflectionUtils.getClassNameEntire(clazz));
 		for (Field field : ReflectionUtils.getFieldsAll(clazz)) {
 			if (!AnnotationUtils.hasAnnotationAttribute(field))
 				continue;
-			xuyihao.java2excel.core.entity.annotation.Attribute attributeAnnotation = AnnotationUtils
+			xuyihao.java2excel.core.entity.model.annotation.Attribute attributeAnnotation = AnnotationUtils
 					.getAnnotationAttribute(field);
 			if (attributeAnnotation == null)
 				continue;
@@ -109,9 +109,9 @@ public abstract class AbstractWriter {
 			attribute.setDefaultValue(StringUtils.replaceEmptyToNull(attributeAnnotation.defaultValue()));
 			attribute.setUnit(StringUtils.replaceEmptyToNull(attributeAnnotation.unit()));
 			attribute.setJavaClassName(ReflectionUtils.getFieldTypeNameEntire(field));
-			template.addAttribute(attribute);
+			model.addAttribute(attribute);
 		}
-		return template;
+		return model;
 	}
 
 	/**
@@ -124,26 +124,26 @@ public abstract class AbstractWriter {
 	 * @param tList given type instance list.
 	 * @return template data list
 	 */
-	private List<Template> generateData(List<?> tList) {
-		List<Template> templates = new ArrayList<>();
+	private List<Model> generateData(List<?> tList) {
+		List<Model> models = new ArrayList<>();
 		if (tList == null || tList.isEmpty())
-			return templates;
+			return models;
 		Class<?> clazz = tList.get(0).getClass();
-		Template template = generateTemplate(clazz);
-		if (template == null)
-			return templates;
+		Model model = generateTemplate(clazz);
+		if (model == null)
+			return models;
 		for (Object t : tList) {
-			Template data = new Template();
-			data.setName(template.getName());
-			data.setJavaClassName(template.getJavaClassName());
-			data.setAttributes(template.getAttributes());
+			Model data = new Model();
+			data.setName(model.getName());
+			data.setJavaClassName(model.getJavaClassName());
+			data.setAttributes(model.getAttributes());
 			for (Attribute attribute : data.getAttributes()) {
 				Object value = ReflectionUtils.getFieldValue(t, attribute.getAttrCode());
 				data.addAttrValue(ValueUtils.formatValue(value));
 			}
-			templates.add(data);
+			models.add(data);
 		}
-		return templates;
+		return models;
 	}
 
 	/**
@@ -155,8 +155,8 @@ public abstract class AbstractWriter {
 	 * @return true/false
 	 */
 	protected boolean writeTemplate(Class<?> clazz, Workbook workbook, int sheetNumber) {
-		Template template = generateTemplate(clazz);
-		return Export.createExcel(workbook, sheetNumber, template, templateLanguage);
+		Model model = generateTemplate(clazz);
+		return Export.createExcel(workbook, sheetNumber, model, templateLanguage);
 	}
 
 	/**
@@ -171,8 +171,8 @@ public abstract class AbstractWriter {
 	protected boolean writeData(List<?> tList, Workbook workbook, int sheetNumber, int startRowNumber) {
 		if (tList == null || tList.isEmpty())
 			return false;
-		List<Template> templates = generateData(tList);
-		return Export.insertExcelData(workbook, sheetNumber, startRowNumber, templates);
+		List<Model> models = generateData(tList);
+		return Export.insertExcelData(workbook, sheetNumber, startRowNumber, models);
 	}
 
 	/**

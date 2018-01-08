@@ -4,7 +4,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Test;
 import xuyihao.java2excel.core.entity.model.Attribute;
-import xuyihao.java2excel.core.entity.model.Template;
+import xuyihao.java2excel.core.entity.model.Model;
 import xuyihao.java2excel.util.FileUtils;
 
 import java.io.File;
@@ -18,19 +18,19 @@ public class ExportTest {
 	@Test
 	public void test() throws Exception {
 		Workbook workbook = new XSSFWorkbook();
-		//template
-		Template template = new Template();
-		template.setName("学生统计");
-		template.addAttribute(new Attribute("name", "学生名称", "String", "文本", null, null));
-		template.addAttribute(new Attribute("number", "学生学号", "String", "文本", null, null));
-		template.addAttribute(new Attribute("phone", "学生电话", "String", "文本", null, null));
-		template.addAttribute(new Attribute("email", "学生电邮", "String", "文本", null, null));
+		//model
+		Model model = new Model();
+		model.setName("学生统计");
+		model.addAttribute(new Attribute("name", "学生名称", "String", "文本", null, null));
+		model.addAttribute(new Attribute("number", "学生学号", "String", "文本", null, null));
+		model.addAttribute(new Attribute("phone", "学生电话", "String", "文本", null, null));
+		model.addAttribute(new Attribute("email", "学生电邮", "String", "文本", null, null));
 		//data
-		List<Template> datas = new ArrayList<>();
+		List<Model> datas = new ArrayList<>();
 		for (int i = 0; i < 10; i++) {
-			Template data = new Template();
-			data.setName(template.getName());
-			data.setAttributes(template.getAttributes());
+			Model data = new Model();
+			data.setName(model.getName());
+			data.setAttributes(model.getAttributes());
 
 			data.addAttrValue("学生" + i);
 			data.addAttrValue("2017000" + i);
@@ -39,7 +39,7 @@ public class ExportTest {
 
 			datas.add(data);
 		}
-		System.out.println(String.format("CreateResult : [%s]", Export.createExcel(workbook, 0, template, "zh_CN")));
+		System.out.println(String.format("CreateResult : [%s]", Export.createExcel(workbook, 0, model, "zh_CN")));
 		System.out.println(String.format("InsertResult : [%s]", Export.insertExcelData(workbook, 0, 6, datas)));
 
 		//write file

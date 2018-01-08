@@ -8,16 +8,16 @@ import java.util.List;
  * <p>
  * Created by Xuyh at 2016/07/21 下午 01:40.
  */
-public class Template {
+public class Model {
 	private String name;//模型名称(Sheet名称)
 	private String javaClassName;//对应java实体类全称
 	private List<Attribute> attributes;//模型的属性
 	private List<String> attrValues;//模型的属性值
 
-	public Template() {
+	public Model() {
 	}
 
-	public Template(String name, List<Attribute> attributes, List<String> attrValues) {
+	public Model(String name, List<Attribute> attributes, List<String> attrValues) {
 		this.name = name;
 		this.attributes = attributes;
 		this.attrValues = attrValues;
@@ -83,7 +83,7 @@ public class Template {
 
 	@Override
 	public String toString() {
-		return "Template{" +
+		return "Model{" +
 				"name='" + name + '\'' +
 				", javaClassName='" + javaClassName + '\'' +
 				", attributes=" + attributes +

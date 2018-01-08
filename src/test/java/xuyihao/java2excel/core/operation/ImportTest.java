@@ -13,7 +13,7 @@ public class ImportTest {
 		String filePath = "C:\\Users\\johnson\\Desktop\\test.xlsx";
 		Workbook workbook = new XSSFWorkbook(filePath);
 
-		System.out.println("Template:");
+		System.out.println("Model:");
 		System.out.println(Import.getTemplateFromExcel(workbook, 0));
 
 		System.out.println("\n\nDataCount");
