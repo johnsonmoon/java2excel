@@ -38,6 +38,8 @@ public class WriterTest {
 
 		Writer writer = new Writer("D:\\complex.xlsx");
 
+		writer.setLanguage("en_US");
+
 		Assert.assertTrue(writer.writeExcelModel(Teacher.class, 0));
 		Assert.assertTrue(writer.writeExcelModel(Student.class, 1));
 
