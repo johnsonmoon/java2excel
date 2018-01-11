@@ -13,7 +13,7 @@ import java.util.Map;
  * Writer
  * <p>
  * <pre>
- * 	Write excel file at multiple sheets.
+ * 	Write excel file at multiple sheets as a whole new excel file.
  *
  * 	1. invoke writeExcelModel write model information. {@link Writer#writeExcelModel(Class, int)}
  * 	2. invoke writeExcelData append data into workbook. {@link Writer#writeExcelData(List, int)}
