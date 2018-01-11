@@ -18,16 +18,16 @@ mvn install
 <dependency>
     <groupId>xuyihao</groupId>
     <artifactId>java2excel</artifactId>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
 </dependency>
 ```
 
 ## Coding
-- Code your entity class
+### Code your entity class
 
 There are two ways. One is code your entity class like you always do, another way is to add @Model/@Attribute annotation.
 
-1.normal ways (like class Student):
+#### 1.normal ways (like class Student):
 ```
 import java.util.List;
 
@@ -128,7 +128,7 @@ public class Student {
 
 ```  
 
-2. annotation ways (like class Teacher):
+#### . annotation ways (like class Teacher):
 ```
 import xuyihao.java2excel.core.entity.model.annotation.Attribute;
 import xuyihao.java2excel.core.entity.model.annotation.Model;
@@ -236,7 +236,7 @@ public class Teacher {
 }
 ```
 
-- Write your entity data into excel file
+### Write your entity data into excel file using class {Writer}
 ```
 //Define your data.
 List<Teacher> teachers = new ArrayList<>();
@@ -278,7 +278,7 @@ Result:
 
 ![image](writer-result-screenshot.png)
 
-- Read your entity data from a existing excel file. (Wrote before)
+### Read your entity data from a existing excel file using class {Reader}. (Wrote before)
 ```
 //Get a reader instance with given file path name. (File must exists)
 Reader reader = new Reader("D:\\complex.xlsx");
@@ -343,4 +343,41 @@ Result:
 {"name":"name4","number":"number4","phoneNumber":"phoneNumber4","email":"email4","score":0,"avgScore":0.0,"addresses":["address04","address14"]}
 {"name":"name5","number":"number5","phoneNumber":"phoneNumber5","email":"email5","score":0,"avgScore":0.0,"addresses":["address05","address15"]}
 ... ...
+```
+
+### Using class {Editor} to read & write an excel file with your defined entity class.
+```
+// Get an editor instance by existing excel file.
+Editor editor = new Editor(filePathName);
+
+// Set editor language for meta data.
+editor.setLanguage(Languages.ZH_CN.getLanguage());
+
+// Read data count.
+int count = editor.readExcelDataCount(0);
+System.out.println(count);
+
+// Read data.
+List<Teacher> readTeachers = editor.readExcelData(0, 0, 10, Teacher.class);
+readTeachers.forEach(teacher -> System.out.println(JsonUtils.obj2JsonStr(teacher)));
+
+List<Teacher> teachers = new ArrayList<>();
+for (int i = 100; i < 120; i++) {
+    Teacher teacher = new Teacher();
+    teacher.setId("testId" + i);
+    teacher.setName("testName" + i);
+    teacher.setEmail("testEmail@xxx.com");
+    teacher.setPhoneNumber("111111111" + i);
+    teacher.setAddress(Arrays.asList("testAddress1" + i, "testAddress2" + i, "testAddress3" + i));
+    teachers.add(teacher);
+}
+
+//Write data into the excel.
+editor.writeExcelData(teachers, 0, count + 10);
+
+//Write changes into another new excel file.
+editor.flush("D:\\test2.xlsx");
+
+//Close the editor
+editor.close();
 ```

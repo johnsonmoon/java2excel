@@ -15,7 +15,7 @@ import java.util.Map;
  * Reader
  * <p>
  * <pre>
- * 	Read excel file at multiple sheets.
+ * 	Read excel file at multiple sheets from a existing excel file.
  *
  * 	1.invoke readExcelModel to read model info from excel file. {@link Reader#readExcelModel(int)}
  * 	2.invoke readExcelJavaClass to read type info from excel file. {@link Reader#readExcelJavaClass(int)}

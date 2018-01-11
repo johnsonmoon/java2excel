@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.text.DecimalFormat;
 
 /**
@@ -199,6 +200,16 @@ public class Common {
 
 	/**
 	 * write workbook into disk file
+	 * <p>
+	 * <pre>
+	 *     NOTE : Existing file can not be overwrite.
+	 *     If the workbook is opened from the file which is exist,
+	 *     you should create a new file to write in, then close the
+	 *     existing file which the workbook opened from and delete
+	 *     it, finally rename the new file with the same name.
+	 *
+	 *     {@link org.apache.poi.POIXMLDocument#write(OutputStream)}
+	 * </pre>
 	 *
 	 * @param workbook excel workbook
 	 * @param file     disk file
