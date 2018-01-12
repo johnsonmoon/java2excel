@@ -202,7 +202,7 @@ public class Reader extends AbstractReader {
 			tList.addAll(readData(clazz, workbook, sheetNumber, currentRowNumber, readSize));
 			setTypeSheetCurrentRowNumber(sheetNumber, currentRowNumber + tList.size());
 		} catch (Exception e) {
-			logger.warn(e.getMessage());
+			logger.warn(e.getMessage(), e);
 		}
 		return tList;
 	}
