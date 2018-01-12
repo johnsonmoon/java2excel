@@ -128,7 +128,7 @@ public class Editor extends AbstractEditor {
 				openWorkBook(filePathName);
 			tList.addAll(readData(clazz, workbook, sheetNumber, beginRow, readSize));
 		} catch (Exception e) {
-			logger.warn(e.getMessage());
+			logger.warn(e.getMessage(), e);
 		}
 		return tList;
 	}
