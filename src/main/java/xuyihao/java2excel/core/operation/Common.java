@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Xuyh at 2016/07/27 下午 02:28.
@@ -26,6 +28,15 @@ public class Common {
 	public static final int CELL_STYLE_TYPE_HEADER_HIDE = 6;
 	public static final int CELL_STYLE_TYPE_HEADER_HIDE_WHITE = 7;
 	public static final int CELL_STYLE_TYPE_VALUE = 8;
+	/**
+	 * cell style cache for caching cell styles
+	 * <pre>
+	 *     We can define only up to 64000 style in a .xlsx Workbook.
+	 *     So cell styles for workbook should be cached.
+	 *     After workbook has been closed, cache needed to be cleaned.
+	 * </pre>
+	 */
+	private static Map<Workbook, Map<Integer, CellStyle>> cellStyleCache = new HashMap<>();
 
 	/**
 	 * create ARIAL font
@@ -66,75 +77,68 @@ public class Common {
 	 * @return cell style
 	 */
 	public static CellStyle createCellStyle(Workbook workbook, int cellStyleType) {
-		CellStyle cellStyleGeneral = workbook.createCellStyle();
-		cellStyleGeneral.setWrapText(false);
-		cellStyleGeneral.setVerticalAlignment(VerticalAlignment.CENTER);
+		if (!cellStyleCache.containsKey(workbook)) {
+			Map<Integer, CellStyle> styleMap = new HashMap<>();
 
-		CellStyle cellStyleTitle = workbook.createCellStyle();
-		cellStyleTitle.cloneStyleFrom(cellStyleGeneral);
-		cellStyleTitle.setFont(createFontArial(workbook, 10));
-		cellStyleTitle.setAlignment(HorizontalAlignment.CENTER);
+			CellStyle cellStyleGeneral = workbook.createCellStyle();
+			cellStyleGeneral.setWrapText(false);
+			cellStyleGeneral.setVerticalAlignment(VerticalAlignment.CENTER);
+			styleMap.put(CELL_STYLE_TYPE_GENERAL, cellStyleGeneral);
 
-		CellStyle cellStyleColumnHeader = workbook.createCellStyle();
-		cellStyleColumnHeader.cloneStyleFrom(cellStyleGeneral);
-		cellStyleColumnHeader.setFont(createFontArial(workbook, 10));
-		cellStyleColumnHeader.setAlignment(HorizontalAlignment.CENTER);
+			CellStyle cellStyleTitle = workbook.createCellStyle();
+			cellStyleTitle.cloneStyleFrom(cellStyleGeneral);
+			cellStyleTitle.setFont(createFontArial(workbook, 10));
+			cellStyleTitle.setAlignment(HorizontalAlignment.CENTER);
+			styleMap.put(CELL_STYLE_TYPE_TITLE, cellStyleTitle);
 
-		CellStyle cellStyleRowHeader = workbook.createCellStyle();
-		cellStyleRowHeader.cloneStyleFrom(cellStyleGeneral);
-		cellStyleRowHeader.setFont(createFontArial(workbook, 10));
-		cellStyleRowHeader.setAlignment(HorizontalAlignment.CENTER);
-		cellStyleRowHeader.setFillForegroundColor(IndexedColors.LIGHT_GREEN.index);
-		cellStyleRowHeader.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+			CellStyle cellStyleColumnHeader = workbook.createCellStyle();
+			cellStyleColumnHeader.cloneStyleFrom(cellStyleGeneral);
+			cellStyleColumnHeader.setFont(createFontArial(workbook, 10));
+			cellStyleColumnHeader.setAlignment(HorizontalAlignment.CENTER);
+			styleMap.put(CELL_STYLE_TYPE_COLUMN_HEADER, cellStyleColumnHeader);
 
-		CellStyle cellStyleGrayRowHeader = workbook.createCellStyle();
-		cellStyleGrayRowHeader.cloneStyleFrom(cellStyleRowHeader);
+			CellStyle cellStyleRowHeader = workbook.createCellStyle();
+			cellStyleRowHeader.cloneStyleFrom(cellStyleGeneral);
+			cellStyleRowHeader.setFont(createFontArial(workbook, 10));
+			cellStyleRowHeader.setAlignment(HorizontalAlignment.CENTER);
+			cellStyleRowHeader.setFillForegroundColor(IndexedColors.LIGHT_GREEN.index);
+			cellStyleRowHeader.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+			styleMap.put(CELL_STYLE_TYPE_ROW_HEADER, cellStyleRowHeader);
 
-		CellStyle cellStyleRowHeaderTopAlign = workbook.createCellStyle();
-		cellStyleRowHeaderTopAlign.cloneStyleFrom(cellStyleRowHeader);
-		cellStyleRowHeaderTopAlign.setVerticalAlignment(VerticalAlignment.TOP);
+			CellStyle cellStyleGrayRowHeader = workbook.createCellStyle();
+			cellStyleGrayRowHeader.cloneStyleFrom(cellStyleRowHeader);
+			styleMap.put(CELL_STYLE_TYPE_ROW_HEADER_GRAY, cellStyleGrayRowHeader);
 
-		CellStyle cellStyleHideHeader = workbook.createCellStyle();
-		cellStyleHideHeader.setFont(createFontWhiteArial(workbook, 10));
-		cellStyleHideHeader.setWrapText(true);
-		cellStyleHideHeader.setAlignment(HorizontalAlignment.LEFT);
-		cellStyleHideHeader.setVerticalAlignment(VerticalAlignment.CENTER);
-		cellStyleHideHeader.setLocked(true);
-		cellStyleHideHeader.setFillForegroundColor(IndexedColors.WHITE.getIndex());
+			CellStyle cellStyleRowHeaderTopAlign = workbook.createCellStyle();
+			cellStyleRowHeaderTopAlign.cloneStyleFrom(cellStyleRowHeader);
+			cellStyleRowHeaderTopAlign.setVerticalAlignment(VerticalAlignment.TOP);
+			styleMap.put(CELL_STYLE_TYPE_ROW_HEADER_TOP_ALIGN, cellStyleRowHeaderTopAlign);
 
-		CellStyle cellStyleWhiteHideHeader = workbook.createCellStyle();
-		cellStyleWhiteHideHeader.cloneStyleFrom(cellStyleHideHeader);
-		cellStyleWhiteHideHeader.setFillForegroundColor(IndexedColors.WHITE.getIndex());
+			CellStyle cellStyleHideHeader = workbook.createCellStyle();
+			cellStyleHideHeader.setFont(createFontWhiteArial(workbook, 10));
+			cellStyleHideHeader.setWrapText(true);
+			cellStyleHideHeader.setAlignment(HorizontalAlignment.LEFT);
+			cellStyleHideHeader.setVerticalAlignment(VerticalAlignment.CENTER);
+			cellStyleHideHeader.setLocked(true);
+			cellStyleHideHeader.setFillForegroundColor(IndexedColors.WHITE.getIndex());
+			styleMap.put(CELL_STYLE_TYPE_HEADER_HIDE, cellStyleHideHeader);
 
-		CellStyle cellStyleValue = workbook.createCellStyle();
-		cellStyleValue.cloneStyleFrom(cellStyleGeneral);
-		cellStyleValue.setFont(createFontArial(workbook, 10));
-		cellStyleValue.setAlignment(HorizontalAlignment.CENTER);
-		cellStyleValue.setWrapText(true);
-		cellStyleValue.setLocked(false);
+			CellStyle cellStyleWhiteHideHeader = workbook.createCellStyle();
+			cellStyleWhiteHideHeader.cloneStyleFrom(cellStyleHideHeader);
+			cellStyleWhiteHideHeader.setFillForegroundColor(IndexedColors.WHITE.getIndex());
+			styleMap.put(CELL_STYLE_TYPE_HEADER_HIDE_WHITE, cellStyleWhiteHideHeader);
 
-		switch (cellStyleType) {
-		case CELL_STYLE_TYPE_GENERAL:
-			return cellStyleGeneral;
-		case CELL_STYLE_TYPE_TITLE:
-			return cellStyleTitle;
-		case CELL_STYLE_TYPE_COLUMN_HEADER:
-			return cellStyleColumnHeader;
-		case CELL_STYLE_TYPE_ROW_HEADER:
-			return cellStyleRowHeader;
-		case CELL_STYLE_TYPE_ROW_HEADER_GRAY:
-			return cellStyleGrayRowHeader;
-		case CELL_STYLE_TYPE_ROW_HEADER_TOP_ALIGN:
-			return cellStyleRowHeaderTopAlign;
-		case CELL_STYLE_TYPE_HEADER_HIDE:
-			return cellStyleHideHeader;
-		case CELL_STYLE_TYPE_HEADER_HIDE_WHITE:
-			return cellStyleWhiteHideHeader;
-		case CELL_STYLE_TYPE_VALUE:
-			return cellStyleValue;
-		default:
-			return cellStyleValue;
+			CellStyle cellStyleValue = workbook.createCellStyle();
+			cellStyleValue.cloneStyleFrom(cellStyleGeneral);
+			cellStyleValue.setFont(createFontArial(workbook, 10));
+			cellStyleValue.setAlignment(HorizontalAlignment.CENTER);
+			cellStyleValue.setWrapText(true);
+			cellStyleValue.setLocked(false);
+			styleMap.put(CELL_STYLE_TYPE_VALUE, cellStyleValue);
+
+			cellStyleCache.put(workbook, styleMap);
 		}
+		return cellStyleCache.get(workbook).get(cellStyleType);
 	}
 
 	/**
@@ -255,6 +259,7 @@ public class Common {
 			logger.warn(e.getMessage(), e);
 			return false;
 		}
+		cellStyleCache.remove(workbook);
 		return true;
 	}
 }
