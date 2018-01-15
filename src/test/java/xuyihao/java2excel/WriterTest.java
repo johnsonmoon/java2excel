@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import xuyihao.java2excel.entity.Student;
 import xuyihao.java2excel.entity.Teacher;
+import xuyihao.java2excel.util.DateUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,6 +24,7 @@ public class WriterTest {
 			teacher.setEmail("testEmail@xxx.com");
 			teacher.setPhoneNumber("111111111" + i);
 			teacher.setAddress(Arrays.asList("testAddress1" + i, "testAddress2" + i, "testAddress3" + i));
+			teacher.setDate(DateUtils.currentDateTimeForDate());
 			teachers.add(teacher);
 		}
 		List<Student> students = new ArrayList<>();
@@ -33,6 +35,7 @@ public class WriterTest {
 			student.setNumber("number" + (i + 1));
 			student.setPhoneNumber("phoneNumber" + (i + 1));
 			student.setAddresses(Arrays.asList("address0" + (i + 1), "address1" + (i + 1)));
+			student.setDate(DateUtils.currentDateTimeForDate());
 			students.add(student);
 		}
 

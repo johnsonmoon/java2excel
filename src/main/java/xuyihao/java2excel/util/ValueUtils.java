@@ -1,5 +1,7 @@
 package xuyihao.java2excel.util;
 
+import java.util.Date;
+
 /**
  * Utilities for excel cell value
  * <p>
@@ -10,7 +12,7 @@ public class ValueUtils {
 	 * Parse string instance into given type object.
 	 * <p>
 	 * <pre>
-	 *     from String format   <--- Integer, Float, Byte, Double, Boolean, Character, Long, Short, String
+	 *     from String format   <--- Integer, Float, Byte, Double, Boolean, Character, Long, Short, String, Date
 	 *     from json format   <--- Other type
 	 * </pre>
 	 *
@@ -62,6 +64,10 @@ public class ValueUtils {
 			return value;
 		}
 
+		if (clazz == Date.class) {
+			return DateUtils.parseDateTime(value);
+		}
+
 		return JsonUtils.JsonStr2Obj(value, clazz);
 	}
 
@@ -69,7 +75,7 @@ public class ValueUtils {
 	 * Format object to String instance.
 	 * <p>
 	 * <pre>
-	 *     Integer, Float, Byte, Double, Boolean, Character, Long, Short, String ---> String instance
+	 *     Integer, Float, Byte, Double, Boolean, Character, Long, Short, String, Date ---> String instance
 	 *     Other type ---> json format String instance
 	 * </pre>
 	 *
@@ -89,6 +95,8 @@ public class ValueUtils {
 				|| object instanceof Short
 				|| object instanceof String)
 			return String.valueOf(object);
+		if (object instanceof Date)
+			return DateUtils.formatDateTime((Date) object);
 		return JsonUtils.obj2JsonStr(object);
 	}
 }
