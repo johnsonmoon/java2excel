@@ -25,7 +25,7 @@ public @interface Attribute {
 	 *
 	 * @return
 	 */
-	String attrType();
+	String attrType() default "";
 
 	/**
 	 * {@link xuyihao.java2excel.core.entity.model.Attribute#formatInfo}

@@ -1,5 +1,6 @@
 package xuyihao.java2excel.entity;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ public class Student {
 	private int score;
 	private double avgScore;
 	private List<String> addresses;
+	private Date date;
 
 	public Student() {
 	}
@@ -84,16 +86,18 @@ public class Student {
 		this.avgScore = avgScore;
 	}
 
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
 	@Override
 	public String toString() {
-		return "Student{" +
-				"name='" + name + '\'' +
-				", number='" + number + '\'' +
-				", phoneNumber='" + phoneNumber + '\'' +
-				", email='" + email + '\'' +
-				", score=" + score +
-				", avgScore=" + avgScore +
-				", addresses=" + addresses +
-				'}';
+		return "Student [name=" + name + ", number=" + number + ", phoneNumber=" + phoneNumber + ", email=" + email
+				+ ", score=" + score + ", avgScore=" + avgScore + ", addresses=" + addresses + "]";
 	}
+
 }

@@ -3,6 +3,7 @@ package xuyihao.java2excel.entity;
 import xuyihao.java2excel.core.entity.model.annotation.Attribute;
 import xuyihao.java2excel.core.entity.model.annotation.Model;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,6 +31,8 @@ public class Teacher {
 	private List<String> address;
 	@Attribute(attrName = "AVG_SCORE", attrType = "Integer", formatInfo = "text")
 	private int avgScore;
+	@Attribute(attrName = "DATE", attrType = "Date", formatInfo = "yyyy-MM-dd HH:mm:ss")
+	private Date date;
 
 	public Teacher() {
 	}
@@ -93,15 +96,18 @@ public class Teacher {
 		this.avgScore = avgScore;
 	}
 
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
 	@Override
 	public String toString() {
-		return "Teacher{" +
-				"id='" + id + '\'' +
-				", name='" + name + '\'' +
-				", phoneNumber='" + phoneNumber + '\'' +
-				", email='" + email + '\'' +
-				", address=" + address +
-				", avgScore=" + avgScore +
-				'}';
+		return "Teacher [id=" + id + ", name=" + name + ", phoneNumber=" + phoneNumber + ", email=" + email + ", address="
+				+ address + ", avgScore=" + avgScore + ", date=" + date + "]";
 	}
+
 }

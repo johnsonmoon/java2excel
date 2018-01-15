@@ -90,13 +90,13 @@ public class Export {
 				String formatInfo = model.getAttributes().get(i).getFormatInfo();
 				String defaultValue = model.getAttributes().get(i).getDefaultValue();
 				Common.insertCellValue(sheet, i + 2, 2, label,
-						Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER));// 字段名
+						Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER));
 				Common.insertCellValue(sheet, i + 2, 3, attrInfo,
 						Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER_GRAY));
 				Common.insertCellValue(sheet, i + 2, 4, formatInfo,
 						Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER));
 				Common.insertCellValue(sheet, i + 2, 5, defaultValue,
-						Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER));// 默认值
+						Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER));
 			}
 			flag = true;
 		} catch (Exception e) {
