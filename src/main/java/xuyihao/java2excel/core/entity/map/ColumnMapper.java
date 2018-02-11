@@ -41,7 +41,7 @@ public class ColumnMapper {
 	/**
 	 * Add mapping.
 	 *
-	 * @param columnNumber column number, begin from 0.
+	 * @param columnNumber column number (start from 0.)
 	 * @param fieldName    field name
 	 * @return true/false
 	 */

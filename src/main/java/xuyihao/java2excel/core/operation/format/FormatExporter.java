@@ -1,4 +1,4 @@
-package xuyihao.java2excel.core.operation;
+package xuyihao.java2excel.core.operation.format;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,6 +6,7 @@ import xuyihao.java2excel.core.entity.dict.Meta;
 import xuyihao.java2excel.core.entity.model.Model;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
+import xuyihao.java2excel.core.operation.Common;
 import xuyihao.java2excel.util.StringUtils;
 
 import java.util.*;
@@ -13,8 +14,8 @@ import java.util.*;
 /**
  * Created by Xuyh at 2016/07/22 上午 11:36.
  */
-public class Export {
-	private static Logger logger = LoggerFactory.getLogger(Export.class);
+public class FormatExporter {
+	private static Logger logger = LoggerFactory.getLogger(FormatExporter.class);
 
 	/**
 	 * create excel sheet
