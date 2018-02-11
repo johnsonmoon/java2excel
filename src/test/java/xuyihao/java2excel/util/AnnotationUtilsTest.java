@@ -1,7 +1,7 @@
 package xuyihao.java2excel.util;
 
 import org.junit.Test;
-import xuyihao.java2excel.core.entity.model.annotation.Attribute;
+import xuyihao.java2excel.core.entity.formatted.model.annotation.Attribute;
 import xuyihao.java2excel.entity.Teacher;
 
 import java.lang.annotation.Annotation;

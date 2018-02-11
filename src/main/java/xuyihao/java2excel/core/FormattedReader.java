@@ -1,10 +1,10 @@
-package xuyihao.java2excel;
+package xuyihao.java2excel.core;
 
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xuyihao.java2excel.core.entity.model.Model;
+import xuyihao.java2excel.core.entity.formatted.model.Model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,29 +12,29 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Reader
+ * FormattedReader
  * <p>
  * <pre>
  * 	Read excel file at multiple sheets from a existing excel file.
  *
- * 	1.invoke readExcelModel to read model info from excel file. {@link Reader#readExcelModel(int)}
- * 	2.invoke readExcelJavaClass to read type info from excel file. {@link Reader#readExcelJavaClass(int)}
- * 	3.invoke readExcelDataCount to read data count from excel file. {@link Reader#readExcelDataCount(int)}
- * 	4.invoke readExcelData to read data from excel file. {@link Reader#readExcelData(int, int)} {@link Reader#readExcelData(int, Model[])} {@link Reader#readExcelData(int, int, Class)} {@link Reader#readExcelData(int, Object[], Class)}
- * 	5.invoke refresh to reset read position of current excel file.(from head of sheet) {@link Reader#refresh()}
- * 	6.invoke close to close current excel file. {@link Reader#close()}
+ * 	1.invoke readExcelModel to read model info from excel file. {@link FormattedReader#readExcelModel(int)}
+ * 	2.invoke readExcelJavaClass to read type info from excel file. {@link FormattedReader#readExcelJavaClass(int)}
+ * 	3.invoke readExcelDataCount to read data count from excel file. {@link FormattedReader#readExcelDataCount(int)}
+ * 	4.invoke readExcelData to read data from excel file. {@link FormattedReader#readExcelData(int, int)} {@link FormattedReader#readExcelData(int, Model[])} {@link FormattedReader#readExcelData(int, int, Class)} {@link FormattedReader#readExcelData(int, Object[], Class)}
+ * 	5.invoke refresh to reset read position of current excel file.(from head of sheet) {@link FormattedReader#refresh()}
+ * 	6.invoke close to close current excel file. {@link FormattedReader#close()}
  * </pre>
  * <p>
  * Created by xuyh at 2018/1/5 16:52.
  */
-public class Reader extends AbstractReader {
-	private static Logger logger = LoggerFactory.getLogger(Reader.class);
+public class FormattedReader extends FormattedAbstractReader {
+	private static Logger logger = LoggerFactory.getLogger(FormattedReader.class);
 	private Workbook workbook;
 	private String filePathName;
 	private Map<Integer, Integer> modelSheetCurrentRowNumberMap = new HashMap<>();
 	private Map<Integer, Integer> typeSheetCurrentRowNumberMap = new HashMap<>();
 
-	public Reader(String filePathName) {
+	public FormattedReader(String filePathName) {
 		this.filePathName = filePathName;
 		openWorkBook(filePathName);
 	}

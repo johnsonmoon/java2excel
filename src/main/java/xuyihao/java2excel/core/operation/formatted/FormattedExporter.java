@@ -2,8 +2,8 @@ package xuyihao.java2excel.core.operation.formatted;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xuyihao.java2excel.core.entity.dict.Meta;
-import xuyihao.java2excel.core.entity.model.Model;
+import xuyihao.java2excel.core.entity.formatted.dict.Meta;
+import xuyihao.java2excel.core.entity.formatted.model.Model;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import xuyihao.java2excel.core.operation.Common;
@@ -24,7 +24,7 @@ public class FormattedExporter {
 	 * @param sheetNum sheet number
 	 * @param model    model
 	 * @param language meta info language(en_US, zh_CN, etc.)
-	 *                 {@link xuyihao.java2excel.core.entity.dict.Meta}
+	 *                 {@link xuyihao.java2excel.core.entity.formatted.dict.Meta}
 	 * @return true/false
 	 */
 	public static boolean createExcel(final Workbook workbook, int sheetNum, Model model, String language) {

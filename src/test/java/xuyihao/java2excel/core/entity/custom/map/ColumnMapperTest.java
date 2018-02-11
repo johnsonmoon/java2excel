@@ -1,4 +1,4 @@
-package xuyihao.java2excel.core.entity.map;
+package xuyihao.java2excel.core.entity.custom.map;
 
 import org.junit.Assert;
 import org.junit.Test;

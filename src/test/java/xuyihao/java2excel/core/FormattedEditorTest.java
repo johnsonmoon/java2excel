@@ -1,9 +1,11 @@
-package xuyihao.java2excel;
+package xuyihao.java2excel.core;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import xuyihao.java2excel.core.entity.dict.Languages;
+import xuyihao.java2excel.core.FormattedEditor;
+import xuyihao.java2excel.core.FormattedWriter;
+import xuyihao.java2excel.core.entity.formatted.dict.Languages;
 import xuyihao.java2excel.entity.Teacher;
 import xuyihao.java2excel.util.FileUtils;
 import xuyihao.java2excel.util.JsonUtils;
@@ -15,7 +17,7 @@ import java.util.List;
 /**
  * Created by xuyh at 2018/1/10 18:23.
  */
-public class EditorTest {
+public class FormattedEditorTest {
 	private static String filePathName = "D:\\teacher.xlsx";
 
 	@Before
@@ -32,17 +34,17 @@ public class EditorTest {
 			teachers.add(teacher);
 		}
 
-		Writer writer = new Writer(filePathName);
-		writer.setLanguage(Languages.ZH_CN.getLanguage());
-		Assert.assertTrue(writer.writeExcelModel(Teacher.class, 0));
-		Assert.assertTrue(writer.writeExcelData(teachers, 0));
-		Assert.assertTrue(writer.flush());
-		Assert.assertTrue(writer.close());
+		FormattedWriter formattedWriter = new FormattedWriter(filePathName);
+		formattedWriter.setLanguage(Languages.ZH_CN.getLanguage());
+		Assert.assertTrue(formattedWriter.writeExcelModel(Teacher.class, 0));
+		Assert.assertTrue(formattedWriter.writeExcelData(teachers, 0));
+		Assert.assertTrue(formattedWriter.flush());
+		Assert.assertTrue(formattedWriter.close());
 	}
 
 	@Test
 	public void test() {
-		Editor editor = new Editor(filePathName);
+		FormattedEditor editor = new FormattedEditor(filePathName);
 		editor.setLanguage(Languages.ZH_CN.getLanguage());
 		int count = editor.readExcelDataCount(0);
 		System.out.println(count);

@@ -1,4 +1,4 @@
-package xuyihao.java2excel.core.entity.map.annotation;
+package xuyihao.java2excel.core.entity.custom.map.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

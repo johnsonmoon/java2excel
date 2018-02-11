@@ -4,7 +4,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xuyihao.java2excel.core.entity.map.ColumnMapper;
+import xuyihao.java2excel.core.entity.custom.map.ColumnMapper;
 import xuyihao.java2excel.core.operation.Common;
 
 import java.util.List;
@@ -41,7 +41,7 @@ public class CustomExporter {
 				if (fieldName == null || fieldName.isEmpty())
 					continue;
 				Common.insertCellValue(sheet, columnNumber, 0, fieldName,
-						Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_COLUMN_HEADER));
+						Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER));
 			}
 			flag = true;
 		} catch (Exception e) {

@@ -2,8 +2,8 @@ package xuyihao.java2excel.core.operation.formatted;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xuyihao.java2excel.core.entity.model.Attribute;
-import xuyihao.java2excel.core.entity.model.Model;
+import xuyihao.java2excel.core.entity.formatted.model.Attribute;
+import xuyihao.java2excel.core.entity.formatted.model.Model;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import xuyihao.java2excel.core.operation.Common;

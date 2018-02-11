@@ -1,7 +1,7 @@
 package xuyihao.java2excel.util;
 
-import xuyihao.java2excel.core.entity.model.annotation.Attribute;
-import xuyihao.java2excel.core.entity.model.annotation.Model;
+import xuyihao.java2excel.core.entity.formatted.model.annotation.Attribute;
+import xuyihao.java2excel.core.entity.formatted.model.annotation.Model;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;

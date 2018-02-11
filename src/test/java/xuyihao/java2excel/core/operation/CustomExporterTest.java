@@ -5,7 +5,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import xuyihao.java2excel.core.entity.map.ColumnMapper;
+import xuyihao.java2excel.core.entity.custom.map.ColumnMapper;
 import xuyihao.java2excel.core.operation.custom.CustomExporter;
 import xuyihao.java2excel.util.FileUtils;
 

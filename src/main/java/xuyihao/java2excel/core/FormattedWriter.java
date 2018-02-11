@@ -1,4 +1,4 @@
-package xuyihao.java2excel;
+package xuyihao.java2excel.core;
 
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -10,29 +10,29 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Writer
+ * FormattedWriter
  * <p>
  * <pre>
  * 	Write excel file at multiple sheets as a whole new excel file.
  *
- * 	1. invoke writeExcelModel write model information. {@link Writer#writeExcelModel(Class, int)}
- * 	2. invoke writeExcelData append data into workbook. {@link Writer#writeExcelData(List, int)}
- * 	3. invoke flush to write workbook into disk file. {@link Writer#flush()} {@link Writer#flush(String)}
- * 	4. invoke close to close writer. {@link Writer#close}
+ * 	1. invoke writeExcelModel write model information. {@link FormattedWriter#writeExcelModel(Class, int)}
+ * 	2. invoke writeExcelData append data into workbook. {@link FormattedWriter#writeExcelData(List, int)}
+ * 	3. invoke flush to write workbook into disk file. {@link FormattedWriter#flush()} {@link FormattedWriter#flush(String)}
+ * 	4. invoke close to close writer. {@link FormattedWriter#close}
  * </pre>
  * <p>
  * Created by xuyh at 2018/1/5 16:52.
  */
-public class Writer extends AbstractWriter {
-	private static Logger logger = LoggerFactory.getLogger(Writer.class);
+public class FormattedWriter extends FormattedAbstractWriter {
+	private static Logger logger = LoggerFactory.getLogger(FormattedWriter.class);
 	private Workbook workbook = new XSSFWorkbook();
 	private Map<Integer, Integer> sheetCurrentRowNumberMap = new HashMap<>();
 	private String filePathName;
 
-	public Writer() {
+	public FormattedWriter() {
 	}
 
-	public Writer(String filePathName) {
+	public FormattedWriter(String filePathName) {
 		this.filePathName = filePathName;
 	}
 

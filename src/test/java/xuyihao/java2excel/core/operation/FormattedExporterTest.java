@@ -3,8 +3,8 @@ package xuyihao.java2excel.core.operation;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Test;
-import xuyihao.java2excel.core.entity.model.Attribute;
-import xuyihao.java2excel.core.entity.model.Model;
+import xuyihao.java2excel.core.entity.formatted.model.Attribute;
+import xuyihao.java2excel.core.entity.formatted.model.Model;
 import xuyihao.java2excel.core.operation.formatted.FormattedExporter;
 import xuyihao.java2excel.util.FileUtils;
 

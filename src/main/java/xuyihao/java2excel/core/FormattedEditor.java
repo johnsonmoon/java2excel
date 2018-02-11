@@ -1,10 +1,10 @@
-package xuyihao.java2excel;
+package xuyihao.java2excel.core;
 
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xuyihao.java2excel.core.entity.model.Model;
+import xuyihao.java2excel.core.entity.formatted.model.Model;
 import xuyihao.java2excel.util.FileUtils;
 
 import java.util.ArrayList;
@@ -15,13 +15,13 @@ import java.util.List;
  * <p>
  * Created by xuyh at 2018/1/10 18:11.
  */
-public class Editor extends AbstractEditor {
-	private static Logger logger = LoggerFactory.getLogger(Editor.class);
+public class FormattedEditor extends FormattedAbstractEditor {
+	private static Logger logger = LoggerFactory.getLogger(FormattedEditor.class);
 	private Workbook workbook;
 	private String filePathName;
 	private String saveFilepathName;
 
-	public Editor(String filePathName) {
+	public FormattedEditor(String filePathName) {
 		this.filePathName = filePathName;
 		openWorkBook(filePathName);
 	}

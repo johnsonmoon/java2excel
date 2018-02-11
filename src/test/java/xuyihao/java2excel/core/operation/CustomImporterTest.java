@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xuyihao.java2excel.core.entity.map.ColumnMapper;
+import xuyihao.java2excel.core.entity.custom.map.ColumnMapper;
 import xuyihao.java2excel.core.operation.custom.CustomImporter;
 
 import java.io.File;

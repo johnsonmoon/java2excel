@@ -130,8 +130,8 @@ public class Student {
 
 #### . annotation ways (like class Teacher):
 ```
-import xuyihao.java2excel.core.entity.model.annotation.Attribute;
-import xuyihao.java2excel.core.entity.model.annotation.Model;
+import xuyihao.java2excel.core.entity.formatted.model.annotation.Attribute;
+import xuyihao.java2excel.core.entity.formatted.model.annotation.Model;
 
 import java.util.List;
 
@@ -250,47 +250,47 @@ for (int i = 0; i < 100; i++) {
     teachers.add(teacher);
 }
 
-//Get a writer instance with given file path name.(File can be inexistent).
-Writer writer = new Writer("D:\\complex.xlsx");
+//Get a formattedWriter instance with given file path name.(File can be inexistent).
+Writer formattedWriter = new Writer("D:\\complex.xlsx");
 
-//Set the writer language to write meta data with.
-writer.setLanguage("en_US");
+//Set the formattedWriter language to write meta data with.
+formattedWriter.setLanguage("en_US");
 
 //Write your entity meta data.
-writer.writeExcelModel(Teacher.class, 0);
+formattedWriter.writeExcelModel(Teacher.class, 0);
 for (int i = 0; i < 100; i += 10) {
     List<Teacher> t = new ArrayList<>();
     for (int j = i; j < i + 10; j++) {
         t.add(teachers.get(j));
     }
     //Write your entity data by steps.
-    writer.writeExcelData(t, 0);
+    formattedWriter.writeExcelData(t, 0);
 }
 
 //Write file into the disk.
-writer.flush();
+formattedWriter.flush();
 
-//Close the java2excel writer.
-writer.close();
+//Close the java2excel formattedWriter.
+formattedWriter.close();
 ```
 
 Result:
 
-![image](writer-result-screenshot.png)
+![image](formattedWriter-result-screenshot.png)
 
 ### Read your entity data from a existing excel file using class {Reader}. (Wrote before)
 ```
-//Get a reader instance with given file path name. (File must exists)
-Reader reader = new Reader("D:\\complex.xlsx");
+//Get a formattedReader instance with given file path name. (File must exists)
+Reader formattedReader = new Reader("D:\\complex.xlsx");
 
 //Get your entity class info in the excel file (sheet number 1)
-Class<?> clazz = reader.readExcelJavaClass(1);
+Class<?> clazz = formattedReader.readExcelJavaClass(1);
 
 Assert.assertNotNull(clazz);
 System.out.println(JsonUtils.obj2JsonStr(clazz));
 
 //Get your entity data count from the excel file.
-int count = reader.readExcelDataCount(1);
+int count = formattedReader.readExcelDataCount(1);
 
 Assert.assertNotEquals(1, count);
 System.out.println(count);
@@ -299,27 +299,27 @@ System.out.println("\n----------------------------------------------------------
 int listCount;
 do {
     //Get data list, size 10.
-    List<Student> studentList = reader.readExcelData(1, 10, Student.class);
+    List<Student> studentList = formattedReader.readExcelData(1, 10, Student.class);
     listCount = studentList.size();
     studentList.forEach(student -> System.out.println(JsonUtils.obj2JsonStr(student)));
 } while (listCount > 0);
 
 
-//Refresh the reader. Read position reset to 0 (next read will start from the begining of the excel file data).
-reader.refresh();
+//Refresh the formattedReader. Read position reset to 0 (next read will start from the begining of the excel file data).
+formattedReader.refresh();
 
 System.out.println("\n----------------------------------------------------------------------read array");
 Student[] students = new Student[10];
 int arrayCount;
 //Get data into your entity array
-while ((arrayCount = reader.readExcelData(1, students, Student.class)) > 0) {
+while ((arrayCount = formattedReader.readExcelData(1, students, Student.class)) > 0) {
     for (int i = 0; i < arrayCount; i++) {
         System.out.println(JsonUtils.obj2JsonStr(students[i]));
     }
 }
 
-//Close the java2excel reader.
-reader.close();
+//Close the java2excel formattedReader.
+formattedReader.close();
 ```
 
 Result:
