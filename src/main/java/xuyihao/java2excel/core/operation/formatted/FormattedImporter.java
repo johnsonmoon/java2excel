@@ -1,4 +1,4 @@
-package xuyihao.java2excel.core.operation.format;
+package xuyihao.java2excel.core.operation.formatted;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,8 +14,8 @@ import java.util.List;
 /**
  * Created by Xuyh at 2016/07/27 下午 12:48.
  */
-public class FormatImporter {
-	private static Logger logger = LoggerFactory.getLogger(FormatImporter.class);
+public class FormattedImporter {
+	private static Logger logger = LoggerFactory.getLogger(FormattedImporter.class);
 
 	/**
 	 * Getting model info from excel workbook sheet.
