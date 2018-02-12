@@ -109,6 +109,34 @@ public class ColumnMapper {
 	}
 
 	/**
+	 * Get field name by column number.
+	 *
+	 * @param columnNumber column number
+	 * @return field name (null if not exists)
+	 */
+	public String getFieldName(Integer columnNumber) {
+		for (Map map : this.maps) {
+			if (map.columnNumber.equals(columnNumber))
+				return map.fieldName;
+		}
+		return null;
+	}
+
+	/**
+	 * Get column number by field name.
+	 *
+	 * @param fieldName field name
+	 * @return column number (-1 if not exists)
+	 */
+	public Integer getColumnNumber(String fieldName) {
+		for (Map map : this.maps) {
+			if (map.fieldName.equals(fieldName))
+				return map.columnNumber;
+		}
+		return -1;
+	}
+
+	/**
 	 * Get mapping ordered by column number;
 	 *
 	 * @param orderType ordering type

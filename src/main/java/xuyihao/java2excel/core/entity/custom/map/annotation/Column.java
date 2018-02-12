@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 @Target({ ElementType.FIELD })
 public @interface Column {
 	/**
-	 * Set column for the field.
+	 * Set column for the field.(Starts from 0)
 	 */
 	int column();
 }
