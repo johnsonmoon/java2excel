@@ -4,6 +4,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import xuyihao.java2excel.Editor;
 import xuyihao.java2excel.core.entity.formatted.model.Model;
 import xuyihao.java2excel.util.FileUtils;
 
@@ -15,7 +16,7 @@ import java.util.List;
  * <p>
  * Created by xuyh at 2018/1/10 18:11.
  */
-public class FormattedEditor extends FormattedAbstractEditor {
+public class FormattedEditor extends FormattedAbstractEditor implements Editor {
 	private static Logger logger = LoggerFactory.getLogger(FormattedEditor.class);
 	private Workbook workbook;
 	private String filePathName;
@@ -72,6 +73,7 @@ public class FormattedEditor extends FormattedAbstractEditor {
 	 * @param sheetNumber sheet number
 	 * @return data count
 	 */
+	@Override
 	public int readExcelDataCount(int sheetNumber) {
 		int dataCount = 0;
 		try {
@@ -117,6 +119,7 @@ public class FormattedEditor extends FormattedAbstractEditor {
 	 * @param clazz       given type
 	 * @return type data list of given size
 	 */
+	@Override
 	public <T> List<T> readExcelData(int sheetNumber, int beginRow, int readSize, Class<T> clazz) {
 		List<T> tList = new ArrayList<>();
 		if (readSize <= 0)
@@ -140,7 +143,8 @@ public class FormattedEditor extends FormattedAbstractEditor {
 	 * @param sheetNumber given sheet number
 	 * @return true/false
 	 */
-	public boolean writeExcelModel(Class<?> clazz, int sheetNumber) {
+	@Override
+	public boolean writeExcelMetaInfo(Class<?> clazz, int sheetNumber) {
 		if (workbook == null)
 			return false;
 		if (sheetNumber < 0)
@@ -156,6 +160,7 @@ public class FormattedEditor extends FormattedAbstractEditor {
 	 * @param beginRow    row to start write at
 	 * @return true/false
 	 */
+	@Override
 	public boolean writeExcelData(List<?> tList, int sheetNumber, int beginRow) {
 		if (workbook == null)
 			return false;
@@ -169,6 +174,7 @@ public class FormattedEditor extends FormattedAbstractEditor {
 	 *
 	 * @return true/false
 	 */
+	@Override
 	public boolean flush() {
 		this.saveFilepathName = this.filePathName;
 		return flushOnly();
@@ -180,6 +186,7 @@ public class FormattedEditor extends FormattedAbstractEditor {
 	 * @param filePathName another given disk file path name (create new file)
 	 * @return true/false
 	 */
+	@Override
 	public boolean flush(String filePathName) {
 		this.saveFilepathName = filePathName;
 		return flushOnly();
@@ -205,6 +212,7 @@ public class FormattedEditor extends FormattedAbstractEditor {
 	 *
 	 * @return true/false
 	 */
+	@Override
 	public boolean close() {
 		if (workbook == null)
 			return false;

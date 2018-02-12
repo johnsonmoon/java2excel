@@ -4,6 +4,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import xuyihao.java2excel.Reader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,12 +16,16 @@ import java.util.Map;
  * <p>
  * Created by xuyh at 2018/2/11 17:35.
  */
-public class CustomReader extends CustomAbstractReader {
+public class CustomReader extends CustomAbstractReader implements Reader {
 	private static Logger logger = LoggerFactory.getLogger(CustomReader.class);
 	private Workbook workbook;
 	private String filePathName;
 	private int dataBeginRowNumber = 0;
 	private Map<Integer, Integer> typeSheetCurrentRowNumberMap = new HashMap<>();
+
+	public CustomReader(String filePathName) {
+		this.filePathName = filePathName;
+	}
 
 	public CustomReader(String filePathName, int dataBeginRowNumber) {
 		this.filePathName = filePathName;
@@ -67,6 +72,7 @@ public class CustomReader extends CustomAbstractReader {
 	 * @param sheetNumber sheet number
 	 * @return data count
 	 */
+	@Override
 	public int readExcelDataCount(int sheetNumber) {
 		int dataCount = 0;
 		try {
@@ -87,6 +93,7 @@ public class CustomReader extends CustomAbstractReader {
 	 * @param clazz       given type
 	 * @return type data list of given size
 	 */
+	@Override
 	public <T> List<T> readExcelData(int sheetNumber, int readSize, Class<T> clazz) {
 		List<T> tList = new ArrayList<>();
 		if (readSize <= 0)
@@ -113,6 +120,7 @@ public class CustomReader extends CustomAbstractReader {
 	 * @param clazz       given type
 	 * @return read size
 	 */
+	@Override
 	public <T> int readExcelData(int sheetNumber, T[] ts, Class<T> clazz) {
 		int readCount = 0;
 		if (ts == null)
@@ -148,6 +156,7 @@ public class CustomReader extends CustomAbstractReader {
 	 *
 	 * @return true/false
 	 */
+	@Override
 	public boolean refresh() {
 		try {
 			for (Integer integer : typeSheetCurrentRowNumberMap.keySet()) {
@@ -165,6 +174,7 @@ public class CustomReader extends CustomAbstractReader {
 	 *
 	 * @return true/false
 	 */
+	@Override
 	public boolean close() {
 		if (workbook == null)
 			return false;

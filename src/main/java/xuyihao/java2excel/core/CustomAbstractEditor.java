@@ -1,7 +1,8 @@
 package xuyihao.java2excel.core;
 
 import org.apache.poi.ss.usermodel.Workbook;
-import xuyihao.java2excel.core.entity.custom.map.ColumnMapper;
+import xuyihao.java2excel.core.entity.custom.annotation.Column;
+import xuyihao.java2excel.core.entity.custom.ColumnMapper;
 import xuyihao.java2excel.core.operation.Common;
 import xuyihao.java2excel.core.operation.custom.CustomExporter;
 import xuyihao.java2excel.core.operation.custom.CustomImporter;
@@ -31,7 +32,7 @@ public abstract class CustomAbstractEditor {
 	 * </pre>
 	 *
 	 * @param tClass given class
-	 * @see xuyihao.java2excel.core.entity.custom.map.annotation.Column
+	 * @see Column
 	 */
 	public ColumnMapper generateColumnMapper(Class<?> tClass) {
 		if (!AnnotationUtils.hasAnnotationColumn(tClass.getDeclaredFields())) {

@@ -4,6 +4,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import xuyihao.java2excel.Reader;
 import xuyihao.java2excel.core.entity.formatted.model.Model;
 
 import java.util.ArrayList;
@@ -27,7 +28,7 @@ import java.util.Map;
  * <p>
  * Created by xuyh at 2018/1/5 16:52.
  */
-public class FormattedReader extends FormattedAbstractReader {
+public class FormattedReader extends FormattedAbstractReader implements Reader {
 	private static Logger logger = LoggerFactory.getLogger(FormattedReader.class);
 	private Workbook workbook;
 	private String filePathName;
@@ -111,6 +112,7 @@ public class FormattedReader extends FormattedAbstractReader {
 	 * @param sheetNumber sheet number
 	 * @return data count
 	 */
+	@Override
 	public int readExcelDataCount(int sheetNumber) {
 		int dataCount = 0;
 		try {
@@ -189,6 +191,7 @@ public class FormattedReader extends FormattedAbstractReader {
 	 * @param clazz       given type
 	 * @return type data list of given size
 	 */
+	@Override
 	public <T> List<T> readExcelData(int sheetNumber, int readSize, Class<T> clazz) {
 		List<T> tList = new ArrayList<>();
 		if (readSize <= 0)
@@ -215,6 +218,7 @@ public class FormattedReader extends FormattedAbstractReader {
 	 * @param clazz       given type
 	 * @return read size
 	 */
+	@Override
 	public <T> int readExcelData(int sheetNumber, T[] ts, Class<T> clazz) {
 		int readCount = 0;
 		if (ts == null)
@@ -263,6 +267,7 @@ public class FormattedReader extends FormattedAbstractReader {
 	 *
 	 * @return true/false
 	 */
+	@Override
 	public boolean refresh() {
 		try {
 			for (Integer integer : modelSheetCurrentRowNumberMap.keySet()) {
@@ -284,6 +289,7 @@ public class FormattedReader extends FormattedAbstractReader {
 	 *
 	 * @return true/false
 	 */
+	@Override
 	public boolean close() {
 		if (workbook == null)
 			return false;

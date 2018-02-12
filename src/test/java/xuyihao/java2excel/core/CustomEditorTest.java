@@ -3,7 +3,7 @@ package xuyihao.java2excel.core;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import xuyihao.java2excel.core.entity.custom.map.ColumnMapper;
+import xuyihao.java2excel.core.entity.custom.ColumnMapper;
 import xuyihao.java2excel.entity.Person;
 import xuyihao.java2excel.entity.PersonA;
 import xuyihao.java2excel.util.DateUtils;
@@ -73,13 +73,13 @@ public class CustomEditorTest {
 		String filePathName2 = fileDir + "/testCustomEditor2.xlsx";
 
 		CustomEditor customEditor = new CustomEditor(filePathName);
-		Assert.assertTrue(customEditor.writeExcelColumnMapperHeader(columnMapper, 0, "TestSheet"));
+		Assert.assertTrue(customEditor.writeExcelMetaInfo(columnMapper, 0, "TestSheet"));
 		Assert.assertTrue(customEditor.writeExcelDataDirectly(intDataList, 0, 1));
 		Assert.assertTrue(customEditor.flush());
 		Assert.assertTrue(customEditor.close());
 
 		CustomEditor customEditor1 = new CustomEditor(filePathName);
-		Assert.assertTrue(customEditor1.writeExcelColumnMapperHeader(columnMapper, 1, "testSheet2"));
+		Assert.assertTrue(customEditor1.writeExcelMetaInfo(columnMapper, 1, "testSheet2"));
 		Assert.assertTrue(customEditor1.writeExcelDataDirectly(strDataList, columnMapper, 1, 1));
 		Assert.assertTrue(customEditor1.flush(filePathName2));//save into another file
 		Assert.assertTrue(customEditor1.close());
@@ -103,13 +103,13 @@ public class CustomEditorTest {
 		String filePathName4 = fileDir + "/testCustomEditor4.xlsx";
 
 		CustomEditor customEditor = new CustomEditor(filePathName3);
-		Assert.assertTrue(customEditor.writeExcelColumnMapperHeader(Person.class, 0, "Person"));
+		Assert.assertTrue(customEditor.writeExcelMetaInfo(Person.class, 0, "Person"));
 		Assert.assertTrue(customEditor.writeExcelData(people, columnMapper, 0, 1));
 		Assert.assertTrue(customEditor.flush());
 		Assert.assertTrue(customEditor.close());
 
 		CustomEditor customEditor1 = new CustomEditor(filePathName3);
-		Assert.assertTrue(customEditor1.writeExcelColumnMapperHeader(PersonA.class, 1, "PersonA"));
+		Assert.assertTrue(customEditor1.writeExcelMetaInfo(PersonA.class, 1, "PersonA"));
 		Assert.assertTrue(customEditor1.writeExcelData(personAS, 1, 1));
 		Assert.assertTrue(customEditor1.flush(filePathName4));//save into another file
 		Assert.assertTrue(customEditor1.close());
@@ -121,7 +121,7 @@ public class CustomEditorTest {
 		List<Person> personList = customEditor2.readExcelData(Person.class, columnMapper, 0, 1, 10);
 		Assert.assertNotNull(personList);
 		System.out.println(personList);
-		List<PersonA> personAList = customEditor2.readExcelData(PersonA.class, 1, 1, 10);
+		List<PersonA> personAList = customEditor2.readExcelData(1, 1, 10, PersonA.class);
 		Assert.assertNotNull(personAList);
 		System.out.println(personAList);
 		Assert.assertTrue(customEditor2.close());

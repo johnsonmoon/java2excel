@@ -4,6 +4,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import xuyihao.java2excel.Writer;
 import xuyihao.java2excel.util.ReflectionUtils;
 
 import java.util.HashMap;
@@ -11,9 +12,22 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Custom writer.
+ * <p>
+ * <p>
+ * <pre>
+ * 	Write excel file at multiple sheets as a whole new excel file.
+ *
+ * 	1. invoke writeExcelMetaInfo write model information. {@link CustomWriter#writeExcelMetaInfo(Class, int)}
+ * 	2. invoke writeExcelData append data into workbook. {@link CustomWriter#writeExcelData(List, int)}
+ * 	3. invoke flush to write workbook into disk file. {@link CustomWriter#flush()} {@link CustomWriter#flush(String)}
+ * 	4. invoke close to close writer. {@link CustomWriter#close}
+ * </pre>
+ * <p>
+ * <p>
  * Created by xuyh at 2018/2/11 17:35.
  */
-public class CustomWriter extends CustomAbstractWriter {
+public class CustomWriter extends CustomAbstractWriter implements Writer {
 	private static Logger logger = LoggerFactory.getLogger(CustomWriter.class);
 	private Workbook workbook = new XSSFWorkbook();
 	private Map<Integer, Integer> sheetCurrentRowNumberMap = new HashMap<>();
@@ -46,6 +60,7 @@ public class CustomWriter extends CustomAbstractWriter {
 	 * @param sheetNumber given sheet number
 	 * @return true/false
 	 */
+	@Override
 	public boolean writeExcelMetaInfo(Class<?> clazz, int sheetNumber) {
 		if (workbook == null)
 			return false;
@@ -64,6 +79,7 @@ public class CustomWriter extends CustomAbstractWriter {
 	 * @param sheetNumber given sheet number
 	 * @return true/false
 	 */
+	@Override
 	public boolean writeExcelData(List<?> tList, int sheetNumber) {
 		if (workbook == null)
 			return false;
@@ -81,7 +97,20 @@ public class CustomWriter extends CustomAbstractWriter {
 	 *
 	 * @return true/false
 	 */
+	@Override
 	public boolean flush() {
+		return flushOnly();
+	}
+
+	/**
+	 * Write workbook into given disk file.
+	 *
+	 * @param filePathName given disk file path name (create new file)
+	 * @return true/false
+	 */
+	@Override
+	public boolean flush(String filePathName) {
+		this.filePathName = filePathName;
 		return flushOnly();
 	}
 
@@ -104,6 +133,7 @@ public class CustomWriter extends CustomAbstractWriter {
 	 *
 	 * @return true/false
 	 */
+	@Override
 	public boolean close() {
 		if (workbook == null)
 			return false;

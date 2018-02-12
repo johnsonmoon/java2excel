@@ -5,7 +5,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import xuyihao.java2excel.core.entity.custom.map.ColumnMapper;
+import xuyihao.java2excel.core.entity.custom.ColumnMapper;
 import xuyihao.java2excel.entity.Person;
 import xuyihao.java2excel.entity.PersonA;
 import xuyihao.java2excel.util.DateUtils;

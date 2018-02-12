@@ -1,6 +1,6 @@
 package xuyihao.java2excel.util;
 
-import xuyihao.java2excel.core.entity.custom.map.annotation.Column;
+import xuyihao.java2excel.core.entity.custom.annotation.Column;
 import xuyihao.java2excel.core.entity.formatted.model.annotation.Attribute;
 import xuyihao.java2excel.core.entity.formatted.model.annotation.Model;
 

@@ -4,6 +4,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import xuyihao.java2excel.Writer;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,7 +24,7 @@ import java.util.Map;
  * <p>
  * Created by xuyh at 2018/1/5 16:52.
  */
-public class FormattedWriter extends FormattedAbstractWriter {
+public class FormattedWriter extends FormattedAbstractWriter implements Writer {
 	private static Logger logger = LoggerFactory.getLogger(FormattedWriter.class);
 	private Workbook workbook = new XSSFWorkbook();
 	private Map<Integer, Integer> sheetCurrentRowNumberMap = new HashMap<>();
@@ -56,6 +57,7 @@ public class FormattedWriter extends FormattedAbstractWriter {
 	 * @param sheetNumber given sheet number
 	 * @return true/false
 	 */
+	@Override
 	public boolean writeExcelMetaInfo(Class<?> clazz, int sheetNumber) {
 		if (workbook == null)
 			return false;
@@ -71,6 +73,7 @@ public class FormattedWriter extends FormattedAbstractWriter {
 	 * @param sheetNumber given sheet number
 	 * @return true/false
 	 */
+	@Override
 	public boolean writeExcelData(List<?> tList, int sheetNumber) {
 		if (workbook == null)
 			return false;
@@ -88,6 +91,7 @@ public class FormattedWriter extends FormattedAbstractWriter {
 	 *
 	 * @return true/false
 	 */
+	@Override
 	public boolean flush() {
 		return flushOnly();
 	}
@@ -122,6 +126,7 @@ public class FormattedWriter extends FormattedAbstractWriter {
 	 *
 	 * @return true/false
 	 */
+	@Override
 	public boolean close() {
 		if (workbook == null)
 			return false;

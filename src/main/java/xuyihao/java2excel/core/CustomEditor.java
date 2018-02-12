@@ -4,8 +4,10 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xuyihao.java2excel.core.entity.custom.map.ColumnMapper;
+import xuyihao.java2excel.Editor;
+import xuyihao.java2excel.core.entity.custom.ColumnMapper;
 import xuyihao.java2excel.util.FileUtils;
+import xuyihao.java2excel.util.ReflectionUtils;
 
 import java.util.List;
 import java.util.Map;
@@ -15,15 +17,29 @@ import java.util.Map;
  * <p>
  * Created by xuyh at 2018/2/11 17:35.
  */
-public class CustomEditor extends CustomAbstractEditor {
+public class CustomEditor extends CustomAbstractEditor implements Editor {
 	private static Logger logger = LoggerFactory.getLogger(CustomEditor.class);
 	private Workbook workbook;
 	private String filePathName;
 	private String saveFilepathName;
+	private int dataBeginRowNumber = 0;
 
 	public CustomEditor(String filePathName) {
 		this.filePathName = filePathName;
 		openWorkBook(filePathName);
+	}
+
+	public CustomEditor(String filePathName, int dataBeginRowNumber) {
+		this.filePathName = filePathName;
+		this.dataBeginRowNumber = dataBeginRowNumber;
+	}
+
+	public int getDataBeginRowNumber() {
+		return dataBeginRowNumber;
+	}
+
+	public void setDataBeginRowNumber(int dataBeginRowNumber) {
+		this.dataBeginRowNumber = dataBeginRowNumber;
 	}
 
 	/**
@@ -34,7 +50,7 @@ public class CustomEditor extends CustomAbstractEditor {
 	 * @param sheetName    given start row number to write with
 	 * @return true/false
 	 */
-	public boolean writeExcelColumnMapperHeader(ColumnMapper columnMapper, int sheetNumber, String sheetName) {
+	public boolean writeExcelMetaInfo(ColumnMapper columnMapper, int sheetNumber, String sheetName) {
 		if (columnMapper == null || workbook == null || sheetNumber < 0 || sheetName == null || sheetName.isEmpty()) {
 			return false;
 		}
@@ -49,12 +65,27 @@ public class CustomEditor extends CustomAbstractEditor {
 	 * @param sheetName   given start row number to write with
 	 * @return true/false
 	 */
-	public boolean writeExcelColumnMapperHeader(Class<?> clazz, int sheetNumber,
+	public boolean writeExcelMetaInfo(Class<?> clazz, int sheetNumber,
 			String sheetName) {
 		if (clazz == null || workbook == null || sheetNumber < 0 || sheetName == null || sheetName.isEmpty()) {
 			return false;
 		}
 		return writeColumnMapperHeader(clazz, workbook, sheetNumber, sheetName);
+	}
+
+	/**
+	 * Write excel header by columnMapper information.
+	 *
+	 * @param clazz       type
+	 * @param sheetNumber given sheet number
+	 * @return true/false
+	 */
+	@Override
+	public boolean writeExcelMetaInfo(Class<?> clazz, int sheetNumber) {
+		if (clazz == null || workbook == null || sheetNumber < 0) {
+			return false;
+		}
+		return writeColumnMapperHeader(clazz, workbook, sheetNumber, ReflectionUtils.getClassNameShort(clazz));
 	}
 
 	/**
@@ -110,6 +141,7 @@ public class CustomEditor extends CustomAbstractEditor {
 	 * @param startRowNumber given start row number to write with
 	 * @return true/false
 	 */
+	@Override
 	public boolean writeExcelData(List<?> tList, int sheetNumber, int startRowNumber) {
 		if (tList == null || tList.isEmpty() || workbook == null || sheetNumber < 0 || startRowNumber < 0) {
 			return false;
@@ -227,8 +259,9 @@ public class CustomEditor extends CustomAbstractEditor {
 	 * @param <T>            type
 	 * @return type list
 	 */
-	public <T> List<T> readExcelData(Class<T> clazz, int sheetNumber, int beginRowNumber,
-			int readSize) {
+	@Override
+	public <T> List<T> readExcelData(int sheetNumber, int beginRowNumber,
+			int readSize, Class<T> clazz) {
 		if (clazz == null || workbook == null || sheetNumber < 0 || beginRowNumber < 0 || readSize <= 0)
 			return null;
 		try {
@@ -258,10 +291,29 @@ public class CustomEditor extends CustomAbstractEditor {
 	}
 
 	/**
+	 * Read data count from a given workbook at sheet.
+	 *
+	 * @param sheetNumber given sheet number
+	 * @return data count
+	 */
+	@Override
+	public int readExcelDataCount(int sheetNumber) {
+		if (workbook == null || sheetNumber < 0)
+			return 0;
+		try {
+			return readDataCount(workbook, sheetNumber, dataBeginRowNumber);
+		} catch (Exception e) {
+			logger.warn(e.getMessage(), e);
+		}
+		return 0;
+	}
+
+	/**
 	 * Save changes.
 	 *
 	 * @return true/false
 	 */
+	@Override
 	public boolean flush() {
 		this.saveFilepathName = this.filePathName;
 		return flushOnly();
@@ -273,6 +325,7 @@ public class CustomEditor extends CustomAbstractEditor {
 	 * @param filePathName another given disk file path name (create new file)
 	 * @return true/false
 	 */
+	@Override
 	public boolean flush(String filePathName) {
 		this.saveFilepathName = filePathName;
 		return flushOnly();
@@ -298,6 +351,7 @@ public class CustomEditor extends CustomAbstractEditor {
 	 *
 	 * @return true/false
 	 */
+	@Override
 	public boolean close() {
 		if (workbook == null)
 			return false;
