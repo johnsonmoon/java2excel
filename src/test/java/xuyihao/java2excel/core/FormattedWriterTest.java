@@ -2,7 +2,6 @@ package xuyihao.java2excel.core;
 
 import org.junit.Assert;
 import org.junit.Test;
-import xuyihao.java2excel.core.FormattedWriter;
 import xuyihao.java2excel.entity.Student;
 import xuyihao.java2excel.entity.Teacher;
 import xuyihao.java2excel.util.DateUtils;
@@ -44,8 +43,8 @@ public class FormattedWriterTest {
 
 		formattedWriter.setLanguage("en_US");
 
-		Assert.assertTrue(formattedWriter.writeExcelModel(Teacher.class, 0));
-		Assert.assertTrue(formattedWriter.writeExcelModel(Student.class, 1));
+		Assert.assertTrue(formattedWriter.writeExcelMetaInfo(Teacher.class, 0));
+		Assert.assertTrue(formattedWriter.writeExcelMetaInfo(Student.class, 1));
 
 		for (int i = 0; i < 100; i += 10) {
 

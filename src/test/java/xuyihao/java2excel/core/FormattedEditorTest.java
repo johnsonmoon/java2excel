@@ -3,8 +3,6 @@ package xuyihao.java2excel.core;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import xuyihao.java2excel.core.FormattedEditor;
-import xuyihao.java2excel.core.FormattedWriter;
 import xuyihao.java2excel.core.entity.formatted.dict.Languages;
 import xuyihao.java2excel.entity.Teacher;
 import xuyihao.java2excel.util.FileUtils;
@@ -36,7 +34,7 @@ public class FormattedEditorTest {
 
 		FormattedWriter formattedWriter = new FormattedWriter(filePathName);
 		formattedWriter.setLanguage(Languages.ZH_CN.getLanguage());
-		Assert.assertTrue(formattedWriter.writeExcelModel(Teacher.class, 0));
+		Assert.assertTrue(formattedWriter.writeExcelMetaInfo(Teacher.class, 0));
 		Assert.assertTrue(formattedWriter.writeExcelData(teachers, 0));
 		Assert.assertTrue(formattedWriter.flush());
 		Assert.assertTrue(formattedWriter.close());

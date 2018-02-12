@@ -15,7 +15,7 @@ import java.util.Map;
  * <pre>
  * 	Write excel file at multiple sheets as a whole new excel file.
  *
- * 	1. invoke writeExcelModel write model information. {@link FormattedWriter#writeExcelModel(Class, int)}
+ * 	1. invoke writeExcelMetaInfo write model information. {@link FormattedWriter#writeExcelMetaInfo(Class, int)}
  * 	2. invoke writeExcelData append data into workbook. {@link FormattedWriter#writeExcelData(List, int)}
  * 	3. invoke flush to write workbook into disk file. {@link FormattedWriter#flush()} {@link FormattedWriter#flush(String)}
  * 	4. invoke close to close writer. {@link FormattedWriter#close}
@@ -56,7 +56,7 @@ public class FormattedWriter extends FormattedAbstractWriter {
 	 * @param sheetNumber given sheet number
 	 * @return true/false
 	 */
-	public boolean writeExcelModel(Class<?> clazz, int sheetNumber) {
+	public boolean writeExcelMetaInfo(Class<?> clazz, int sheetNumber) {
 		if (workbook == null)
 			return false;
 		if (sheetNumber < 0)
