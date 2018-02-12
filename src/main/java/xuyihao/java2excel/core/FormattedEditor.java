@@ -209,7 +209,9 @@ public class FormattedEditor extends FormattedAbstractEditor {
 		if (workbook == null)
 			return false;
 		boolean flag;
-		if (filePathName.equals(saveFilepathName)) {
+		if (saveFilepathName == null) {
+			flag = close(workbook);
+		} else if (filePathName.equals(saveFilepathName)) {
 			//save changes
 			flag = close(workbook);
 			flag = flag && FileUtils.delete(filePathName);
@@ -217,6 +219,8 @@ public class FormattedEditor extends FormattedAbstractEditor {
 			flag = flag && FileUtils.delete(backupFilePathName());
 		} else {
 			//save changes to another file
+			if (FileUtils.exists(saveFilepathName))
+				FileUtils.delete(saveFilepathName);
 			flag = close(workbook);
 			flag = flag && FileUtils.delete(filePathName);
 			flag = flag && FileUtils.rename(saveFilePathName(), saveFilepathName);
@@ -246,10 +250,10 @@ public class FormattedEditor extends FormattedAbstractEditor {
 	}
 
 	private String saveFilePathName() {
-		return FileUtils.addHead2Name(saveFilepathName, "save_");
+		return FileUtils.addHead2Name(saveFilepathName, "formatted_save_");
 	}
 
 	private String backupFilePathName() {
-		return FileUtils.addHead2Name(filePathName, "backup_");
+		return FileUtils.addHead2Name(filePathName, "formatted_backup_");
 	}
 }

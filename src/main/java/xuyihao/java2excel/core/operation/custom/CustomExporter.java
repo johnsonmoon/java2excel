@@ -33,8 +33,7 @@ public class CustomExporter {
 				return false;
 			if (columnMapper == null || columnMapper.getOrderedMaps(ColumnMapper.ORDER_TYPE_ASC) == null)
 				return false;
-			Sheet sheet = workbook.createSheet(sheetName);
-			workbook.setSheetOrder(sheetName, sheetNum);
+			Sheet sheet = Common.getSheetCreateIfNotExist(workbook, sheetNum, sheetName);
 			for (ColumnMapper.Map map : columnMapper.getOrderedMaps(ColumnMapper.ORDER_TYPE_ASC)) {
 				int columnNumber = map.columnNumber;
 				String fieldName = map.fieldName;
@@ -73,13 +72,9 @@ public class CustomExporter {
 			if (workbook == null) {
 				return false;
 			}
-			Sheet sheet;
-			try {
-				sheet = workbook.getSheetAt(sheetNum);
-			} catch (Exception e) {
-				sheet = workbook.createSheet(String.valueOf(sheetNum));
-				workbook.setSheetOrder(String.valueOf(sheetNum), sheetNum);
-			}
+			Sheet sheet = Common.getSheetCreateIfNotExist(workbook, sheetNum, null);
+			if (sheet == null)
+				return false;
 			if (startRowNum < 0) {
 				logger.warn("Data insert must above 0!");
 			}
@@ -124,13 +119,9 @@ public class CustomExporter {
 			if (workbook == null) {
 				return false;
 			}
-			Sheet sheet;
-			try {
-				sheet = workbook.getSheetAt(sheetNum);
-			} catch (Exception e) {
-				sheet = workbook.createSheet(String.valueOf(sheetNum));
-				workbook.setSheetOrder(String.valueOf(sheetNum), sheetNum);
-			}
+			Sheet sheet = Common.getSheetCreateIfNotExist(workbook, sheetNum, null);
+			if (sheet == null)
+				return false;
 			if (startRowNum < 0) {
 				logger.warn("Data insert must above 0!");
 			}

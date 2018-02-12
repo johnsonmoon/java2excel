@@ -34,8 +34,7 @@ public class FormattedExporter {
 				return false;
 			if (model == null)
 				return false;
-			Sheet sheet = workbook.createSheet(model.getName());
-			workbook.setSheetOrder(model.getName(), sheetNum);
+			Sheet sheet = Common.getSheetCreateIfNotExist(workbook, sheetNum, null);
 			// column summary
 			int columnSize;
 			int attrValueSize = model.getAttributes().size();
@@ -127,7 +126,7 @@ public class FormattedExporter {
 				return false;
 			}
 
-			Sheet sheet = workbook.getSheetAt(sheetNum);
+			Sheet sheet = Common.getSheetCreateIfNotExist(workbook, sheetNum, null);
 			if (sheet == null) {
 				return false;
 			}
