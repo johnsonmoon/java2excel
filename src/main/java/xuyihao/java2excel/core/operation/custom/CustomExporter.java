@@ -34,6 +34,11 @@ public class CustomExporter {
 			if (columnMapper == null || columnMapper.getOrderedMaps(ColumnMapper.ORDER_TYPE_ASC) == null)
 				return false;
 			Sheet sheet = Common.getSheetCreateIfNotExist(workbook, sheetNum, sheetName);
+			// column width
+			int columnSize = columnMapper.getColumnNumbers().size();
+			for (int i = 0; i < columnSize; i++) {
+				sheet.setColumnWidth(i, 4800);
+			}
 			for (ColumnMapper.Map map : columnMapper.getOrderedMaps(ColumnMapper.ORDER_TYPE_ASC)) {
 				int columnNumber = map.columnNumber;
 				String fieldName = map.fieldName;
