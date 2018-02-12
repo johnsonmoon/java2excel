@@ -48,10 +48,14 @@ public class FormattedExporter {
 			// hide row
 			sheet.createRow(3).setZeroHeight(true);
 			// merge cells
-			CellRangeAddress cellRangeAddress1 = new CellRangeAddress(0, 1, 0, 0);
-			CellRangeAddress cellRangeAddress3 = new CellRangeAddress(0, 1, 1, columnSize);
-			sheet.addMergedRegion(cellRangeAddress1);
-			sheet.addMergedRegion(cellRangeAddress3);
+			try {
+				CellRangeAddress cellRangeAddress1 = new CellRangeAddress(0, 1, 0, 0);
+				CellRangeAddress cellRangeAddress3 = new CellRangeAddress(0, 1, 1, columnSize);
+				sheet.addMergedRegion(cellRangeAddress1);
+				sheet.addMergedRegion(cellRangeAddress3);
+			} catch (Exception e) {
+				logger.warn(e.getMessage(), e);
+			}
 			// insert meta info
 			Common.insertCellValue(sheet, 0, 0, model.getJavaClassName(),
 					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_HEADER_HIDE));

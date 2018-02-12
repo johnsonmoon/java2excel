@@ -32,6 +32,7 @@ public class CustomEditor extends CustomAbstractEditor implements Editor {
 	public CustomEditor(String filePathName, int dataBeginRowNumber) {
 		this.filePathName = filePathName;
 		this.dataBeginRowNumber = dataBeginRowNumber;
+		openWorkBook(filePathName);
 	}
 
 	public int getDataBeginRowNumber() {
