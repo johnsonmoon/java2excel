@@ -744,7 +744,7 @@ formattedWriter.close();
 
 Result:
 
-![image](asserts/formattedWriter-result-screenshot.png)
+![image](asserts/writer-result-screenshot.png)
 
 #### Read your entity data from a existing excel file using class {FormattedReader}. (Wrote before)
 ```
