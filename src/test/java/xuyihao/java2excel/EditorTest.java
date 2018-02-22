@@ -43,34 +43,4 @@ public class EditorTest {
 		System.out.println(editorFormattedRead.readExcelData(1, 0, 5, User.class));
 		editorFormattedRead.close();
 	}
-
-	public static class User {
-		private int number;
-		private String name;
-		private Date registerTime;
-
-		public int getNumber() {
-			return number;
-		}
-
-		public void setNumber(int number) {
-			this.number = number;
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		public void setName(String name) {
-			this.name = name;
-		}
-
-		public Date getRegisterTime() {
-			return registerTime;
-		}
-
-		public void setRegisterTime(Date registerTime) {
-			this.registerTime = registerTime;
-		}
-	}
 }
