@@ -203,6 +203,33 @@ public class Common {
 	}
 
 	/**
+	 * Get sheet at sheetNumber from a workbook, create with sheetName if not exists.
+	 *
+	 * @param workbook    given workbook
+	 * @param sheetNumber given sheet number
+	 * @param sheetName   given sheet name (can be null)
+	 * @return sheet
+	 */
+	public static Sheet getSheetCreateIfNotExist(Workbook workbook, int sheetNumber, String sheetName) {
+		if (workbook == null)
+			return null;
+		if (sheetNumber < 0)
+			return null;
+		Sheet sheet;
+		try {
+			sheet = workbook.getSheetAt(sheetNumber);
+		} catch (Exception e) {
+			String name = sheetName;
+			if (name == null || name.isEmpty()) {
+				name = String.valueOf(sheetNumber);
+			}
+			sheet = workbook.createSheet(name);
+			workbook.setSheetOrder(name, sheetNumber);
+		}
+		return sheet;
+	}
+
+	/**
 	 * write workbook into disk file
 	 * <p>
 	 * <pre>

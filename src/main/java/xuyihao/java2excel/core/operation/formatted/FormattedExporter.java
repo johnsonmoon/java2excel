@@ -1,11 +1,12 @@
-package xuyihao.java2excel.core.operation;
+package xuyihao.java2excel.core.operation.formatted;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xuyihao.java2excel.core.entity.dict.Meta;
-import xuyihao.java2excel.core.entity.model.Model;
+import xuyihao.java2excel.core.entity.formatted.dict.Meta;
+import xuyihao.java2excel.core.entity.formatted.model.Model;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
+import xuyihao.java2excel.core.operation.Common;
 import xuyihao.java2excel.util.StringUtils;
 
 import java.util.*;
@@ -13,8 +14,8 @@ import java.util.*;
 /**
  * Created by Xuyh at 2016/07/22 上午 11:36.
  */
-public class Export {
-	private static Logger logger = LoggerFactory.getLogger(Export.class);
+public class FormattedExporter {
+	private static Logger logger = LoggerFactory.getLogger(FormattedExporter.class);
 
 	/**
 	 * create excel sheet
@@ -23,7 +24,7 @@ public class Export {
 	 * @param sheetNum sheet number
 	 * @param model    model
 	 * @param language meta info language(en_US, zh_CN, etc.)
-	 *                 {@link xuyihao.java2excel.core.entity.dict.Meta}
+	 *                 {@link xuyihao.java2excel.core.entity.formatted.dict.Meta}
 	 * @return true/false
 	 */
 	public static boolean createExcel(final Workbook workbook, int sheetNum, Model model, String language) {
@@ -33,8 +34,7 @@ public class Export {
 				return false;
 			if (model == null)
 				return false;
-			Sheet sheet = workbook.createSheet(model.getName());
-			workbook.setSheetOrder(model.getName(), sheetNum);
+			Sheet sheet = Common.getSheetCreateIfNotExist(workbook, sheetNum, null);
 			// column summary
 			int columnSize;
 			int attrValueSize = model.getAttributes().size();
@@ -48,10 +48,14 @@ public class Export {
 			// hide row
 			sheet.createRow(3).setZeroHeight(true);
 			// merge cells
-			CellRangeAddress cellRangeAddress1 = new CellRangeAddress(0, 1, 0, 0);
-			CellRangeAddress cellRangeAddress3 = new CellRangeAddress(0, 1, 1, columnSize);
-			sheet.addMergedRegion(cellRangeAddress1);
-			sheet.addMergedRegion(cellRangeAddress3);
+			try {
+				CellRangeAddress cellRangeAddress1 = new CellRangeAddress(0, 1, 0, 0);
+				CellRangeAddress cellRangeAddress3 = new CellRangeAddress(0, 1, 1, columnSize);
+				sheet.addMergedRegion(cellRangeAddress1);
+				sheet.addMergedRegion(cellRangeAddress3);
+			} catch (Exception e) {
+				logger.warn(e.getMessage(), e);
+			}
 			// insert meta info
 			Common.insertCellValue(sheet, 0, 0, model.getJavaClassName(),
 					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_HEADER_HIDE));
@@ -126,7 +130,7 @@ public class Export {
 				return false;
 			}
 
-			Sheet sheet = workbook.getSheetAt(sheetNum);
+			Sheet sheet = Common.getSheetCreateIfNotExist(workbook, sheetNum, null);
 			if (sheet == null) {
 				return false;
 			}

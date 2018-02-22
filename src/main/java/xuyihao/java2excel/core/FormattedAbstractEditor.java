@@ -1,12 +1,12 @@
-package xuyihao.java2excel;
+package xuyihao.java2excel.core;
 
 import org.apache.poi.ss.usermodel.Workbook;
-import xuyihao.java2excel.core.entity.dict.Languages;
-import xuyihao.java2excel.core.entity.model.Attribute;
-import xuyihao.java2excel.core.entity.model.Model;
+import xuyihao.java2excel.core.entity.formatted.dict.Languages;
+import xuyihao.java2excel.core.entity.formatted.model.Attribute;
+import xuyihao.java2excel.core.entity.formatted.model.Model;
 import xuyihao.java2excel.core.operation.Common;
-import xuyihao.java2excel.core.operation.Export;
-import xuyihao.java2excel.core.operation.Import;
+import xuyihao.java2excel.core.operation.formatted.FormattedExporter;
+import xuyihao.java2excel.core.operation.formatted.FormattedImporter;
 import xuyihao.java2excel.util.*;
 
 import java.io.File;
@@ -18,11 +18,11 @@ import java.util.List;
  * Created by xuyh at 2018/1/10 17:56.
  */
 @SuppressWarnings("all")
-public abstract class AbstractEditor {
+public abstract class FormattedAbstractEditor {
 	private String language = Languages.EN_US.getLanguage();
 
 	/**
-	 * Get Editor language
+	 * Get FormattedEditor language
 	 *
 	 * @return language
 	 */
@@ -31,7 +31,7 @@ public abstract class AbstractEditor {
 	}
 
 	/**
-	 * Set Editor language
+	 * Set FormattedEditor language
 	 *
 	 * @param language language (en_US, zh_CN .etc)
 	 */
@@ -49,8 +49,8 @@ public abstract class AbstractEditor {
 	 * </pre>
 	 *
 	 * @param tClass given class
-	 * @see xuyihao.java2excel.core.entity.model.annotation.Model
-	 * @see xuyihao.java2excel.core.entity.model.annotation.Attribute
+	 * @see xuyihao.java2excel.core.entity.formatted.model.annotation.Model
+	 * @see xuyihao.java2excel.core.entity.formatted.model.annotation.Attribute
 	 */
 	public Model generateModel(Class<?> tClass) {
 		if (!AnnotationUtils.hasAnnotationModel(tClass)) {
@@ -84,14 +84,14 @@ public abstract class AbstractEditor {
 	 * Generate model with declared annotations and reflection.
 	 *
 	 * @param clazz given clazz.
-	 * @see xuyihao.java2excel.core.entity.model.annotation.Model
-	 * @see xuyihao.java2excel.core.entity.model.annotation.Attribute
+	 * @see xuyihao.java2excel.core.entity.formatted.model.annotation.Model
+	 * @see xuyihao.java2excel.core.entity.formatted.model.annotation.Attribute
 	 */
 	private Model generateModelWithAnnotation(Class<?> clazz) {
 		if (!AnnotationUtils.hasAnnotationModel(clazz))
 			return null;
 		Model model = new Model();
-		xuyihao.java2excel.core.entity.model.annotation.Model modelAnnotation = AnnotationUtils
+		xuyihao.java2excel.core.entity.formatted.model.annotation.Model modelAnnotation = AnnotationUtils
 				.getAnnotationModel(clazz);
 		if (modelAnnotation == null)
 			return null;
@@ -100,7 +100,7 @@ public abstract class AbstractEditor {
 		for (Field field : ReflectionUtils.getFieldsAll(clazz)) {
 			if (!AnnotationUtils.hasAnnotationAttribute(field))
 				continue;
-			xuyihao.java2excel.core.entity.model.annotation.Attribute attributeAnnotation = AnnotationUtils
+			xuyihao.java2excel.core.entity.formatted.model.annotation.Attribute attributeAnnotation = AnnotationUtils
 					.getAnnotationAttribute(field);
 			if (attributeAnnotation == null)
 				continue;
@@ -159,7 +159,7 @@ public abstract class AbstractEditor {
 	 */
 	protected boolean writeModel(Class<?> clazz, Workbook workbook, int sheetNumber) {
 		Model model = generateModel(clazz);
-		return Export.createExcel(workbook, sheetNumber, model, language);
+		return FormattedExporter.createExcel(workbook, sheetNumber, model, language);
 	}
 
 	/**
@@ -175,7 +175,7 @@ public abstract class AbstractEditor {
 		if (tList == null || tList.isEmpty())
 			return false;
 		List<Model> models = generateData(tList);
-		return Export.insertExcelData(workbook, sheetNumber, startRowNumber, models);
+		return FormattedExporter.insertExcelData(workbook, sheetNumber, startRowNumber, models);
 	}
 
 	/**
@@ -228,7 +228,7 @@ public abstract class AbstractEditor {
 			throw new NullPointerException("workbook can not be null.");
 		if (sheetNumber < 0)
 			throw new RuntimeException("sheet number can not below 0.");
-		Model model = Import.getModelFromExcel(workbook, sheetNumber);
+		Model model = FormattedImporter.getModelFromExcel(workbook, sheetNumber);
 		return model;
 	}
 
@@ -322,7 +322,7 @@ public abstract class AbstractEditor {
 		if (model == null)
 			readModel(workbook, sheetNumber);
 		List<Model> models = new ArrayList<>();
-		models.addAll(Import.getDataFromExcel(workbook, sheetNumber, beginRowNumber, readSize));
+		models.addAll(FormattedImporter.getDataFromExcel(workbook, sheetNumber, beginRowNumber, readSize));
 		return models;
 	}
 
@@ -339,7 +339,7 @@ public abstract class AbstractEditor {
 			throw new NullPointerException("workbook can not be null.");
 		if (sheetNumber < 0)
 			throw new RuntimeException("sheet number can not below 0.");
-		return Import.getDataCountFromExcel(workbook, sheetNumber);
+		return FormattedImporter.getDataCountFromExcel(workbook, sheetNumber);
 	}
 
 	/**

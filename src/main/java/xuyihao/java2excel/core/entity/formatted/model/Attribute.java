@@ -1,4 +1,4 @@
-package xuyihao.java2excel.core.entity.model;
+package xuyihao.java2excel.core.entity.formatted.model;
 
 /**
  * Model field

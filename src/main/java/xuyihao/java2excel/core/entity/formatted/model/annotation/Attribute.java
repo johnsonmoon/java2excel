@@ -1,4 +1,4 @@
-package xuyihao.java2excel.core.entity.model.annotation;
+package xuyihao.java2excel.core.entity.formatted.model.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -14,35 +14,35 @@ import java.lang.annotation.Target;
 @Target({ ElementType.FIELD })
 public @interface Attribute {
 	/**
-	 * {@link xuyihao.java2excel.core.entity.model.Attribute#attrName}
+	 * {@link xuyihao.java2excel.core.entity.formatted.model.Attribute#attrName}
 	 *
 	 * @return
 	 */
 	String attrName();
 
 	/**
-	 * {@link xuyihao.java2excel.core.entity.model.Attribute#attrType}
+	 * {@link xuyihao.java2excel.core.entity.formatted.model.Attribute#attrType}
 	 *
 	 * @return
 	 */
 	String attrType() default "";
 
 	/**
-	 * {@link xuyihao.java2excel.core.entity.model.Attribute#formatInfo}
+	 * {@link xuyihao.java2excel.core.entity.formatted.model.Attribute#formatInfo}
 	 *
 	 * @return
 	 */
 	String formatInfo() default "";
 
 	/**
-	 * {@link xuyihao.java2excel.core.entity.model.Attribute#defaultValue}
+	 * {@link xuyihao.java2excel.core.entity.formatted.model.Attribute#defaultValue}
 	 *
 	 * @return
 	 */
 	String defaultValue() default "";
 
 	/**
-	 * {@link xuyihao.java2excel.core.entity.model.Attribute#unit}
+	 * {@link xuyihao.java2excel.core.entity.formatted.model.Attribute#unit}
 	 *
 	 * @return
 	 */

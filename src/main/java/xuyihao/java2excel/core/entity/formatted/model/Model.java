@@ -1,4 +1,4 @@
-package xuyihao.java2excel.core.entity.model;
+package xuyihao.java2excel.core.entity.formatted.model;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -48,8 +48,7 @@ public class DateUtils {
 	/**
 	 * string类型转成Date
 	 *
-	 * @param dateTime
-	 *            传入str类型
+	 * @param dateTime 传入str类型
 	 * @return Date
 	 * @throws ParseException
 	 */

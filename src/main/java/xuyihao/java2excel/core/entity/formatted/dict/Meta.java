@@ -1,4 +1,4 @@
-package xuyihao.java2excel.core.entity.dict;
+package xuyihao.java2excel.core.entity.formatted.dict;
 
 import java.util.HashMap;
 import java.util.Map;

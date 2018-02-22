@@ -1,4 +1,4 @@
-package xuyihao.java2excel.core.entity.model.annotation;
+package xuyihao.java2excel.core.entity.formatted.model.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 @Target({ ElementType.TYPE })
 public @interface Model {
 	/**
-	 * {@link xuyihao.java2excel.core.entity.model.Model#name}
+	 * {@link xuyihao.java2excel.core.entity.formatted.model.Model#name}
 	 *
 	 * @return
 	 */

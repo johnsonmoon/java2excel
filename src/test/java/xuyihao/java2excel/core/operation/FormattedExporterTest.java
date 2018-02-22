@@ -3,8 +3,9 @@ package xuyihao.java2excel.core.operation;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Test;
-import xuyihao.java2excel.core.entity.model.Attribute;
-import xuyihao.java2excel.core.entity.model.Model;
+import xuyihao.java2excel.core.entity.formatted.model.Attribute;
+import xuyihao.java2excel.core.entity.formatted.model.Model;
+import xuyihao.java2excel.core.operation.formatted.FormattedExporter;
 import xuyihao.java2excel.util.FileUtils;
 
 import java.io.File;
@@ -14,7 +15,7 @@ import java.util.List;
 /**
  * Created by xuyh at 2017/12/28 17:48.
  */
-public class ExportTest {
+public class FormattedExporterTest {
 	@Test
 	public void test() throws Exception {
 		Workbook workbook = new XSSFWorkbook();
@@ -39,8 +40,9 @@ public class ExportTest {
 
 			datas.add(data);
 		}
-		System.out.println(String.format("CreateResult : [%s]", Export.createExcel(workbook, 0, model, "zh_CN")));
-		System.out.println(String.format("InsertResult : [%s]", Export.insertExcelData(workbook, 0, 6, datas)));
+		System.out
+				.println(String.format("CreateResult : [%s]", FormattedExporter.createExcel(workbook, 0, model, "zh_CN")));
+		System.out.println(String.format("InsertResult : [%s]", FormattedExporter.insertExcelData(workbook, 0, 6, datas)));
 
 		//write file
 		String filePath = "C:\\Users\\johnson\\Desktop\\test.xlsx";

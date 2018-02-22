@@ -1,4 +1,4 @@
-package xuyihao.java2excel;
+package xuyihao.java2excel.core;
 
 import org.apache.poi.ss.usermodel.Workbook;
 import xuyihao.java2excel.core.operation.Common;
@@ -7,9 +7,9 @@ import xuyihao.java2excel.util.FileUtils;
 import java.io.File;
 
 /**
- * Created by xuyh at 2018/1/5 10:21.
+ * Created by xuyh at 2018/2/12 12:43.
  */
-public abstract class AbstractWriter extends AbstractEditor {
+public class CustomAbstractWriter extends CustomAbstractEditor {
 	/**
 	 * Write existing workbook into a given file. Create a new file ignoring whether file exists.
 	 *

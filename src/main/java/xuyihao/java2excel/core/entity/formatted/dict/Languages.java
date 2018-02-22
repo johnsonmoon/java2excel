@@ -1,4 +1,4 @@
-package xuyihao.java2excel.core.entity.dict;
+package xuyihao.java2excel.core.entity.formatted.dict;
 
 /**
  * Created by xuyh at 2018/1/10 17:34.

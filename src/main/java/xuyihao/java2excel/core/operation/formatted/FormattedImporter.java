@@ -1,11 +1,12 @@
-package xuyihao.java2excel.core.operation;
+package xuyihao.java2excel.core.operation.formatted;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xuyihao.java2excel.core.entity.model.Attribute;
-import xuyihao.java2excel.core.entity.model.Model;
+import xuyihao.java2excel.core.entity.formatted.model.Attribute;
+import xuyihao.java2excel.core.entity.formatted.model.Model;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import xuyihao.java2excel.core.operation.Common;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +14,8 @@ import java.util.List;
 /**
  * Created by Xuyh at 2016/07/27 下午 12:48.
  */
-public class Import {
-	private static Logger logger = LoggerFactory.getLogger(Import.class);
+public class FormattedImporter {
+	private static Logger logger = LoggerFactory.getLogger(FormattedImporter.class);
 
 	/**
 	 * Getting model info from excel workbook sheet.
@@ -90,7 +91,7 @@ public class Import {
 	 *
 	 * @param workbook    excel workbook
 	 * @param sheetNumber sheet number
-	 * @param beginRow    row to read with（begin from 0）
+	 * @param beginRow    row read begin at（begin from 0）
 	 * @param readSize    row count to read
 	 * @return model data
 	 */
