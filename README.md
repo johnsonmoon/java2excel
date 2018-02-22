@@ -132,12 +132,15 @@ editorFormattedRead.close();
 result like this
 
 - CustomEditor write
+
 ![image](asserts/CustomEditor-write-result.png)
 
 - FormattedEditor write
+
 ![image](asserts/FormattedEditor-write-result.png)
 
 - Editor read
+
 ![image](asserts/Editor-read-result.png)
 
 #### Reader
@@ -145,9 +148,11 @@ result like this
 file for reader
 
 - CustomReader
+
 ![image](asserts/CustomReader-file.png)
 
 - FormattedReader
+
 ![image](asserts/FormattedReader-file.png)
 
 ```
@@ -202,9 +207,11 @@ writerFormatted.close();
 result like this
 
 - CustomWriter
+
 ![image](asserts/CustomWriter-result.png)
 
 - FormattedWriter
+
 ![image](asserts/FormattedWriter-result.png)
 
 ### Custom Editor&Writer&Reader
@@ -481,7 +488,7 @@ Person{number='number_0016', name='name_0016', phone='phone_0016', email='email_
 Person{number='number_0017', name='name_0017', phone='phone_0017', email='email_0017', address='address00_17', time=Thu Feb 22 22:21:58 CST 2018}
 Person{number='number_0018', name='name_0018', phone='phone_0018', email='email_0018', address='address00_18', time=Thu Feb 22 22:21:58 CST 2018}
 Person{number='number_0019', name='name_0019', phone='phone_0019', email='email_0019', address='address00_19', time=Thu Feb 22 22:21:58 CST 2018}
-...
+```
 
 
 ### Formatted Editor&Writer&Reader
