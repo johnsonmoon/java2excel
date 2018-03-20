@@ -5,7 +5,8 @@ import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xuyihao.java2excel.core.entity.Common.CellStyle;
+
+import xuyihao.java2excel.core.entity.common.CellStyle;
 
 import java.io.File;
 import java.io.FileOutputStream;

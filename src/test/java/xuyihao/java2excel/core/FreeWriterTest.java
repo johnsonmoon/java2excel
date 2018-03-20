@@ -2,7 +2,8 @@ package xuyihao.java2excel.core;
 
 import org.junit.Assert;
 import org.junit.Test;
-import xuyihao.java2excel.core.entity.Common.CellStyle;
+
+import xuyihao.java2excel.core.entity.common.CellStyle;
 import xuyihao.java2excel.core.entity.free.CellData;
 
 import java.util.Arrays;

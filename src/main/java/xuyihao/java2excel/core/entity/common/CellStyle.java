@@ -1,4 +1,4 @@
-package xuyihao.java2excel.core.entity.Common;
+package xuyihao.java2excel.core.entity.common;
 
 /**
  * Created by xuyh at 2018/3/20 15:22.

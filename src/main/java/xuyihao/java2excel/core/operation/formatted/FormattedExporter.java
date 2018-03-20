@@ -2,7 +2,8 @@ package xuyihao.java2excel.core.operation.formatted;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import xuyihao.java2excel.core.entity.Common.CellStyle;
+
+import xuyihao.java2excel.core.entity.common.CellStyle;
 import xuyihao.java2excel.core.entity.formatted.dict.Meta;
 import xuyihao.java2excel.core.entity.formatted.model.Model;
 import org.apache.poi.ss.usermodel.*;

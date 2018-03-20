@@ -1,6 +1,6 @@
 package xuyihao.java2excel.core.entity.free;
 
-import xuyihao.java2excel.core.entity.Common.CellStyle;
+import xuyihao.java2excel.core.entity.common.CellStyle;
 
 /**
  * Cell data entity.
