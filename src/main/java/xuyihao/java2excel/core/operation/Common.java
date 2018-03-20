@@ -5,6 +5,7 @@ import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import xuyihao.java2excel.core.entity.Common.CellStyle;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -19,15 +20,6 @@ import java.util.Map;
 public class Common {
 	private static Logger logger = LoggerFactory.getLogger(Common.class);
 
-	public static final int CELL_STYLE_TYPE_GENERAL = 0;
-	public static final int CELL_STYLE_TYPE_TITLE = 1;
-	public static final int CELL_STYLE_TYPE_COLUMN_HEADER = 2;
-	public static final int CELL_STYLE_TYPE_ROW_HEADER = 3;
-	public static final int CELL_STYLE_TYPE_ROW_HEADER_GRAY = 4;
-	public static final int CELL_STYLE_TYPE_ROW_HEADER_TOP_ALIGN = 5;
-	public static final int CELL_STYLE_TYPE_HEADER_HIDE = 6;
-	public static final int CELL_STYLE_TYPE_HEADER_HIDE_WHITE = 7;
-	public static final int CELL_STYLE_TYPE_VALUE = 8;
 	/**
 	 * cell style cache for caching cell styles
 	 * <pre>
@@ -36,7 +28,7 @@ public class Common {
 	 *     After workbook has been closed, cache needed to be cleaned.
 	 * </pre>
 	 */
-	private static Map<Workbook, Map<Integer, CellStyle>> cellStyleCache = new HashMap<>();
+	private static Map<Workbook, Map<Integer, org.apache.poi.ss.usermodel.CellStyle>> cellStyleCache = new HashMap<>();
 
 	/**
 	 * create ARIAL font
@@ -76,65 +68,65 @@ public class Common {
 	 * @param cellStyleType {Common#CELL_STYLE_TYPE_*}
 	 * @return cell style
 	 */
-	public static CellStyle createCellStyle(Workbook workbook, int cellStyleType) {
+	public static org.apache.poi.ss.usermodel.CellStyle createCellStyle(Workbook workbook, int cellStyleType) {
 		if (!cellStyleCache.containsKey(workbook)) {
-			Map<Integer, CellStyle> styleMap = new HashMap<>();
+			Map<Integer, org.apache.poi.ss.usermodel.CellStyle> styleMap = new HashMap<>();
 
-			CellStyle cellStyleGeneral = workbook.createCellStyle();
+			org.apache.poi.ss.usermodel.CellStyle cellStyleGeneral = workbook.createCellStyle();
 			cellStyleGeneral.setWrapText(false);
 			cellStyleGeneral.setVerticalAlignment(VerticalAlignment.CENTER);
-			styleMap.put(CELL_STYLE_TYPE_GENERAL, cellStyleGeneral);
+			styleMap.put(CellStyle.CELL_STYLE_TYPE_GENERAL.getCode(), cellStyleGeneral);
 
-			CellStyle cellStyleTitle = workbook.createCellStyle();
+			org.apache.poi.ss.usermodel.CellStyle cellStyleTitle = workbook.createCellStyle();
 			cellStyleTitle.cloneStyleFrom(cellStyleGeneral);
 			cellStyleTitle.setFont(createFontArial(workbook, 10));
 			cellStyleTitle.setAlignment(HorizontalAlignment.CENTER);
-			styleMap.put(CELL_STYLE_TYPE_TITLE, cellStyleTitle);
+			styleMap.put(CellStyle.CELL_STYLE_TYPE_TITLE.getCode(), cellStyleTitle);
 
-			CellStyle cellStyleColumnHeader = workbook.createCellStyle();
+			org.apache.poi.ss.usermodel.CellStyle cellStyleColumnHeader = workbook.createCellStyle();
 			cellStyleColumnHeader.cloneStyleFrom(cellStyleGeneral);
 			cellStyleColumnHeader.setFont(createFontArial(workbook, 10));
 			cellStyleColumnHeader.setAlignment(HorizontalAlignment.CENTER);
-			styleMap.put(CELL_STYLE_TYPE_COLUMN_HEADER, cellStyleColumnHeader);
+			styleMap.put(CellStyle.CELL_STYLE_TYPE_COLUMN_HEADER.getCode(), cellStyleColumnHeader);
 
-			CellStyle cellStyleRowHeader = workbook.createCellStyle();
+			org.apache.poi.ss.usermodel.CellStyle cellStyleRowHeader = workbook.createCellStyle();
 			cellStyleRowHeader.cloneStyleFrom(cellStyleGeneral);
 			cellStyleRowHeader.setFont(createFontArial(workbook, 10));
 			cellStyleRowHeader.setAlignment(HorizontalAlignment.CENTER);
 			cellStyleRowHeader.setFillForegroundColor(IndexedColors.LIGHT_GREEN.index);
 			cellStyleRowHeader.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-			styleMap.put(CELL_STYLE_TYPE_ROW_HEADER, cellStyleRowHeader);
+			styleMap.put(CellStyle.CELL_STYLE_TYPE_ROW_HEADER.getCode(), cellStyleRowHeader);
 
-			CellStyle cellStyleGrayRowHeader = workbook.createCellStyle();
+			org.apache.poi.ss.usermodel.CellStyle cellStyleGrayRowHeader = workbook.createCellStyle();
 			cellStyleGrayRowHeader.cloneStyleFrom(cellStyleRowHeader);
-			styleMap.put(CELL_STYLE_TYPE_ROW_HEADER_GRAY, cellStyleGrayRowHeader);
+			styleMap.put(CellStyle.CELL_STYLE_TYPE_ROW_HEADER_GRAY.getCode(), cellStyleGrayRowHeader);
 
-			CellStyle cellStyleRowHeaderTopAlign = workbook.createCellStyle();
+			org.apache.poi.ss.usermodel.CellStyle cellStyleRowHeaderTopAlign = workbook.createCellStyle();
 			cellStyleRowHeaderTopAlign.cloneStyleFrom(cellStyleRowHeader);
 			cellStyleRowHeaderTopAlign.setVerticalAlignment(VerticalAlignment.TOP);
-			styleMap.put(CELL_STYLE_TYPE_ROW_HEADER_TOP_ALIGN, cellStyleRowHeaderTopAlign);
+			styleMap.put(CellStyle.CELL_STYLE_TYPE_ROW_HEADER_TOP_ALIGN.getCode(), cellStyleRowHeaderTopAlign);
 
-			CellStyle cellStyleHideHeader = workbook.createCellStyle();
+			org.apache.poi.ss.usermodel.CellStyle cellStyleHideHeader = workbook.createCellStyle();
 			cellStyleHideHeader.setFont(createFontWhiteArial(workbook, 10));
 			cellStyleHideHeader.setWrapText(true);
 			cellStyleHideHeader.setAlignment(HorizontalAlignment.LEFT);
 			cellStyleHideHeader.setVerticalAlignment(VerticalAlignment.CENTER);
 			cellStyleHideHeader.setLocked(true);
 			cellStyleHideHeader.setFillForegroundColor(IndexedColors.WHITE.getIndex());
-			styleMap.put(CELL_STYLE_TYPE_HEADER_HIDE, cellStyleHideHeader);
+			styleMap.put(CellStyle.CELL_STYLE_TYPE_HEADER_HIDE.getCode(), cellStyleHideHeader);
 
-			CellStyle cellStyleWhiteHideHeader = workbook.createCellStyle();
+			org.apache.poi.ss.usermodel.CellStyle cellStyleWhiteHideHeader = workbook.createCellStyle();
 			cellStyleWhiteHideHeader.cloneStyleFrom(cellStyleHideHeader);
 			cellStyleWhiteHideHeader.setFillForegroundColor(IndexedColors.WHITE.getIndex());
-			styleMap.put(CELL_STYLE_TYPE_HEADER_HIDE_WHITE, cellStyleWhiteHideHeader);
+			styleMap.put(CellStyle.CELL_STYLE_TYPE_HEADER_HIDE_WHITE.getCode(), cellStyleWhiteHideHeader);
 
-			CellStyle cellStyleValue = workbook.createCellStyle();
+			org.apache.poi.ss.usermodel.CellStyle cellStyleValue = workbook.createCellStyle();
 			cellStyleValue.cloneStyleFrom(cellStyleGeneral);
 			cellStyleValue.setFont(createFontArial(workbook, 10));
 			cellStyleValue.setAlignment(HorizontalAlignment.CENTER);
 			cellStyleValue.setWrapText(true);
 			cellStyleValue.setLocked(false);
-			styleMap.put(CELL_STYLE_TYPE_VALUE, cellStyleValue);
+			styleMap.put(CellStyle.CELL_STYLE_TYPE_VALUE.getCode(), cellStyleValue);
 
 			cellStyleCache.put(workbook, styleMap);
 		}
@@ -150,7 +142,8 @@ public class Common {
 	 * @param value     value
 	 * @param cellStyle cell style
 	 */
-	public static void insertCellValue(Sheet sheet, int column, int row, String value, CellStyle cellStyle) {
+	public static void insertCellValue(Sheet sheet, int column, int row, String value,
+			org.apache.poi.ss.usermodel.CellStyle cellStyle) {
 		Row targetRow = sheet.getRow(row);
 		if (targetRow == null) {
 			targetRow = sheet.createRow(row);

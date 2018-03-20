@@ -4,6 +4,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import xuyihao.java2excel.core.entity.Common.CellStyle;
 import xuyihao.java2excel.core.entity.custom.ColumnMapper;
 import xuyihao.java2excel.core.operation.Common;
 
@@ -45,7 +46,7 @@ public class CustomExporter {
 				if (fieldName == null || fieldName.isEmpty())
 					continue;
 				Common.insertCellValue(sheet, columnNumber, 0, fieldName,
-						Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER));
+						Common.createCellStyle(workbook, CellStyle.CELL_STYLE_TYPE_ROW_HEADER.getCode()));
 			}
 			flag = true;
 		} catch (Exception e) {
@@ -90,7 +91,7 @@ public class CustomExporter {
 					int column = entry.getKey();
 					String value = entry.getValue() == null ? "" : String.valueOf(entry.getValue());
 					Common.insertCellValue(sheet, column, row, value,
-							Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_VALUE));
+							Common.createCellStyle(workbook, CellStyle.CELL_STYLE_TYPE_VALUE.getCode()));
 				}
 			}
 			flag = true;
@@ -138,7 +139,7 @@ public class CustomExporter {
 					String value = dataMap.get(columnMap.fieldName) == null ? ""
 							: String.valueOf(dataMap.get(columnMap.fieldName));
 					Common.insertCellValue(sheet, column, row, value,
-							Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_VALUE));
+							Common.createCellStyle(workbook, CellStyle.CELL_STYLE_TYPE_VALUE.getCode()));
 				}
 			}
 			flag = true;

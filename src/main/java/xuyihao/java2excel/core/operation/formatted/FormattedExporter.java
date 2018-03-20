@@ -2,6 +2,7 @@ package xuyihao.java2excel.core.operation.formatted;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import xuyihao.java2excel.core.entity.Common.CellStyle;
 import xuyihao.java2excel.core.entity.formatted.dict.Meta;
 import xuyihao.java2excel.core.entity.formatted.model.Model;
 import org.apache.poi.ss.usermodel.*;
@@ -58,23 +59,23 @@ public class FormattedExporter {
 			}
 			// insert meta info
 			Common.insertCellValue(sheet, 0, 0, model.getJavaClassName(),
-					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_HEADER_HIDE));
+					Common.createCellStyle(workbook, CellStyle.CELL_STYLE_TYPE_HEADER_HIDE.getCode()));
 			Common.insertCellValue(sheet, 1, 0, model.getName(),
-					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_TITLE));
+					Common.createCellStyle(workbook, CellStyle.CELL_STYLE_TYPE_TITLE.getCode()));
 			Common.insertCellValue(sheet, 0, 2, Meta.FILEDS.getMeta(language),
-					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER));
+					Common.createCellStyle(workbook, CellStyle.CELL_STYLE_TYPE_ROW_HEADER.getCode()));
 			Common.insertCellValue(sheet, 0, 3, Meta.DONT_MODIFY.getMeta(language),
-					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER_GRAY));
+					Common.createCellStyle(workbook, CellStyle.CELL_STYLE_TYPE_ROW_HEADER_GRAY.getCode()));
 			Common.insertCellValue(sheet, 0, 4, Meta.DATA_FORMAT.getMeta(language),
-					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER_GRAY));
+					Common.createCellStyle(workbook, CellStyle.CELL_STYLE_TYPE_ROW_HEADER_GRAY.getCode()));
 			Common.insertCellValue(sheet, 0, 5, Meta.DEFAULT_VALUE.getMeta(language),
-					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER));
+					Common.createCellStyle(workbook, CellStyle.CELL_STYLE_TYPE_ROW_HEADER.getCode()));
 			Common.insertCellValue(sheet, 0, 6, Meta.DATA.getMeta(language),
-					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER_TOP_ALIGN));
+					Common.createCellStyle(workbook, CellStyle.CELL_STYLE_TYPE_ROW_HEADER_TOP_ALIGN.getCode()));
 			Common.insertCellValue(sheet, 1, 2, Meta.DATA_FLAG.getMeta(language),
-					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_COLUMN_HEADER));
+					Common.createCellStyle(workbook, CellStyle.CELL_STYLE_TYPE_COLUMN_HEADER.getCode()));
 			Common.insertCellValue(sheet, 1, 3, Meta.DATA_FLAG.getMeta(language),
-					Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_HEADER_HIDE_WHITE));
+					Common.createCellStyle(workbook, CellStyle.CELL_STYLE_TYPE_HEADER_HIDE_WHITE.getCode()));
 			for (int i = 0; i < model.getAttributes().size(); i++) {
 				String label;
 				if (model.getAttributes().get(i).getUnit() == null
@@ -94,13 +95,13 @@ public class FormattedExporter {
 				String formatInfo = model.getAttributes().get(i).getFormatInfo();
 				String defaultValue = model.getAttributes().get(i).getDefaultValue();
 				Common.insertCellValue(sheet, i + 2, 2, label,
-						Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER));
+						Common.createCellStyle(workbook, CellStyle.CELL_STYLE_TYPE_ROW_HEADER.getCode()));
 				Common.insertCellValue(sheet, i + 2, 3, attrInfo,
-						Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER_GRAY));
+						Common.createCellStyle(workbook, CellStyle.CELL_STYLE_TYPE_ROW_HEADER_GRAY.getCode()));
 				Common.insertCellValue(sheet, i + 2, 4, formatInfo,
-						Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER));
+						Common.createCellStyle(workbook, CellStyle.CELL_STYLE_TYPE_ROW_HEADER.getCode()));
 				Common.insertCellValue(sheet, i + 2, 5, defaultValue,
-						Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_ROW_HEADER));
+						Common.createCellStyle(workbook, CellStyle.CELL_STYLE_TYPE_ROW_HEADER.getCode()));
 			}
 			flag = true;
 		} catch (Exception e) {
@@ -146,7 +147,7 @@ public class FormattedExporter {
 			for (int j = 0; j < modelList.size(); j++) {
 				for (int i = 0; i < modelList.get(j).getAttrValues().size(); i++) {
 					Common.insertCellValue(sheet, i + 2, j + startRowNum + 6, modelList.get(j).getAttrValues().get(i),
-							Common.createCellStyle(workbook, Common.CELL_STYLE_TYPE_VALUE));
+							Common.createCellStyle(workbook, CellStyle.CELL_STYLE_TYPE_VALUE.getCode()));
 				}
 			}
 			flag = true;
