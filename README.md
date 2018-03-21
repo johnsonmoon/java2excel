@@ -7,13 +7,9 @@ Tool for java reading/writing excel file.
 ```
 git clone https://github.com/johnsonmoon/java2excel.git
 ```
-- checkout branch dev-1.3.0 , switch into version 1.3.0
-```
-git checkout origin/dev-1.3.0
-```
 - install apache maven, execute command below in the project directory 
 ```
-mvn install
+mvn install -Dmaven.test.skip=true
 ```
 
 ## Include java2excel into your project path (maven)
@@ -22,8 +18,10 @@ mvn install
 <dependency>
     <groupId>xuyihao</groupId>
     <artifactId>java2excel</artifactId>
-    <version>1.3.0</version>
+    <version>${version}</version>
 </dependency>
+
+Choose your favourite ${version}.
 ```
 
 ## Using
