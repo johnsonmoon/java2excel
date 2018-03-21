@@ -25,6 +25,71 @@ public class FreeEditor extends FreeAbstractEditor {
 	}
 
 	/**
+	 * Merge cells begin from {firstRow}, {lastRow} to {firstColumn}, {lastColumn}.
+	 *
+	 * @param sheetNum    given sheet number
+	 * @param firstRow    first row index
+	 * @param lastRow     last row index
+	 * @param firstColumn first column index
+	 * @param lastColumn  last column index
+	 * @return true/false
+	 */
+	public boolean mergeExcelCells(int sheetNum, int firstRow, int lastRow, int firstColumn, int lastColumn) {
+		if (workbook == null || sheetNum < 0)
+			return false;
+		return mergeCells(workbook, sheetNum, firstRow, lastRow, firstColumn, lastColumn);
+	}
+
+	/**
+	 * Set default row height of the sheet.
+	 *
+	 * @param sheetNum given sheet number
+	 * @param height   height
+	 * @return true/false
+	 */
+	public boolean setExcelDefaultRowHeight(int sheetNum, int height) {
+		if (workbook == null || sheetNum < 0) {
+			return false;
+		}
+		return setDefaultRowHeight(workbook, sheetNum, height);
+	}
+
+	/**
+	 * Set height of row. Row should be exists.
+	 * <pre>
+	 *     NOTE:invoke after row is created.
+	 * </pre>
+	 *
+	 * @param sheetNum given sheet number
+	 * @param row      row number, begin from 0.
+	 * @param height   height
+	 * @return true/false
+	 */
+	public boolean setExcelRowHeight(int sheetNum, int row, int height) {
+		if (workbook == null || sheetNum < 0) {
+			return false;
+		}
+		return setRowHeight(workbook, sheetNum, row, height);
+	}
+
+	/**
+	 * Hide row, Set height 0 of row. Row should be exists.
+	 * <pre>
+	 *     NOTE:invoke after row is created.
+	 * </pre>
+	 *
+	 * @param sheetNum given sheet number
+	 * @param row      row number, begin from 0.
+	 * @return true/false
+	 */
+	public boolean hideExcelRow(int sheetNum, int row) {
+		if (workbook == null || sheetNum < 0) {
+			return false;
+		}
+		return hideRow(workbook, sheetNum, row);
+	}
+
+	/**
 	 * Set column width for workbook at sheetNum column.
 	 *
 	 * @param sheetNumber given sheet number
@@ -37,6 +102,20 @@ public class FreeEditor extends FreeAbstractEditor {
 			return false;
 		}
 		return setColumnWidth(workbook, sheetNumber, column, columnWidth);
+	}
+
+	/**
+	 * Hide column, Set width 0 of column.
+	 *
+	 * @param sheetNum given sheet number
+	 * @param column   column number, begin from 0.
+	 * @return true/false
+	 */
+	public boolean hideExcelColumn(int sheetNum, int column) {
+		if (workbook == null || sheetNum < 0) {
+			return false;
+		}
+		return hideColumn(workbook, sheetNum, column);
 	}
 
 	/**

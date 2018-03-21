@@ -6,10 +6,7 @@ import org.junit.Test;
 import xuyihao.java2excel.core.entity.common.CellStyle;
 import xuyihao.java2excel.core.entity.free.CellData;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by xuyh at 2018/3/20 17:23.
@@ -19,13 +16,13 @@ public class FreeWriterTest {
 	public void test() {
 		FreeWriter writer = new FreeWriter("C:\\Users\\Johnson\\Desktop\\FreeWriter.xlsx");
 		Assert.assertTrue(writer.createExcel(Arrays.asList(
-				new CellData(0, 0, "A", CellStyle.CELL_STYLE_TYPE_VALUE),
-				new CellData(0, 1, "B", CellStyle.CELL_STYLE_TYPE_VALUE),
-				new CellData(0, 2, "C", CellStyle.CELL_STYLE_TYPE_VALUE),
-				new CellData(0, 3, "D", CellStyle.CELL_STYLE_TYPE_VALUE),
-				new CellData(0, 4, "E", CellStyle.CELL_STYLE_TYPE_VALUE),
-				new CellData(0, 5, "F", CellStyle.CELL_STYLE_TYPE_VALUE),
-				new CellData(0, 6, "G", CellStyle.CELL_STYLE_TYPE_VALUE)), 0, "sheet0"));
+				new CellData(0, 0, "A", CellStyle.CELL_STYLE_TYPE_ROW_HEADER_GREY),
+				new CellData(0, 1, "B", CellStyle.CELL_STYLE_TYPE_ROW_HEADER_GREY),
+				new CellData(0, 2, "C", CellStyle.CELL_STYLE_TYPE_ROW_HEADER_GREY),
+				new CellData(0, 3, "D", CellStyle.CELL_STYLE_TYPE_ROW_HEADER_GREY),
+				new CellData(0, 4, "E", CellStyle.CELL_STYLE_TYPE_ROW_HEADER_GREY),
+				new CellData(0, 5, "F", CellStyle.CELL_STYLE_TYPE_ROW_HEADER_GREY),
+				new CellData(0, 6, "G", CellStyle.CELL_STYLE_TYPE_ROW_HEADER_GREY)), 0, "sheet0"));
 		Assert.assertTrue(writer.writeExcelData(Arrays.asList(
 				new CellData(1, 0, "A", CellStyle.CELL_STYLE_TYPE_VALUE),
 				new CellData(1, 1, "B", CellStyle.CELL_STYLE_TYPE_VALUE),
@@ -74,6 +71,26 @@ public class FreeWriterTest {
 		}
 
 		Assert.assertTrue(writer.flush("C:\\Users\\Johnson\\Desktop\\FreeWriter2.xlsx"));
+		Assert.assertTrue(writer.close());
+	}
+
+	@Test
+	public void testOther() {
+		FreeWriter writer = new FreeWriter("C:\\Users\\Johnson\\Desktop\\FreeWriter.xlsx");
+		List<CellData> cellDataList = new ArrayList<>();
+		for (int row = 0; row < 10; row++) {
+			for (int column = 0; column < 10; column++) {
+				cellDataList.add(new CellData(row, column, "test_" + row + "_" + column, CellStyle.CELL_STYLE_TYPE_VALUE));
+			}
+		}
+		Assert.assertTrue(writer.createExcel(cellDataList, 0, "test"));
+		Assert.assertTrue(writer.mergeExcelCells(0, 0, 0, 0, 9));
+		Assert.assertTrue(writer.setExcelDefaultRowHeight(0, 600));
+		Assert.assertTrue(writer.setExcelRowHeight(0, 2, 800));
+		Assert.assertTrue(writer.setExcelColumnWidth(0, 2, 7000));
+		Assert.assertTrue(writer.hideExcelRow(0, 1));
+		Assert.assertTrue(writer.hideExcelColumn(0, 3));
+		Assert.assertTrue(writer.flush());
 		Assert.assertTrue(writer.close());
 	}
 }

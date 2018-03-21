@@ -19,6 +19,81 @@ import java.util.Map;
  */
 public abstract class FreeAbstractEditor {
 	/**
+	 * Merge cells begin from {firstRow}, {lastRow} to {firstColumn}, {lastColumn}.
+	 *
+	 * @param workbook    given workbook
+	 * @param sheetNum    given sheet number
+	 * @param firstRow    first row index
+	 * @param lastRow     last row index
+	 * @param firstColumn first column index
+	 * @param lastColumn  last column index
+	 * @return true/false
+	 */
+	protected boolean mergeCells(final Workbook workbook, int sheetNum, int firstRow, int lastRow, int firstColumn,
+			int lastColumn) {
+		if (workbook == null)
+			return false;
+		if (sheetNum < 0)
+			return false;
+		return FreeExporter.mergeCells(workbook, sheetNum, firstRow, lastRow, firstColumn, lastColumn);
+	}
+
+	/**
+	 * Set default row height of the sheet.
+	 *
+	 * @param workbook given workbook
+	 * @param sheetNum given sheet number
+	 * @param height   height
+	 * @return true/false
+	 */
+	protected boolean setDefaultRowHeight(final Workbook workbook, int sheetNum, int height) {
+		if (workbook == null)
+			return false;
+		if (sheetNum < 0)
+			return false;
+		return FreeExporter.setDefaultRowHeight(workbook, sheetNum, height);
+	}
+
+	/**
+	 * Set height of row. Row should be exists.
+	 * <pre>
+	 *     NOTE:invoke after row is created.
+	 * </pre>
+	 *
+	 * @param workbook given workbook
+	 * @param sheetNum given sheet number
+	 * @param row      row number, begin from 0.
+	 * @param height   height
+	 * @return true/false
+	 */
+	protected boolean setRowHeight(final Workbook workbook, int sheetNum, int row, int height) {
+		if (workbook == null)
+			return false;
+		if (sheetNum < 0)
+			return false;
+		return FreeExporter.setRowHeight(workbook, sheetNum, row, height);
+	}
+
+	/**
+	 * Hide row, Set height 0 of row. Row should be exists.
+	 * <pre>
+	 *     NOTE:invoke after row is created.
+	 * </pre>
+	 *
+	 * @param workbook given workbook
+	 * @param sheetNum given sheet number
+	 * @param row      row number, begin from 0.
+	 * @return true/false
+	 */
+	protected boolean hideRow(final Workbook workbook, int sheetNum, int row) {
+		if (workbook == null)
+			return false;
+		if (sheetNum < 0)
+			return false;
+		return FreeExporter.hideRow(workbook, sheetNum, row);
+	}
+
+	/**
 	 * Set column width for workbook at sheetNum column.
 	 *
 	 * @param workbook    given workbook
@@ -29,6 +104,22 @@ public abstract class FreeAbstractEditor {
 	 */
 	protected boolean setColumnWidth(final Workbook workbook, int sheetNumber, int column, int columnWidth) {
 		return FreeExporter.setColumnWidth(workbook, sheetNumber, column, columnWidth);
+	}
+
+	/**
+	 * Hide column, Set width 0 of column.
+	 *
+	 * @param workbook given workbook
+	 * @param sheetNum given sheet number
+	 * @param column   column number, begin from 0.
+	 * @return true/false
+	 */
+	protected boolean hideColumn(final Workbook workbook, int sheetNum, int column) {
+		if (workbook == null)
+			return false;
+		if (sheetNum < 0)
+			return false;
+		return FreeExporter.hideColumn(workbook, sheetNum, column);
 	}
 
 	/**

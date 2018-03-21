@@ -3,6 +3,7 @@ package xuyihao.java2excel.core.operation;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -100,7 +101,8 @@ public class Common {
 
 			org.apache.poi.ss.usermodel.CellStyle cellStyleGrayRowHeader = workbook.createCellStyle();
 			cellStyleGrayRowHeader.cloneStyleFrom(cellStyleRowHeader);
-			styleMap.put(CellStyle.CELL_STYLE_TYPE_ROW_HEADER_GRAY.getCode(), cellStyleGrayRowHeader);
+			cellStyleGrayRowHeader.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.index);
+			styleMap.put(CellStyle.CELL_STYLE_TYPE_ROW_HEADER_GREY.getCode(), cellStyleGrayRowHeader);
 
 			org.apache.poi.ss.usermodel.CellStyle cellStyleRowHeaderTopAlign = workbook.createCellStyle();
 			cellStyleRowHeaderTopAlign.cloneStyleFrom(cellStyleRowHeader);
@@ -132,6 +134,148 @@ public class Common {
 			cellStyleCache.put(workbook, styleMap);
 		}
 		return cellStyleCache.get(workbook).get(cellStyleType);
+	}
+
+	/**
+	 * Merge cells begin from {firstRow}, {lastRow} to {firstColumn}, {lastColumn}.
+	 *
+	 * @param sheet       given sheet
+	 * @param firstRow    first row index
+	 * @param lastRow     last row index
+	 * @param firstColumn first column index
+	 * @param lastColumn  last column index
+	 */
+	public static boolean mergeCells(Sheet sheet, int firstRow, int lastRow, int firstColumn, int lastColumn) {
+		if (sheet == null) {
+			logger.warn("Sheet is null!");
+			return false;
+		}
+		CellRangeAddress cellRangeAddress = new CellRangeAddress(firstRow, lastRow, firstColumn, lastColumn);
+		sheet.addMergedRegion(cellRangeAddress);
+		return true;
+	}
+
+	/**
+	 * Set default row height of the sheet.
+	 *
+	 * @param sheet  given sheet
+	 * @param height height
+	 * @return true/false
+	 */
+	public static boolean setDefaultRowHeight(Sheet sheet, int height) {
+		if (sheet == null) {
+			logger.warn("Sheet is null!");
+			return false;
+		}
+		try {
+			sheet.setDefaultRowHeight(Short.parseShort(String.valueOf(height)));
+		} catch (Exception e) {
+			logger.warn(e.getMessage(), e);
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Set height of row. Row should be exists.
+	 * <pre>
+	 *     NOTE:invoke after row is created.
+	 * </pre>
+	 *
+	 * @param sheet  given sheet
+	 * @param row    row number, begin from 0.
+	 * @param height height
+	 * @return true/false
+	 */
+	public static boolean setRowHeight(Sheet sheet, int row, int height) {
+		if (sheet == null) {
+			logger.warn("Sheet is null!");
+			return false;
+		}
+		try {
+			Row r = sheet.getRow(row);
+			if (r == null) {
+				logger.warn(String.format("Row for number:[%s] is null!", row));
+				return false;
+			}
+			r.setHeight(Short.parseShort(String.valueOf(height)));
+		} catch (Exception e) {
+			logger.warn(e.getMessage(), e);
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Hide row, Set height 0 of row. Row should be exists.
+	 * <pre>
+	 *     NOTE:invoke after row is created.
+	 * </pre>
+	 *
+	 * @param sheet given sheet
+	 * @param row   row number, begin from 0.
+	 * @return true/false
+	 */
+	public static boolean hideRow(Sheet sheet, int row) {
+		if (sheet == null) {
+			logger.warn("Sheet is null!");
+			return false;
+		}
+		try {
+			Row r = sheet.getRow(row);
+			if (r == null) {
+				logger.warn(String.format("Row for number:[%s] is null!", row));
+				return false;
+			}
+			r.setZeroHeight(true);
+		} catch (Exception e) {
+			logger.warn(e.getMessage(), e);
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Set width of column.
+	 *
+	 * @param sheet  given sheet
+	 * @param column column number, begin from 0.
+	 * @param width  width
+	 * @return true/false
+	 */
+	public static boolean setColumnWidth(Sheet sheet, int column, int width) {
+		if (sheet == null) {
+			logger.warn("Sheet is null!");
+			return false;
+		}
+		try {
+			sheet.setColumnWidth(column, width);
+		} catch (Exception e) {
+			logger.warn(e.getMessage(), e);
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Hide column, Set width 0 of column.
+	 *
+	 * @param sheet  given sheet
+	 * @param column column number, begin from 0.
+	 * @return true/false
+	 */
+	public static boolean hideColumn(Sheet sheet, int column) {
+		if (sheet == null) {
+			logger.warn("Sheet is null!");
+			return false;
+		}
+		try {
+			sheet.setColumnHidden(column, true);
+		} catch (Exception e) {
+			logger.warn(e.getMessage(), e);
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -239,7 +383,6 @@ public class Common {
 	 * @param workbook excel workbook
 	 * @param file     disk file
 	 * @return true if succeeded, false if failed
-	 * @throws Exception exceptions
 	 */
 	public static boolean writeFileToDisk(Workbook workbook, File file) {
 		if (file == null || !file.exists())
