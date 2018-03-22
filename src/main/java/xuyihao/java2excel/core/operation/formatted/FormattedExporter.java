@@ -68,7 +68,7 @@ public class FormattedExporter {
 			Common.insertCellValue(sheet, 0, 3, Meta.DONT_MODIFY.getMeta(language),
 					Common.createCellStyle(workbook, CellStyle.CELL_STYLE_TYPE_ROW_HEADER_GREY.getCode()));
 			Common.insertCellValue(sheet, 0, 4, Meta.DATA_FORMAT.getMeta(language),
-					Common.createCellStyle(workbook, CellStyle.CELL_STYLE_TYPE_ROW_HEADER_GREY.getCode()));
+					Common.createCellStyle(workbook, CellStyle.CELL_STYLE_TYPE_ROW_HEADER.getCode()));
 			Common.insertCellValue(sheet, 0, 5, Meta.DEFAULT_VALUE.getMeta(language),
 					Common.createCellStyle(workbook, CellStyle.CELL_STYLE_TYPE_ROW_HEADER.getCode()));
 			Common.insertCellValue(sheet, 0, 6, Meta.DATA.getMeta(language),
