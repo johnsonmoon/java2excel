@@ -37,7 +37,7 @@ public class FormattedEditorTest {
 		Assert.assertTrue(formattedWriter.writeExcelMetaInfo(Teacher.class, 0));
 		Assert.assertTrue(formattedWriter.writeExcelData(teachers, 0));
 		Assert.assertTrue(formattedWriter.flush());
-		Assert.assertTrue(formattedWriter.close());
+		formattedWriter.close();
 	}
 
 	@Test
@@ -61,6 +61,6 @@ public class FormattedEditorTest {
 		}
 		Assert.assertTrue(editor.writeExcelData(teachers, 0, count + 10));
 		Assert.assertTrue(editor.flush("D:\\test2.xlsx"));
-		Assert.assertTrue(editor.close());
+		editor.close();
 	}
 }

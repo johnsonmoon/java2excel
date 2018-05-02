@@ -1,11 +1,12 @@
 package com.github.johnsonmoon.java2excel;
 
+import java.io.Closeable;
 import java.util.List;
 
 /**
  * Created by xuyh at 2018/2/12 16:28.
  */
-public interface Editor {
+public interface Editor extends Closeable {
 	/**
 	 * Write excel header meta information by type clazz info.
 	 *
@@ -60,11 +61,4 @@ public interface Editor {
 	 * @return true/false
 	 */
 	boolean flush(String filePathName);
-
-	/**
-	 * Close the writer
-	 *
-	 * @return true/false
-	 */
-	boolean close();
 }

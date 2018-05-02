@@ -51,7 +51,7 @@ public class FreeWriterTest {
 		}
 
 		Assert.assertTrue(writer.flush());
-		Assert.assertTrue(writer.close());
+		writer.close();
 	}
 
 	@Test
@@ -71,7 +71,7 @@ public class FreeWriterTest {
 		}
 
 		Assert.assertTrue(writer.flush("C:\\Users\\Johnson\\Desktop\\FreeWriter2.xlsx"));
-		Assert.assertTrue(writer.close());
+		writer.close();
 	}
 
 	@Test
@@ -91,6 +91,6 @@ public class FreeWriterTest {
 		Assert.assertTrue(writer.hideExcelRow(0, 1));
 		Assert.assertTrue(writer.hideExcelColumn(0, 3));
 		Assert.assertTrue(writer.flush());
-		Assert.assertTrue(writer.close());
+		writer.close();
 	}
 }

@@ -7,7 +7,7 @@ import org.junit.Test;
  */
 public class ReaderTest {
 	@Test
-	public void test() {
+	public void test() throws Exception {
 		String filePathNameCustom = System.getProperty("user.dir") + "/src/test/resources/readerCustom.xlsx";
 		Reader readerCustom = ExcelFactory.getReader(ExcelFactory.TYPE_CODE_CUSTOM, filePathNameCustom, 1);
 		readerCustom.readExcelData(0, 2, User.class).forEach(System.out::println);

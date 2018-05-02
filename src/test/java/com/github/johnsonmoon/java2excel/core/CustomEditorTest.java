@@ -75,13 +75,13 @@ public class CustomEditorTest {
 		Assert.assertTrue(customEditor.writeExcelMetaInfo(columnMapper, 0, "TestSheet"));
 		Assert.assertTrue(customEditor.writeExcelDataDirectly(intDataList, 0, 1));
 		Assert.assertTrue(customEditor.flush());
-		Assert.assertTrue(customEditor.close());
+		customEditor.close();
 
 		CustomEditor customEditor1 = new CustomEditor(filePathName);
 		Assert.assertTrue(customEditor1.writeExcelMetaInfo(columnMapper, 1, "testSheet2"));
 		Assert.assertTrue(customEditor1.writeExcelDataDirectly(strDataList, columnMapper, 1, 1));
 		Assert.assertTrue(customEditor1.flush(filePathName2));//save into another file
-		Assert.assertTrue(customEditor1.close());
+		customEditor1.close();
 
 		CustomEditor customEditor2 = new CustomEditor(filePathName2);
 		long count = customEditor2.readExcelDataCount(0, 1);
@@ -93,7 +93,7 @@ public class CustomEditorTest {
 		List<Map<String, Object>> mapList1 = customEditor2.readExcelDataDirectly(columnMapper, 1, 1, 10);
 		Assert.assertNotNull(mapList1);
 		System.out.println(mapList1);
-		Assert.assertTrue(customEditor2.close());
+		customEditor2.close();
 	}
 
 	@Test
@@ -105,13 +105,13 @@ public class CustomEditorTest {
 		Assert.assertTrue(customEditor.writeExcelMetaInfo(Person.class, 0, "Person"));
 		Assert.assertTrue(customEditor.writeExcelData(people, columnMapper, 0, 1));
 		Assert.assertTrue(customEditor.flush());
-		Assert.assertTrue(customEditor.close());
+		customEditor.close();
 
 		CustomEditor customEditor1 = new CustomEditor(filePathName3);
 		Assert.assertTrue(customEditor1.writeExcelMetaInfo(PersonA.class, 1, "PersonA"));
 		Assert.assertTrue(customEditor1.writeExcelData(personAS, 1, 1));
 		Assert.assertTrue(customEditor1.flush(filePathName4));//save into another file
-		Assert.assertTrue(customEditor1.close());
+		customEditor1.close();
 
 		CustomEditor customEditor2 = new CustomEditor(filePathName4);
 		long count = customEditor2.readExcelDataCount(0, 1);
@@ -123,6 +123,6 @@ public class CustomEditorTest {
 		List<PersonA> personAList = customEditor2.readExcelData(1, 1, 10, PersonA.class);
 		Assert.assertNotNull(personAList);
 		System.out.println(personAList);
-		Assert.assertTrue(customEditor2.close());
+		customEditor2.close();
 	}
 }

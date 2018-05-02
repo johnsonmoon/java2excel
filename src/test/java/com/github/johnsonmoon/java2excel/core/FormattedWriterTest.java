@@ -63,6 +63,6 @@ public class FormattedWriterTest {
 		}
 
 		Assert.assertTrue(formattedWriter.flush());
-		Assert.assertTrue(formattedWriter.close());
+		formattedWriter.close();
 	}
 }

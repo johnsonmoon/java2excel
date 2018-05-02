@@ -53,7 +53,7 @@ public class FreeEditorTest {
 		}
 
 		Assert.assertTrue(editor1.flush());
-		Assert.assertTrue(editor1.close());
+		editor1.close();
 	}
 
 	@Test
@@ -74,7 +74,7 @@ public class FreeEditorTest {
 		}
 
 		Assert.assertTrue(editor1.flush("C:\\Users\\Johnson\\Desktop\\FreeEditor2.xlsx"));
-		Assert.assertTrue(editor1.close());
+		editor1.close();
 	}
 
 	@Test
@@ -86,6 +86,7 @@ public class FreeEditorTest {
 		String str = editor.readExcelData(0, 0, 0);
 		Assert.assertNotNull(str);
 		System.out.println(str);
+		editor.close();
 	}
 
 	@Test
@@ -105,6 +106,6 @@ public class FreeEditorTest {
 		Assert.assertTrue(editor.hideExcelRow(0, 1));
 		Assert.assertTrue(editor.hideExcelColumn(0, 3));
 		Assert.assertTrue(editor.flush());
-		Assert.assertTrue(editor.close());
+		editor.close();
 	}
 }

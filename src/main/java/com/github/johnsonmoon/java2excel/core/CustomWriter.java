@@ -134,9 +134,9 @@ public class CustomWriter extends CustomAbstractWriter implements Writer {
 	 * @return true/false
 	 */
 	@Override
-	public boolean close() {
+	public void close() {
 		if (workbook == null)
-			return false;
-		return close(workbook);
+			return;
+		close(workbook);
 	}
 }

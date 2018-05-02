@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class EditorTest {
 	@Test
-	public void test() {
+	public void test() throws Exception {
 		String filePathName = System.getProperty("user.dir") + "/src/test/resources/editor.xlsx";
 		List<User> users = new ArrayList<>();
 		for (int i = 0; i < 5; i++) {

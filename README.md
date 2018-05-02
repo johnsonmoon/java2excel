@@ -16,7 +16,7 @@ mvn install -Dmaven.test.skip=true
 - pom.xml
 ```
 <dependency>
-    <groupId>xuyihao</groupId>
+    <groupId>com.github.johnsonmoon</groupId>
     <artifactId>java2excel</artifactId>
     <version>${version}</version>
 </dependency>

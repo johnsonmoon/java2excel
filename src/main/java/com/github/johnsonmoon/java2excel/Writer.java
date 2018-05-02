@@ -1,10 +1,11 @@
 package com.github.johnsonmoon.java2excel;
 
+import java.io.Closeable;
 import java.util.List;
 
 /**
  * Excel writer.
- *
+ * <p>
  * <p>
  * <pre>
  * 	Write excel file at multiple sheets as a whole new excel file.
@@ -17,7 +18,7 @@ import java.util.List;
  * <p>
  * Created by xuyh at 2018/2/12 16:07.
  */
-public interface Writer {
+public interface Writer extends Closeable {
 	/**
 	 * Write model info into excel workbook at sheet number sheetNumber.
 	 *
@@ -50,11 +51,4 @@ public interface Writer {
 	 * @return true/false
 	 */
 	boolean flush(String filePathName);
-
-	/**
-	 * Close the writer
-	 *
-	 * @return true/false
-	 */
-	boolean close();
 }

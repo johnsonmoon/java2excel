@@ -34,7 +34,7 @@ public class CustomReaderTest {
 		Assert.assertTrue(writer.writeExcelMetaInfo(Person.class, 0));
 		Assert.assertTrue(writer.writeExcelData(people, 0));
 		Assert.assertTrue(writer.flush());
-		Assert.assertTrue(writer.close());
+		writer.close();
 	}
 
 	@Test
@@ -61,6 +61,6 @@ public class CustomReaderTest {
 			}
 		}
 
-		Assert.assertTrue(reader.close());
+		reader.close();
 	}
 }

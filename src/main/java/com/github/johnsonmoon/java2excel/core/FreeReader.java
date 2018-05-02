@@ -6,10 +6,12 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.Closeable;
+
 /**
  * Created by xuyh at 2018/3/20 16:46.
  */
-public class FreeReader extends FreeAbstractReader {
+public class FreeReader extends FreeAbstractReader implements Closeable {
 	private static Logger logger = LoggerFactory.getLogger(FreeReader.class);
 	private Workbook workbook;
 
@@ -75,9 +77,9 @@ public class FreeReader extends FreeAbstractReader {
 	 *
 	 * @return true/false
 	 */
-	public boolean close() {
+	public void close() {
 		if (workbook == null)
-			return false;
-		return close(workbook);
+			return;
+		close(workbook);
 	}
 }

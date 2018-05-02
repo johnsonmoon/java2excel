@@ -6,13 +6,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.github.johnsonmoon.java2excel.core.entity.free.CellData;
 
+import java.io.Closeable;
 import java.util.List;
 import java.util.Map;
 
 /**
  * Created by xuyh at 2018/3/20 16:46.
  */
-public class FreeWriter extends FreeAbstractWriter {
+public class FreeWriter extends FreeAbstractWriter implements Closeable {
 	private static Logger logger = LoggerFactory.getLogger(FreeWriter.class);
 	private Workbook workbook = new XSSFWorkbook();
 	private String filePathName;
@@ -249,9 +250,9 @@ public class FreeWriter extends FreeAbstractWriter {
 	 *
 	 * @return true/false
 	 */
-	public boolean close() {
+	public void close() {
 		if (workbook == null)
-			return false;
-		return close(workbook);
+			return;
+		close(workbook);
 	}
 }

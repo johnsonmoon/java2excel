@@ -1,5 +1,6 @@
 package com.github.johnsonmoon.java2excel;
 
+import java.io.Closeable;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ import java.util.List;
  * <p>
  * Created by xuyh at 2018/2/12 16:07.
  */
-public interface Reader {
+public interface Reader extends Closeable {
 	/**
 	 * Get data count at sheet sheetNumber
 	 *
@@ -55,11 +56,4 @@ public interface Reader {
 	 * @return true/false
 	 */
 	boolean refresh();
-
-	/**
-	 * Close the workbook.
-	 *
-	 * @return true/false
-	 */
-	boolean close();
 }

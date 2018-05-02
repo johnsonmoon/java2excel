@@ -213,28 +213,26 @@ public class FormattedEditor extends FormattedAbstractEditor implements Editor {
 	 * @return true/false
 	 */
 	@Override
-	public boolean close() {
+	public void close() {
 		if (workbook == null)
-			return false;
-		boolean flag;
+			return;
 		if (saveFilepathName == null) {
-			flag = close(workbook);
+			close(workbook);
 		} else if (filePathName.equals(saveFilepathName)) {
 			//save changes
-			flag = close(workbook);
-			flag = flag && FileUtils.delete(filePathName);
-			flag = flag && FileUtils.rename(saveFilePathName(), filePathName);
-			flag = flag && FileUtils.delete(backupFilePathName());
+			close(workbook);
+			FileUtils.delete(filePathName);
+			FileUtils.rename(saveFilePathName(), filePathName);
+			FileUtils.delete(backupFilePathName());
 		} else {
 			//save changes to another file
 			if (FileUtils.exists(saveFilepathName))
 				FileUtils.delete(saveFilepathName);
-			flag = close(workbook);
-			flag = flag && FileUtils.delete(filePathName);
-			flag = flag && FileUtils.rename(saveFilePathName(), saveFilepathName);
-			flag = flag && FileUtils.rename(backupFilePathName(), filePathName);
+			close(workbook);
+			FileUtils.delete(filePathName);
+			FileUtils.rename(saveFilePathName(), saveFilepathName);
+			FileUtils.rename(backupFilePathName(), filePathName);
 		}
-		return flag;
 	}
 
 	private boolean openWorkBook(String filePathName) {

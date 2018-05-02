@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class WriterTest {
 	@Test
-	public void test() {
+	public void test() throws Exception {
 		List<User> users = new ArrayList<>();
 		for (int i = 0; i < 5; i++) {
 			User user = new User();
